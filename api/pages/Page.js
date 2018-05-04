@@ -10,6 +10,7 @@
 var _ = require('underscore');
 var customHelper = require('../../helpers/custom.js');
 var q = require('q');
+var fs = require('fs');
 
 module.exports = function() {
     
@@ -79,7 +80,7 @@ module.exports = function() {
         
         global.appService.getApp(appId).then(function (application) {
             global.userService.resetUserPassword(appId, username, newPassword, resetKey, customHelper.getAccessList(req), true, application.keys.encryption_key)
-            .then(function(result) {
+            .then(function() {
                 res.json({message : "Password changed successfully."});
             }, function(error) {
                 res.json(400, {
@@ -128,14 +129,18 @@ module.exports = function() {
                 authSettings=auth.settings;
             }
 
-            delete authSettings.resetPasswordEmail.template;
-            delete authSettings.signupEmail.template;
+            if(authSettings && authSettings.resetPasswordEmail && authSettings.signupEmail){
+                delete authSettings.resetPasswordEmail.template;
+                delete authSettings.signupEmail.template;
+            }
 
-            res.render(global.rootPath+'/page-templates/user/login',{
+            var template = global.rootPath+'/page-templates/user/login';
+            res.render(template,{
                 appKeys:appKeys,
                 generalSettings: generalSettings,
                 authSettings: authSettings                    
             });
+
 
         },function(error){
             res.status(400).send(error);
@@ -183,7 +188,7 @@ module.exports = function() {
                 verified:true                                   
             });
 
-        },function(error){
+        },function(){
             res.render(global.rootPath+'/page-templates/user/signup-activate',{               
                 verified:false                                   
             });

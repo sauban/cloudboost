@@ -7,7 +7,6 @@
 
 
 var util = require('../../helpers/util.js');
-var request = require('request');
 
 module.exports = function() {
 

@@ -1,6 +1,6 @@
 //This webpack file is used to package SDK. It's NOT used for the server.
 
-var webpack = require('webpack')
+var webpack = require('webpack');
 var config = [{
     entry: './sdk/src/entry.js',
     output: {
@@ -75,6 +75,6 @@ var config = [{
             }
         })
     ]
-}]
+}];
 
 module.exports = config;

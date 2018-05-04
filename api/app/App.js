@@ -145,7 +145,7 @@ module.exports = function () {
             // check if table already exists
             global.appService.getTable(appId, tableName).then(function (table) {
                 // authorize client for table level, if table found then authorize on table level else on app level for creating new table.
-                let authorizationLevel = table ? 'table' : 'app'
+                var authorizationLevel = table ? 'table' : 'app'
                 global.appService.isClientAuthorized(appId, appKey, authorizationLevel, table).then(function (isAuthorized) {
                     if (isAuthorized) {
                         global.appService.upsertTable(appId, tableName, body.data.columns, body.data).then(function (table) {
@@ -156,7 +156,7 @@ module.exports = function () {
                     } else return res.status(401).send({ status: 'Unauthorized' });
                 }, function (error) {
                     return res.status(401).send({ status: 'Unauthorized', message: error });
-                })
+                });
 
             }, function (err) {
                 return res.status(500).send(err);

@@ -29,23 +29,25 @@ module.exports = function (app) {
 
             appService.isMasterKey(appId, appKey).then(function (isMasterKey) {
                 if (isMasterKey) {
-                    emailService.sendEmail(appId, emailBody, emailSubject, query, isMasterKey).then(function (data) {
+                    emailService.sendEmail(appId, emailBody, emailSubject, query, isMasterKey).then(function () {
                         res.status(200).send(null);
                     }, function (err) {
                         if (err === "Email Configuration is not found." || err === "No users found") {
                             res.status(400).send({ error: err });
                         } else {
-                            res.status(500).json({ message: "Something went wrong", error: err });
+                            res.status(400).json({ message: "Something went wrong", error: err });
                         }
                     });
                 } else {
                     res.status(401).send({ status: 'Unauthorized' });
                 }
             }, function (error) {
-                return res.status(500).send('Cannot retrieve security keys.');
+                global.winston.error(error);
+                return res.status(400).send('Cannot retrieve security keys.');
             });
         } catch (e) {
-            
+            global.winston.error(e);
+            return res.status(500).send('Server error');
         }
 
 

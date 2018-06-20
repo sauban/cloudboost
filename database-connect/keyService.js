@@ -15,8 +15,6 @@ module.exports = {
 		try {
 			var deferred = q.defer();
 
-			var key = null;
-
 			if (config.secureKey) {
 
 				deferred.resolve(config.secureKey);
@@ -49,15 +47,12 @@ module.exports = {
 
 
 
-								collection.save(docs[0], function (err, doc) {
+								collection.save(docs[0], function (err) {
 									if (err) {
-
-
 										deferred.reject(err);
 									} else {
 										//resolve if not an error
 										config.secureKey = key;
-
 										deferred.resolve(key);
 									}
 								});
@@ -67,14 +62,11 @@ module.exports = {
 							var doc = {};
 							doc.secureKey = key;
 							config.secureKey = key;
-							collection.save(doc, function (err, doc) {
+							collection.save(doc, function (err) {
 								if (err) {
-
-
 									deferred.reject(err);
 								} else {
 									//resolve if not an error
-
 									deferred.resolve(key);
 								}
 							});
@@ -97,10 +89,6 @@ module.exports = {
 
 	initClusterKey: function () {
 		try {
-
-
-
-			var key = null;
 
 			if (config.secureKey) {
 
@@ -134,15 +122,12 @@ module.exports = {
 
 								docs[0]["clusterKey"] = key;
 
-								collection.save(docs[0], function (err, doc) {
+								collection.save(docs[0], function (err) {
 									if (err) {
-
-
 										deferred.reject(err);
 									} else {
 										//resolve if not an error
 										config.clusterKey = key;
-
 										deferred.resolve(key);
 									}
 								});
@@ -152,14 +137,11 @@ module.exports = {
 							var doc = {};
 							doc.clusterKey = key;
 							config.clusterKey = key;
-							collection.save(doc, function (err, doc) {
+							collection.save(doc, function (err) {
 								if (err) {
-
-
 									deferred.reject(err);
 								} else {
 									//resolve if not an error
-
 									deferred.resolve(key);
 								}
 							});
@@ -167,7 +149,6 @@ module.exports = {
 					}
 				});
 			}
-
 			return deferred.promise;
 		} catch (e) {
 			global.winston.log('error', {
@@ -245,13 +226,11 @@ module.exports = {
 
 						docs[0].myURL = url;
 
-						collection.save(docs[0], function (err, doc) {
-
+						collection.save(docs[0], function (err) {
 							if (err) {
-
+								global.winston.error(err);
 								deferred.reject("Error, cannot change the cluster URL.");
 							} else {
-
 								config.myURL = url;
 								deferred.resolve(url);
 							}

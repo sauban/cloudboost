@@ -41,7 +41,7 @@ describe("CloudExpire", function () {
 
         }, function(error){
             done(error);
-        })
+        });
 
     });
 

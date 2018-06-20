@@ -136,7 +136,7 @@ describe("Should Create All Test Tables", function(done) {
                 done();
             }, function(err) {
                 throw "Unable to Update schema of the table";
-            })
+            });
         }, function() {
             throw "Unable to get table";
         });

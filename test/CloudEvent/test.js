@@ -26,7 +26,7 @@ describe("CloudEvent", function() {
             , function(err) {
                 done(err);
             });
-        }, 10000)
+        }, 10000);
 
     });
 
@@ -55,7 +55,7 @@ describe("CloudEvent", function() {
             }, function(err) {
                 done(err);
             });
-        }, 10000)
+        }, 10000);
 
     });
 

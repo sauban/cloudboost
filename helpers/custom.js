@@ -1,4 +1,3 @@
-
 /*
 #     CloudBoost - Core Engine that powers Bakend as a Service
 #     (c) 2014 HackerBay, Inc. 
@@ -9,36 +8,39 @@ var mongoService = require('../databases/mongo');
 var q = require('q');
 
 module.exports = {
-	
-	getAccessList : function(req){
 
-		//req is a http request object.
+    getAccessList: function (req) {
 
-        try{
-    		var accessList = {};
+        //req is a http request object.
 
-    		if(!req || !req.session)
-    			return accessList;
-    		if(req.session.userId){
-    			accessList.userId = req.session.userId;
-    		}
+        try {
+            var accessList = {};
 
-    		if(req.session.roles){
-    			accessList.roles  = req.session.roles;
-    		}
+            if (!req || !req.session)
+                return accessList;
+            if (req.session.userId) {
+                accessList.userId = req.session.userId;
+            }
 
-    		return accessList;
+            if (req.session.roles) {
+                accessList.roles = req.session.roles;
+            }
 
-        }catch(err){                    
-            global.winston.log('error',{"error":String(err),"stack": new Error().stack});  
-            return null;                                                
+            return accessList;
+
+        } catch (err) {
+            global.winston.log('error', {
+                "error": String(err),
+                "stack": new Error().stack
+            });
+            return null;
         }
     },
 
-     checkWriteAclAndUpdateVersion : function(appId,documents,accessList,isMasterKey) {
+    checkWriteAclAndUpdateVersion: function (appId, documents, accessList, isMasterKey) {
         var deferred = q.defer();
 
-        try{
+        try {
             var promises = [];
             for (var i = 0; i < documents.length; i++)
                 promises.push(this.verifyWriteACLAndUpdateVersion(appId, documents[i]._tableName, documents[i], accessList, isMasterKey));
@@ -48,17 +50,20 @@ module.exports = {
                 deferred.reject(err);
             });
 
-        }catch(err){                    
-            global.winston.log('error',{"error":String(err),"stack": new Error().stack});
-            deferred.reject(err);                                                  
+        } catch (err) {
+            global.winston.log('error', {
+                "error": String(err),
+                "stack": new Error().stack
+            });
+            deferred.reject(err);
         }
         return deferred.promise;
     },
-    
-    checkWriteAcl : function (appId, document, accessList, isMasterKey) {
-        
-        try{
-            if (isMasterKey) { 
+
+    checkWriteAcl: function (appId, document, accessList, isMasterKey) {
+
+        try {
+            if (isMasterKey) {
                 return true;
             }
 
@@ -69,14 +74,12 @@ module.exports = {
                 if (Object.keys(accessList).length === 0) {
                     if (acl.write.allow.user.indexOf("all") > -1) {
                         return true;
-                    }
-                    else
+                    } else
                         return false;
                 } else {
                     if (accessList.userId && acl.write.allow.user.indexOf(accessList.userId) > -1) {
                         return true;
-                    }
-                    else if (accessList.userId && acl.write.deny.user.indexOf(accessList.userId) > -1)
+                    } else if (accessList.userId && acl.write.deny.user.indexOf(accessList.userId) > -1)
                         return false;
                     else {
                         for (var i = 0; i < accessList.roles.length; i++) {
@@ -89,19 +92,20 @@ module.exports = {
                 }
             }
 
-            return false;
-
-        }catch(err){                    
-            global.winston.log('error',{"error":String(err),"stack": new Error().stack});                                                              
+        } catch (err) {
+            global.winston.log('error', {
+                "error": String(err),
+                "stack": new Error().stack
+            });
         }
     },
 
-     verifyWriteACLAndUpdateVersion : function(appId,collectionName,document,accessList,isMasterKey){
+    verifyWriteACLAndUpdateVersion: function (appId, collectionName, document, accessList, isMasterKey) {
         var deferred = q.defer();
 
-        try{
-            var status = false;
+        try {
             mongoService.document.get(appId, collectionName, document._id, accessList, isMasterKey).then(function (doc) {
+                var status = false; //eslint-disable-line no-unused-vars
                 if (doc) {
                     if (document._version > 0) {
                         if (document._version >= doc._version) {
@@ -113,24 +117,21 @@ module.exports = {
                         document._version = doc._version + 1;
                     }
                     var acl = doc.ACL;
-                    
-                    if (isMasterKey) { 
+                    if (isMasterKey) {
                         status = true;
-                    } else { 
+                    } else {
                         if (acl.write.allow.user.indexOf("all") > -1) {
                             status = true;
                         } else {
                             if (Object.keys(accessList).length === 0) {
                                 if (acl.write.allow.user.indexOf("all") > -1) {
                                     status = true;
-                                }
-                                else
+                                } else
                                     deferred.reject(false);
                             } else {
                                 if (accessList.userId && acl.write.allow.user.indexOf(accessList.userId) > -1) {
                                     status = true;
-                                }
-                                else if (accessList.userId && acl.write.deny.user.indexOf(accessList.userId) > -1)
+                                } else if (accessList.userId && acl.write.deny.user.indexOf(accessList.userId) > -1)
                                     deferred.reject(false);
                                 else {
                                     for (var i = 0; i < accessList.roles.length; i++) {
@@ -144,36 +145,40 @@ module.exports = {
                         }
                     }
 
-                    
+
                     var storedKeys = Object.keys(doc);
                     var documentKeys = Object.keys(document);
-                    for (var i = 0; i < storedKeys.length; i++) {
+                    for (let i = 0; i < storedKeys.length; i++) {
                         if (documentKeys.indexOf(storedKeys[i]) === -1) {
                             document[storedKeys[i]] = doc[storedKeys[i]];
                         }
                     }
-                    var obj = {};
+                    let obj = {};
                     obj.newDoc = document;
                     obj.oldDoc = doc;
                     deferred.resolve(obj);
                 } else {
                     document._version = 0;
-                    var obj = {};
+                    let obj = {};
                     obj.newDoc = document;
                     obj.oldDoc = null;
                     deferred.resolve(obj);
                 }
             }, function (err) {
+                global.winston.error(err);
                 document._version = 0;
                 deferred.reject(false);
             });
 
-        }catch(err){                    
-            global.winston.log('error',{"error":String(err),"stack": new Error().stack});
-            deferred.reject(err);                                                  
+        } catch (err) {
+            global.winston.log('error', {
+                "error": String(err),
+                "stack": new Error().stack
+            });
+            deferred.reject(err);
         }
         return deferred.promise;
 
-     }
+    }
 
 };

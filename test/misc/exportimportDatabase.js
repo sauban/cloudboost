@@ -25,7 +25,7 @@ describe("Export & Import Database", function () {
             tables.push("Hospital");
             done();
         }, function (err) {
-            throw err
+            throw err;
         });
     });
 
@@ -37,7 +37,7 @@ describe("Export & Import Database", function () {
         obj.set('Name', 'kashish');
         obj.save({
             success: function (obj) {
-                savedObject.push(obj.document)
+                savedObject.push(obj.document);
                 done();
             }, error: function (error) {
                 done(error);
@@ -53,7 +53,7 @@ describe("Export & Import Database", function () {
         obj.set('Name', 'kash');
         obj.save({
             success: function (obj) {
-                savedObject.push(obj.document)
+                savedObject.push(obj.document);
                 done();
             }, error: function (error) {
                 done(error);
@@ -87,7 +87,7 @@ describe("Export & Import Database", function () {
                     }
                 }
             }, function (err) {
-                done(err)
+                done(err);
             });
         } else {
             $.ajax({

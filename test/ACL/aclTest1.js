@@ -29,7 +29,7 @@ describe("ACL", function () {
                     }, error : function(error) {
                          done(error);
                     }
-                })
+                });
             }, function(error){
                 done(error);
             });
@@ -64,7 +64,7 @@ describe("ACL", function () {
                 });
             }
             else
-                throw "public write access set error"
+                throw "public write access set error";
         }, function () {
             throw "public write access save error";
         });
@@ -129,7 +129,7 @@ describe("ACL", function () {
             if(acl.document.read.deny.user.length === 0)
                 done();
             else
-                throw "public read access set error"
+                throw "public read access set error";
         }, function () {
             throw "public read access save error";
         });
@@ -183,7 +183,7 @@ describe("ACL", function () {
             if(acl.document.read.allow.user.indexOf(userObj.get('id')) >= 0)
                 done();
             else
-                throw "user read access set error"
+                throw "user read access set error";
         }, function () {
             throw "user read access save error";
         });
@@ -208,7 +208,7 @@ describe("ACL", function () {
             if(acl.document.write.allow.role.indexOf(userObj.get('id'))>=0)
                 done();
             else
-                throw "user role write access set error"
+                throw "user role write access set error";
         }, function () {
             throw "user role write access save error";
         });
@@ -232,7 +232,7 @@ describe("ACL", function () {
             if(acl.document.read.allow.role.indexOf(userObj.get('id'))>=0)
                 done();
             else
-                throw "user role read access set error"
+                throw "user role read access set error";
         }, function () {
             throw "user role read access save error";
         });

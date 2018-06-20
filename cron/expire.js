@@ -23,17 +23,16 @@ var job= new CronJob('00 00 22 * * *', function(){
                     var appId = databaseNameList[j];
 
                     var curr = new Date();
-                    var count = 0;
 
                     var collectionName = "_Schema";        
                     var collection = config.mongoClient.db(appId).collection(collectionName);
-                    query = {};
+                    var query = {};
                     
                     collection.find(query).toArray().then(function (res) {
                         
-                        resp = res.length;
+                        var resLength = res.length;
                         
-                        for (var i = 0; i < resp; i++) {                            
+                        for (var i = 0; i < resLength; i++) {                            
                             var collectionName = res[i].name;
                             if(global.database && global.esClient) {
                                 if(collectionName !== "File") {                                   
@@ -44,13 +43,13 @@ var job= new CronJob('00 00 22 * * *', function(){
                             }
                         }
                     },function(error) {
-                        
+                        global.winston.error(error);
                     });
                 }
             }            
 
         },function(error){
-            
+            global.winston.error(error);            
         });        
 
     } catch(err){           
@@ -66,16 +65,16 @@ function removeFiles(appId,curr) {
         var collectionName = "File";
         var collectionId = mongoUtil.collection.getId(appId, collectionName);
         var collection = config.mongoClient.db(appId).collection(collectionId);
-        query = {"expires": {"$lt": curr, "$exists": true, "$ne": null}};
+        var query = {"expires": {"$lt": curr, "$exists": true, "$ne": null}};
         var promises = [];
         collection.find(query).toArray().then(function (res) {
             for(var i=0;i<res.length;i++) {
                 promises.push(fileService.delete(appId, res[i], null, true));
             }
             q.all(promises).then(function(res){
-                
+                global.winston.info(res);                
             },function(err){
-                
+                global.winston.error(err);                
             });
         }, function () {
 
@@ -89,9 +88,14 @@ function mongodb(appId,collectionName,curr){
     try{
         var collectionId = mongoUtil.collection.getId(appId, collectionName);
         var collection = config.mongoClient.db(appId).collection(collectionId);
-        que = {"expires": {"$lt": curr,"$exists":true,"$ne":null}};
+        var que = {"expires": {"$lt": curr,"$exists":true,"$ne":null}};
         collection.remove(que, function (err, number) {
-            
+            if(err){
+                global.winston.error(err);
+            } else {
+                global.winston.info(number);
+            }
+
         });
     } catch(err){           
         global.winston.log('error',{"error":String(err),"stack": new Error().stack});               

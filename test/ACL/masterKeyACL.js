@@ -57,7 +57,7 @@ describe("MasterKey ACL", function () {
                     }, error : function(error) {
                          done(error);
                     }
-                })
+                });
             }, function(error){
                 done(error);
             });           

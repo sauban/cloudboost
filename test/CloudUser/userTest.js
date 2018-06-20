@@ -20,7 +20,7 @@ describe("CloudUser", function () {
                 done();
             }
             else {
-                throw "create user error"
+                throw "create user error";
             }
         }, function (error) {
             throw error;
@@ -80,11 +80,11 @@ describe("CloudUser", function () {
             newUser.logIn().then(function(){
                 done();
             }, function(error){
-                done("Cannot log in")
+                done("Cannot log in");
             });
         }, function(error){
-            done("Cannot save a user.")
-        })
+            done("Cannot save a user.");
+        });
 
     });
 
@@ -113,13 +113,13 @@ describe("CloudUser", function () {
                                     success: function () {
                                         done();
                                     }, error: function (err) {
-                                        done("Error signing in.")
+                                        done("Error signing in.");
                                     }
                                 });
                             }, error: function () {
                                 done("Cannot log out");
                             }
-                        })
+                        });
                     }, error: function (error) {
                         done(error);
                     }
@@ -187,7 +187,7 @@ describe("CloudUser", function () {
                     done();
                 }
             }, error: function (error) {
-                done("Failed to log out a user. ")
+                done("Failed to log out a user. ");
             }
         });
     });
@@ -227,7 +227,7 @@ describe("CloudUser", function () {
                     }
                 });
             else
-                throw "create user error"
+                throw "create user error";
         }, function (error) {
             throw error;
         });
@@ -243,7 +243,7 @@ describe("CloudUser", function () {
         this.timeout(300000);
         CB.CloudUser.resetPassword("911@cloudboost.io", {
             success: function () {
-                done()
+                done();
             }, error: function (error) {
                 done();
             }
@@ -270,7 +270,7 @@ describe("CloudUser", function () {
                 done();
             }
             else
-                throw "create user error"
+                throw "create user error";
         }, function () {
             throw "user create error";
         });
@@ -303,7 +303,7 @@ describe("CloudUser", function () {
                 });
             }
             else
-                throw "create user error"
+                throw "create user error";
         }, function () {
             throw "user create error";
         });
@@ -401,7 +401,7 @@ describe("CloudUser", function () {
             });
         }, function () {
             throw "role create error";
-        })
+        });
 
     });
 
@@ -562,7 +562,7 @@ describe("CloudUser", function () {
                 }
             }, function () {
                 throw "Unable to Get User By ID";
-            })
+            });
         }, function (err) {
             throw "Unable to Create User";
         });
@@ -586,7 +586,7 @@ describe("CloudUser", function () {
                 }
             }, function () {
                 throw "Unable to Get User By ID";
-            })
+            });
         }, function (err) {
             throw "Unable to Create User";
         });
@@ -610,7 +610,7 @@ describe("CloudUser", function () {
                 }
             }, function () {
                 throw "Unable to Get User By ID";
-            })
+            });
         }, function (err) {
             throw "Unable to Create User";
         });

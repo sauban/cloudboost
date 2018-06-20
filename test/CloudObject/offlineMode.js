@@ -20,7 +20,7 @@ describe("Offline Mode", function() {
                 success: function(data) {
                     found = data.some(function(element) {
                         return element._hash == obj.document._hash;
-                    })
+                    });
                 },
                 error: function(err) {
                     done(err);
@@ -30,7 +30,7 @@ describe("Offline Mode", function() {
                 if (found)
                     done();
                 else {
-                    done('object not found in local store.')
+                    done('object not found in local store.');
                 }
             }, 5000);
 
@@ -76,7 +76,7 @@ describe("Offline Mode", function() {
             if (count == 3)
                 done();
             else {
-                done('object not found in local store.')
+                done('object not found in local store.');
             }
         }, 5000);
     });
@@ -102,7 +102,7 @@ describe("Offline Mode", function() {
             if (count == 0)
                 done();
             else {
-                done('object found in local store.')
+                done('object found in local store.');
             }
         }, 5000);
 
@@ -134,7 +134,7 @@ describe("Offline Mode", function() {
             if (count == 0)
                 done();
             else {
-                done('objects found in local store.')
+                done('objects found in local store.');
             }
         }, 5000);
 
@@ -175,7 +175,7 @@ describe("Offline Mode", function() {
             if (count == 2)
                 done();
             else {
-                done('objects not saved.')
+                done('objects not saved.');
             }
         }, 5000);
 
@@ -198,7 +198,7 @@ describe("Offline Mode", function() {
             error: function(err) {
                 done(err);
             }
-        })
+        });
 
     });
 
@@ -224,7 +224,7 @@ describe("Offline Mode", function() {
                 error: function(err) {
                     done(err);
                 }
-            })
+            });
         }, 10000);
 
     });
@@ -239,7 +239,7 @@ describe("Offline Mode", function() {
             error: function(err) {
                 done(err);
             }
-        })
+        });
 
     });
 

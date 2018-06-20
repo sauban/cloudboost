@@ -232,7 +232,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 	exports.default = CB;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)));
 
 /***/ },
 /* 2 */
@@ -274,7 +274,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    } catch (e) {
 	        cachedClearTimeout = defaultClearTimeout;
 	    }
-	} ())
+	} ());
 	function runTimeout(fun) {
 	    if (cachedSetTimeout === setTimeout) {
 	        //normal enviroments in sane situations
@@ -411,13 +411,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	process.prependListener = noop;
 	process.prependOnceListener = noop;
 
-	process.listeners = function (name) { return [] }
+	process.listeners = function (name) { return []; };
 
 	process.binding = function (name) {
 	    throw new Error('process.binding is not supported');
 	};
 
-	process.cwd = function () { return '/' };
+	process.cwd = function () { return '/'; };
 	process.chdir = function (dir) {
 	    throw new Error('process.chdir is not supported');
 	};
@@ -1221,7 +1221,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	};
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)));
 
 /***/ },
 /* 5 */
@@ -1608,7 +1608,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	try {throw new Error(); } catch (e) {ret.lastLineError = e;}
 	module.exports = ret;
 
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(2)))
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(2)));
 
 /***/ },
 /* 6 */
@@ -1862,7 +1862,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = Async;
 	module.exports.firstLineError = firstLineError;
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)));
 
 /***/ },
 /* 8 */
@@ -1930,7 +1930,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 	module.exports = schedule;
 
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(2), __webpack_require__(9).setImmediate))
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(2), __webpack_require__(9).setImmediate));
 
 /***/ },
 /* 9 */
@@ -2012,7 +2012,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate : function(id) {
 	  delete immediateIds[id];
 	};
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9).setImmediate, __webpack_require__(9).clearImmediate))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9).setImmediate, __webpack_require__(9).clearImmediate));
 
 /***/ },
 /* 10 */
@@ -2054,7 +2054,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    } catch (e) {
 	        cachedClearTimeout = defaultClearTimeout;
 	    }
-	} ())
+	} ());
 	function runTimeout(fun) {
 	    if (cachedSetTimeout === setTimeout) {
 	        //normal enviroments in sane situations
@@ -2191,13 +2191,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	process.prependListener = noop;
 	process.prependOnceListener = noop;
 
-	process.listeners = function (name) { return [] }
+	process.listeners = function (name) { return []; };
 
 	process.binding = function (name) {
 	    throw new Error('process.binding is not supported');
 	};
 
-	process.cwd = function () { return '/' };
+	process.cwd = function () { return '/'; };
 	process.chdir = function (dir) {
 	    throw new Error('process.chdir is not supported');
 	};
@@ -2541,7 +2541,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if (values instanceof Promise) {
 	        values = values._target();
 	        var bitField = values._bitField;
-	        ;
+	        
 	        this._values = values;
 
 	        if (((bitField & 50397184) === 0)) {
@@ -3075,16 +3075,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	};
 	Promise.prototype._onCancel = function () {};
-	Promise.prototype._setOnCancel = function (handler) { ; };
+	Promise.prototype._setOnCancel = function (handler) {  };
 	Promise.prototype._attachCancellationCallback = function(onCancel) {
-	    ;
+	    
 	};
 	Promise.prototype._captureStackTrace = function () {};
 	Promise.prototype._attachExtraTrace = function () {};
 	Promise.prototype._clearCancellationData = function() {};
 	Promise.prototype._propagateFrom = function (parent, flags) {
-	    ;
-	    ;
+	    
+	    
 	};
 
 	function cancellationExecute(executor, resolve, reject) {
@@ -3687,7 +3687,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 	};
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)));
 
 /***/ },
 /* 17 */
@@ -3936,7 +3936,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        } else if (!multiArgs) {
 	            promise._fulfill(value);
 	        } else {
-	            var $_len = arguments.length;var args = new Array(Math.max($_len - 1, 0)); for(var $_i = 1; $_i < $_len; ++$_i) {args[$_i - 1] = arguments[$_i];};
+	            var $_len = arguments.length;var args = new Array(Math.max($_len - 1, 0)); for(var $_i = 1; $_i < $_len; ++$_i) {args[$_i - 1] = arguments[$_i];}
 	            promise._fulfill(args);
 	        }
 	        promise = null;
@@ -4508,7 +4508,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    if (maybePromise instanceof Promise) {
 	                        maybePromise = maybePromise._target();
 	                        var bitField = maybePromise._bitField;
-	                        ;
+	                        
 	                        if (((bitField & 50397184) === 0)) {
 	                            maybePromise._then(callbacks[i], reject,
 	                                               undefined, ret, holder);
@@ -4541,7 +4541,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	        }
 	    }
-	    var $_len = arguments.length;var args = new Array($_len); for(var $_i = 0; $_i < $_len; ++$_i) {args[$_i] = arguments[$_i];};
+	    var $_len = arguments.length;var args = new Array($_len); for(var $_i = 0; $_i < $_len; ++$_i) {args[$_i] = arguments[$_i];}
 	    if (fn) args.pop();
 	    var ret = new PromiseArray(args).promise();
 	    return fn !== undefined ? ret.spread(fn) : ret;
@@ -4631,7 +4631,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (maybePromise instanceof Promise) {
 	            maybePromise = maybePromise._target();
 	            var bitField = maybePromise._bitField;
-	            ;
+	            
 	            if (((bitField & 50397184) === 0)) {
 	                if (limit >= 1) this._inFlight++;
 	                values[index] = maybePromise;
@@ -4813,7 +4813,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return fn.apply(obj, this);
 	}
 	Promise.prototype.call = function (methodName) {
-	    var $_len = arguments.length;var args = new Array(Math.max($_len - 1, 0)); for(var $_i = 1; $_i < $_len; ++$_i) {args[$_i - 1] = arguments[$_i];};
+	    var $_len = arguments.length;var args = new Array(Math.max($_len - 1, 0)); for(var $_i = 1; $_i < $_len; ++$_i) {args[$_i - 1] = arguments[$_i];}
 	    if (true) {
 	        if (canEvaluate) {
 	            var maybeCaller = getMethodCaller(methodName);
@@ -5357,7 +5357,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        maybePromise = maybePromise._target();
 	        var bitField = maybePromise._bitField;
-	        ;
+	        
 	        if (((bitField & 50397184) === 0)) {
 	            this._yieldedPromise = maybePromise;
 	            maybePromise._proxy(this, null);
@@ -6515,7 +6515,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    var obj = _CB2.default._clone(thisObj, id, longitude, latitude, tableName || columnName);
 
-	    if (!obj instanceof _CB2.default.CloudObject || !obj instanceof _CB2.default.CloudFile || !obj instanceof _CB2.default.CloudGeoPoint || !obj instanceof _CB2.default.CloudTable || !obj instanceof _CB2.default.Column) {
+	    if (!(obj instanceof _CB2.default.CloudObject) || !(obj instanceof _CB2.default.CloudFile) || !(obj instanceof _CB2.default.CloudGeoPoint) || !(obj instanceof _CB2.default.CloudTable) || !(obj instanceof _CB2.default.Column)) {
 	        throw "Data passed is not an instance of CloudObject or CloudFile or CloudGeoPoint";
 	    }
 
@@ -6691,7 +6691,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return jQuery.when.apply(jQuery, arrayOfPromises).then(function () {
 	        return Array.prototype.slice.call(arguments, 0);
 	    });
-	};
+	}
 
 	_CB2.default._clone = function (obj, id, longitude, latitude, name) {
 	    var n_obj = {};
@@ -7825,7 +7825,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return Object.prototype.hasOwnProperty.call(obj, prop);
 	}
 
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(2)))
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(2)));
 
 /***/ },
 /* 43 */
@@ -7836,7 +7836,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    && typeof arg.copy === 'function'
 	    && typeof arg.fill === 'function'
 	    && typeof arg.readUInt8 === 'function';
-	}
+	};
 
 /***/ },
 /* 44 */
@@ -7845,7 +7845,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	if (typeof Object.create === 'function') {
 	  // implementation from standard node.js 'util' module
 	  module.exports = function inherits(ctor, superCtor) {
-	    ctor.super_ = superCtor
+	    ctor.super_ = superCtor;
 	    ctor.prototype = Object.create(superCtor.prototype, {
 	      constructor: {
 	        value: ctor,
@@ -7858,12 +7858,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	} else {
 	  // old school shim for old browsers
 	  module.exports = function inherits(ctor, superCtor) {
-	    ctor.super_ = superCtor
-	    var TempCtor = function () {}
-	    TempCtor.prototype = superCtor.prototype
-	    ctor.prototype = new TempCtor()
-	    ctor.prototype.constructor = ctor
-	  }
+	    ctor.super_ = superCtor;
+	    var TempCtor = function () {};
+	    TempCtor.prototype = superCtor.prototype;
+	    ctor.prototype = new TempCtor();
+	    ctor.prototype.constructor = ctor;
+	  };
 	}
 
 
@@ -7926,7 +7926,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	}());
 
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())));
 
 /***/ },
 /* 46 */
@@ -8963,7 +8963,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    });
 	};
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)));
 
 /***/ },
 /* 59 */
@@ -9158,7 +9158,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  });
 	};
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)));
 
 /***/ },
 /* 61 */
@@ -9801,7 +9801,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    https://localforage.github.io/localForage
 	    (c) 2013-2017 Mozilla, Apache License 2.0
 	*/
-	(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.localforage = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw (f.code="MODULE_NOT_FOUND", f)}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
+	(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f();}else if(typeof define==="function"&&define.amd){define([],f);}else{var g;if(typeof window!=="undefined"){g=window;}else if(typeof global!=="undefined"){g=global;}else if(typeof self!=="undefined"){g=self;}else{g=this;}g.localforage = f();}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw (f.code="MODULE_NOT_FOUND", f);}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e);},l,l.exports,e,t,n,r);}return n[o].exports;}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s;})({1:[function(_dereq_,module,exports){
 	(function (global){
 	'use strict';
 	var Mutation = global.MutationObserver || global.WebKitMutationObserver;
@@ -9873,7 +9873,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	}
 
-	}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+	}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
 	},{}],2:[function(_dereq_,module,exports){
 	'use strict';
 	var immediate = _dereq_(1);
@@ -10136,7 +10136,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  global.Promise = _dereq_(2);
 	}
 
-	}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+	}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
 	},{"2":2}],4:[function(_dereq_,module,exports){
 	'use strict';
 
@@ -12590,7 +12590,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	module.exports = localforage_js;
 
-	},{"3":3}]},{},[4])(4)
+	},{"3":3}]},{},[4])(4);
 	});
 
 
@@ -15114,12 +15114,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        }
 
 	                        return options.type ? bb.getBlob(options.type) : bb.getBlob();
-	                    };
+	                    }
 
 	                    function BlobConstructor(ary, options) {
 	                        mapArrayBufferViews(ary);
 	                        return new Blob(ary, options || {});
-	                    };
+	                    }
 
 	                    module.exports = function () {
 	                        if (blobSupported) {
@@ -15148,7 +15148,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	                function Emitter(obj) {
 	                    if (obj) return mixin(obj);
-	                };
+	                }
 
 	                /**
 	                * Mixin the emitter properties.
@@ -16619,7 +16619,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }, {}],
 	            29: [function (_dereq_, module, exports) {
 	                (function (global) {
-	                    /*! https://mths.be/utf8js v2.0.0 by @mathias */;
+	                    /*! https://mths.be/utf8js v2.0.0 by @mathias */
 	                    (function (root) {
 
 	                        // Detect free variables `exports`
@@ -18245,7 +18245,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	                function Emitter(obj) {
 	                    if (obj) return mixin(obj);
-	                };
+	                }
 
 	                /**
 	                * Mixin the emitter properties.
@@ -19055,7 +19055,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }],
 	            50: [function (_dereq_, module, exports) {
 	                (function (global) {
-	                    /*! JSON v3.3.2 | http://bestiejs.github.io/json3 | Copyright 2012-2014, Kit Cambridge | http://kit.mit-license.org */;
+	                    /*! JSON v3.3.2 | http://bestiejs.github.io/json3 | Copyright 2012-2014, Kit Cambridge | http://kit.mit-license.org */
 	                    (function () {
 	                        // Detect the `define` function exposed by asynchronous module loaders. The
 	                        // strict `define` check is necessary for compatibility with `r.js`.
@@ -20021,7 +20021,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }, {}, [31])(31);
 	    });
 	}
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())));
 
 /***/ },
 /* 76 */
@@ -22221,18 +22221,18 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 84 */
 /***/ function(module, exports) {
 
-	exports.endianness = function () { return 'LE' };
+	exports.endianness = function () { return 'LE'; };
 
 	exports.hostname = function () {
 	    if (typeof location !== 'undefined') {
-	        return location.hostname
+	        return location.hostname;
 	    }
 	    else return '';
 	};
 
-	exports.loadavg = function () { return [] };
+	exports.loadavg = function () { return []; };
 
-	exports.uptime = function () { return 0 };
+	exports.uptime = function () { return 0; };
 
 	exports.freemem = function () {
 	    return Number.MAX_VALUE;
@@ -22242,9 +22242,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return Number.MAX_VALUE;
 	};
 
-	exports.cpus = function () { return [] };
+	exports.cpus = function () { return []; };
 
-	exports.type = function () { return 'Browser' };
+	exports.type = function () { return 'Browser'; };
 
 	exports.release = function () {
 	    if (typeof navigator !== 'undefined') {
@@ -22255,11 +22255,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	exports.networkInterfaces
 	= exports.getNetworkInterfaces
-	= function () { return {} };
+	= function () { return {}; };
 
-	exports.arch = function () { return 'javascript' };
+	exports.arch = function () { return 'javascript'; };
 
-	exports.platform = function () { return 'browser' };
+	exports.platform = function () { return 'browser'; };
 
 	exports.tmpdir = exports.tmpDir = function () {
 	    return '/tmp';
@@ -23369,7 +23369,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	            if (columnName === 'id') columnName = '_' + columnName;
 
-	            if (!!data) {
+	            if (data) {
 	                if (data.constructor === _CB2.default.CloudObject) {
 	                    columnName = columnName + '._id';
 	                    data = data.get('id');
@@ -23691,7 +23691,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var CbData = [];
 	            if (columnName === 'id') columnName = '_' + columnName;
 
-	            if (Object.prototype.toString.call(data) === '[object Object]' && !data instanceof _CB2.default.CloudObject) {
+	            if (Object.prototype.toString.call(data) === '[object Object]' && !(data instanceof _CB2.default.CloudObject)) {
 	                //if object is passed as an argument
 	                throw 'Array / value / CloudObject expected as an argument';
 	            }
@@ -23771,7 +23771,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var CbData = [];
 	            if (columnName === 'id') columnName = '_' + columnName;
 
-	            if (Object.prototype.toString.call(data) === '[object Object]' && !data instanceof _CB2.default.CloudObject) {
+	            if (Object.prototype.toString.call(data) === '[object Object]' && !(data instanceof _CB2.default.CloudObject)) {
 	                //if object is passed as an argument
 	                throw 'Array or string expected as an argument';
 	            }
@@ -23877,7 +23877,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	            if (columnName === 'id') columnName = '_' + columnName;
 
-	            if (Object.prototype.toString.call(data) === '[object Object]' && !data instanceof _CB2.default.CloudObject) {
+	            if (Object.prototype.toString.call(data) === '[object Object]' && !(data instanceof _CB2.default.CloudObject)) {
 	                //if object is passed as an argument
 	                throw 'Array or string expected as an argument';
 	            }
@@ -24368,7 +24368,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                throw "Table names are not same";
 	                break;
 	            }
-	            if (!obj1[i] instanceof _CB2.default.CloudQuery) {
+	            if (!(obj1[i] instanceof _CB2.default.CloudQuery)) {
 	                throw "Array items are not instanceof of CloudQuery";
 	                break;
 	            }
@@ -24384,10 +24384,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (!obj1.tableName === obj2.tableName) {
 	            throw "Table names are not same";
 	        }
-	        if (!obj1 instanceof _CB2.default.CloudQuery) {
+	        if (!(obj1 instanceof _CB2.default.CloudQuery)) {
 	            throw "Data passed is not an instance of CloudQuery";
 	        }
-	        if (!obj2 instanceof _CB2.default.CloudQuery) {
+	        if (!(obj2 instanceof _CB2.default.CloudQuery)) {
 	            throw "Data passed is not an instance of CloudQuery";
 	        }
 	        tableName = obj1.tableName;
@@ -24633,6 +24633,5 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = _CB2.default.CloudQuery;
 
 /***/ }
-/******/ ])
+/******/ ]);
 });
-;

@@ -93,7 +93,7 @@ describe("Cloud Table", function(){
                 });
             },function(){
                 throw "Should Save Table";
-            })
+            });
         },function(){
             throw "Should Save Table";
         });
@@ -126,7 +126,7 @@ describe("Cloud Table", function(){
 		    table.save().then(function(table){
 		          done();
 		    },function(){
-                throw "Unable to add column to existing table"
+                throw "Unable to add column to existing table";
             });
         },function(){
             done("should fetch the table");

@@ -1,22 +1,22 @@
-import Promise_BlueBird from 'bluebird'
+import Promise_BlueBird from 'bluebird';
 
 class CloudBoost {
 	constructor(){
         // to check if the env is node
-		this._isNode = false
+		this._isNode = false;
         // to check if env is native ( react native , native script etc. )
-        this._isNative = false
-		this.Socket = null
-		this.io = null //socket.io library is saved here.
-		this.apiUrl = 'https://api.cloudboost.io'
+        this._isNative = false;
+		this.Socket = null;
+		this.io = null; //socket.io library is saved here.
+		this.apiUrl = 'https://api.cloudboost.io';
 		if (typeof(process) !== "undefined" &&
 		    process.versions &&
 		    process.versions.node) {
-		    this._isNode = true
+		    this._isNode = true;
 		} else {
-		    this._isNode = false
+		    this._isNode = false;
 		}
-        this.Events = {trigger:this.trigger.bind(this)}
+        this.Events = {trigger:this.trigger.bind(this)};
 	}
     _ajaxIE8(method, url, data){
         var promise = new this.Promise();
@@ -90,21 +90,21 @@ class CloudBoost {
             resolve: resolve,
             reject: reject,
             promise: promise
-        }
+        };
     }
 }
 
-let CB = new CloudBoost()
+let CB = new CloudBoost();
 
 
 // inheriting BlueBird Promise Library
 if(Object.setPrototypeOf){
-    Object.setPrototypeOf(CB.Promise,Promise_BlueBird)
+    Object.setPrototypeOf(CB.Promise,Promise_BlueBird);
 } else {
-    CB.Promise.prototype = Promise_BlueBird.prototype
+    CB.Promise.prototype = Promise_BlueBird.prototype;
 }
 
-export default CB
+export default CB;
 
 
 

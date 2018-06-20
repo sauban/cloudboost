@@ -1,4 +1,4 @@
-import CB from './CB'
+import CB from './CB';
 /*
  Column.js
  */
@@ -7,7 +7,7 @@ class Column {
      this.document = {};
 
      if(!columnName || columnName === '')
-        throw "Column Name is required."
+        throw "Column Name is required.";
      
      if(typeof(columnName)!=='string'){
          throw "Column Name should be of type string.";
@@ -52,7 +52,7 @@ class Column {
      this.document.isRenamable = false;
      this.document.editableByMasterKey = false; 
      this.document.defaultValue = null;
-  };
+  }
 }
 
 Object.defineProperty(Column.prototype,'name',{
@@ -175,7 +175,7 @@ Object.defineProperty(Column.prototype,'isSearchable',{
     }
 });
 
-CB.Column = Column
+CB.Column = Column;
 
 
-export default CB.Column
+export default CB.Column;

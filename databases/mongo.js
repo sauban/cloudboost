@@ -302,7 +302,7 @@ obj.document = {
             */
 
             if (!sort['createdAt'])
-                sort['createdAt'] = 1
+                sort['createdAt'] = 1;
 
             if (!limit || limit === -1) {
                 limit = 20;
@@ -610,7 +610,7 @@ obj.document = {
                     "_id": {
                         "$exists": true
                     }
-                }
+                };
             }
 
             var pipeline = [];

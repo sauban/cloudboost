@@ -22,7 +22,7 @@
                 if(list.get('username') === username)
                     done();
                 else
-                    throw "create user error"
+                    throw "create user error";
             }, function () {
                 throw "user create error";
             });

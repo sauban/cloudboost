@@ -85,7 +85,7 @@ describe("Atomicity Tests",function(done){
                                 throw "should get the record back";
                             }
                         },function(){
-                            throw "unable to do find by id"
+                            throw "unable to do find by id";
                         });
                     },function(){
                         throw "Unable to connect back Mongo";
@@ -93,11 +93,11 @@ describe("Atomicity Tests",function(done){
 
                 });
             },function(){
-                throw "Unable to delete"
+                throw "Unable to delete";
             });
         }, function (err) {
             throw "Unable to find document by Id";
-        })
+        });
     });
 
     it("Should Attach the Database",function(done){

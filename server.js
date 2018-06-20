@@ -14,13 +14,13 @@ var bodyParser = require('body-parser');
 var config = require('./config/config');
 var slack = require('winston-bishop-slack').Slack;
 
-global.winston = require('winston');
+var winston = require('winston');
 require('winston-loggly');
 
 var logglyTags = config.logglyTags ? config.logglyTags.split(',') : [];
 var port = config.port || 4730;
 
-global.winston.add(global.winston.transports.Loggly, {
+winston.add(winston.transports.Loggly, {
     inputToken: config.logToken,
     subdomain: config.logglySubDomain,
     tags: logglyTags,
@@ -29,7 +29,7 @@ global.winston.add(global.winston.transports.Loggly, {
 
 // add slack transport if API key found
 if (config.slackWebHook) {
-    global.winston.add(slack, {
+    winston.add(slack, {
         webhook_url: config.slackWebHook,
         icon_url: config.slackIconUrl,
         channel: config.slackChannel,
@@ -80,8 +80,8 @@ try {
 
     }
 } catch (e) {
-    console.log("INFO : SSL Certificate not found or is invalid.");
-    console.log("Switching ONLY to HTTP...");
+    winston.info("INFO : SSL Certificate not found or is invalid.");
+    winston.info("Switching ONLY to HTTP...");
 }
 
 var http = require('http').createServer(app);
@@ -93,6 +93,8 @@ io.attach(http);
 if (https) {
     io.attach(https);
 }
+
+global.winston = winston;
 
 //Server kickstart:
 http.listen(app.get('port'), function () {
@@ -110,8 +112,7 @@ http.listen(app.get('port'), function () {
 
         require('./routes')(app); //Setup routes
     } catch (e) {
-        console.log(e);
-        global.winston.log('error', e);
+        winston.error(e);
         process.exit(1);
     }
 });

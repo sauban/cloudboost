@@ -29,7 +29,7 @@ describe("Cloud Objects Notification", function () {
 
 		this.timeout(40000);
 		CB.CloudObject.on('Student', 'created', function (data) {
-			done('should not have triggered this event')
+			done('should not have triggered this event');
 		}, {
 				success: function () {
 					var obj = new CB.CloudObject('Student');
@@ -38,8 +38,8 @@ describe("Cloud Objects Notification", function () {
 					obj.ACL.setPublicReadAccess(false);
 					obj.ACL.setPublicWriteAccess(false);
 					setTimeout(function () {
-						obj.save()
-					}, 2000)
+						obj.save();
+					}, 2000);
 
 				}, error: function (error) {
 					throw 'Error listening to an event.';
@@ -48,8 +48,8 @@ describe("Cloud Objects Notification", function () {
 
 		setTimeout(function () {
 			CB.CloudObject.off('Student', 'created', { success: function () { }, error: function () { } });
-			done()
-		}, 5000)
+			done();
+		}, 5000);
 	});
 
 
@@ -85,7 +85,7 @@ describe("Cloud Objects Notification", function () {
 							throw 'Error Saving an object.';
 						});
 					}, function () {
-						throw 'Error Saving an object.'
+						throw 'Error Saving an object.';
 					});
 				}, error: function (error) {
 					throw 'Error listening to an event.';

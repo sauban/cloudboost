@@ -81,7 +81,7 @@ describe("Cloud Files", function(done) {
                                 }
                             }, function(err) {
                                 done(err);
-                            })
+                            });
                         }
                     });
                 } else {
@@ -102,7 +102,7 @@ describe("Cloud Files", function(done) {
                                 }
                             }, function(err) {
                                 done(err);
-                            })
+                            });
 
                         },
                         // Code to run if the request fails; the raw request and
@@ -353,7 +353,7 @@ describe("Cloud Files", function(done) {
                     if (file.url === null)
                         done();
                     else
-                        throw "file delete error"
+                        throw "file delete error";
                 }, function(err) {
                     throw "unable to delete file";
                 });
@@ -466,7 +466,7 @@ describe("Cloud Files", function(done) {
                                 }
                             }, function(err) {
                                 throw "Error deleting file";
-                            })
+                            });
                         } else {
                             throw "Upload success. But cannot find the URL.";
                         }

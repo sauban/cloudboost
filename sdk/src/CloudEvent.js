@@ -1,5 +1,5 @@
-import CB from './CB'
-import axios from 'axios'
+import CB from './CB';
+import axios from 'axios';
 var os = require('os');
 /*
  CloudEvent
@@ -9,7 +9,7 @@ CloudEvent.track = function(name, data, type, callback) {
     var def;
     if (typeof type === 'object') {
         if (callback != null) {
-            throw '\'type\' cannot be an object.'
+            throw '\'type\' cannot be an object.';
         } else {
             callback = type;
             type = 'Custom';
@@ -50,11 +50,11 @@ CloudEvent.track = function(name, data, type, callback) {
             });
 
         }
-    })
+    });
     if (!callback)
         return def.promise;
 
-    }
+    };
 
 CloudEvent._getDeviceInformation = function(callback) {
     var obj = new Object();
@@ -65,12 +65,12 @@ CloudEvent._getDeviceInformation = function(callback) {
 
     _getLocation(obj, {
         success: function(object) {
-            callback.success(object)
+            callback.success(object);
         }
-    })
-}
+    });
+};
 
-CloudEvent._os = function() {}
+CloudEvent._os = function() {};
 
 function _getBrowser() {
     // Opera 8.0+
@@ -111,7 +111,7 @@ function _getBrowser() {
             return 'Other';
         }
     } catch (e) {
-        return 'other'
+        return 'other';
     }
 }
 
@@ -131,6 +131,6 @@ function _getLocation(obj, callback) {
     });
 }
 
-CB.CloudEvent = CloudEvent
+CB.CloudEvent = CloudEvent;
 
-export default CloudEvent
+export default CloudEvent;

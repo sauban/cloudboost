@@ -16,10 +16,10 @@ describe("App level ACL, for adding deleting tables of an app via clientKey", fu
             if(table.id){
                 CB.appKey = CB.jsKey;
                 CB.CloudTable.getAll().then(function(table){
-                    done('tables should not be fetched via clientKey')
+                    done('tables should not be fetched via clientKey');
                 },function(err){
-                    done()
-                })
+                    done();
+                });
             }else{
               done("Table cannot be created");
             }
@@ -91,13 +91,13 @@ describe("App level ACL, for adding deleting tables of an app via clientKey", fu
         CB.appKey = CB.jsKey;
         CB.CloudTable.getAll().then(function(tables){
             if(tables){
-                done()
+                done();
             }else{
                 done("Table cannot be created");
             }
         },function(err){
-            done(err)
-        })
+            done(err);
+        });
     
     });
 
@@ -109,13 +109,13 @@ describe("App level ACL, for adding deleting tables of an app via clientKey", fu
 
         obj.save().then(function(table){
             if(table.id){
-                done()
-                table.delete()
+                done();
+                table.delete();
             }else{
               done("Table cannot be created");
             }
         },function(err){
-            done(err)
+            done(err);
         });
         
     

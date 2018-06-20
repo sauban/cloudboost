@@ -8,7 +8,7 @@ describe("Setting Default Values for Cloud Object", function(){
         CB.appKey = CB.masterKey;
         var table = new CB.CloudTable(tableName);
         globalTable = table;
-        var currDate = new Date().toString()
+        var currDate = new Date().toString();
         defaults = {
             Text: "Default Text",
             Number: 56,
@@ -18,7 +18,7 @@ describe("Setting Default Values for Cloud Object", function(){
             EncryptedText: "ljklwej4543434",
             URL: "https://cloudboost.io/",
             Email: "test@cloudboost.io"
-        }
+        };
 
         var columnText = new CB.Column('NameText', 'Text', true, false);
         columnText.defaultValue = defaults.Text;
@@ -71,13 +71,13 @@ describe("Setting Default Values for Cloud Object", function(){
         obj.save({
             success : function(obj){
                 if(obj.get("NameText") === defaults.Text){
-                    done()
+                    done();
                 }
                 else {
-                    done("Not setting default Value for Text columns")
+                    done("Not setting default Value for Text columns");
                 }
             },error : function(err){
-                done(err)
+                done(err);
             }
         });
     });
@@ -90,16 +90,16 @@ describe("Setting Default Values for Cloud Object", function(){
         obj.save({
             success : function(obj){
                 if(obj.get("NameText") === "Some Value"){
-                    done()
+                    done();
                 }
                 else if (obj.get("NameText") === defaults.Text) {
-                    done("Setting the default value instead of the provided Value for Text columns")
+                    done("Setting the default value instead of the provided Value for Text columns");
                 }
                 else {
                     done("Not setting the provided Value for Text columns");
                 }
             },error : function(err){
-                done(err)
+                done(err);
             }
         });
     });
@@ -111,13 +111,13 @@ describe("Setting Default Values for Cloud Object", function(){
         obj.save({
             success : function(obj){
                 if(obj.get("NameNumber") === defaults.Number){
-                    done()
+                    done();
                 }
                 else {
-                    done("Not setting default Value for Number columns")
+                    done("Not setting default Value for Number columns");
                 }
             },error : function(err){
-                done(err)
+                done(err);
             }
         });
     });
@@ -130,16 +130,16 @@ describe("Setting Default Values for Cloud Object", function(){
         obj.save({
             success : function(obj){
                 if(obj.get("NameNumber") === 47){
-                    done()
+                    done();
                 }
                 else if (obj.get("NameNumber") === defaults.Number) {
-                    done("Setting the default value instead of the provided Value for Text columns")
+                    done("Setting the default value instead of the provided Value for Text columns");
                 }
                 else {
                     done("Not setting the provided Value for Text columns");
                 }
             },error : function(err){
-                done(err)
+                done(err);
             }
         });
     });
@@ -151,13 +151,13 @@ describe("Setting Default Values for Cloud Object", function(){
         obj.save({
             success : function(obj){
                 if(obj.get("NameBool") === defaults.Boolean){
-                    done()
+                    done();
                 }
                 else {
-                    done("Not setting default Value for Boolean columns")
+                    done("Not setting default Value for Boolean columns");
                 }
             },error : function(err){
-                done(err)
+                done(err);
             }
         });
     });
@@ -170,16 +170,16 @@ describe("Setting Default Values for Cloud Object", function(){
         obj.save({
             success : function(obj){
                 if(obj.get("NameBool") === false){
-                    done()
+                    done();
                 }
                 else if (obj.get("NameBool") === defaults.Boolean) {
-                    done("Setting the default value instead of the provided Value for Text columns")
+                    done("Setting the default value instead of the provided Value for Text columns");
                 }
                 else {
                     done("Not setting the provided Value for Text columns");
                 }
             },error : function(err){
-                done(err)
+                done(err);
             }
         });
     });
@@ -192,15 +192,15 @@ describe("Setting Default Values for Cloud Object", function(){
             success : function(obj){
                 try{
                     if(new Date(obj.get("NameDate")).toLocaleDateString() == new Date(defaults.DateTime).toLocaleDateString()){
-                        done()
+                        done();
                     } else {
-                        done("Not setting default Value for Boolean columns")
+                        done("Not setting default Value for Boolean columns");
                     }
                 } catch(e){
-                    done("Not setting default Value for Boolean columns")
+                    done("Not setting default Value for Boolean columns");
                 }
             },error : function(err){
-                done(err)
+                done(err);
             }
         });
     });
@@ -215,10 +215,10 @@ describe("Setting Default Values for Cloud Object", function(){
                     done();
                 }
                 else {
-                    done("Not setting default Value for Boolean columns")
+                    done("Not setting default Value for Boolean columns");
                 }
             },error : function(err){
-                done(err)
+                done(err);
             }
         });
     });
@@ -231,16 +231,16 @@ describe("Setting Default Values for Cloud Object", function(){
         obj.save({
             success : function(obj){
                 if(JSON.stringify(obj.get("NameObj")) == JSON.stringify({ someKey: "someValue" })){
-                    done()
+                    done();
                 }
                 else if (JSON.stringify(obj.get("NameObj")) == JSON.stringify(defaults.Object)) {
-                    done("Setting the default value instead of the provided Value for Text columns")
+                    done("Setting the default value instead of the provided Value for Text columns");
                 }
                 else {
                     done("Not setting the provided Value for Object columns");
                 }
             },error : function(err){
-                done(err)
+                done(err);
             }
         });
     });
@@ -253,13 +253,13 @@ describe("Setting Default Values for Cloud Object", function(){
             success : function(obj){
                 
                 if(obj.get("NameET") === defaults.EncryptedText){
-                    done()
+                    done();
                 }
                 else {
-                    done("Not setting default Value for Boolean columns")
+                    done("Not setting default Value for Boolean columns");
                 }
             },error : function(err){
-                done(err)
+                done(err);
             }
         });
     });
@@ -271,13 +271,13 @@ describe("Setting Default Values for Cloud Object", function(){
         obj.save({
             success : function(obj){
                 if(obj.get("NameURL") === defaults.URL){
-                    done()
+                    done();
                 }
                 else {
-                    done("Not setting default Value for Boolean columns")
+                    done("Not setting default Value for Boolean columns");
                 }
             },error : function(err){
-                done(err)
+                done(err);
             }
         });
     });
@@ -290,16 +290,16 @@ describe("Setting Default Values for Cloud Object", function(){
         obj.save({
             success : function(obj){
                 if(obj.get("NameURL") === "http://google.com"){
-                    done()
+                    done();
                 }
                 else if (obj.get("NameURL") === defaults.URL) {
-                    done("Setting the default value instead of the provided Value for Text columns")
+                    done("Setting the default value instead of the provided Value for Text columns");
                 }
                 else {
                     done("Not setting the provided Value for Text columns");
                 }
             },error : function(err){
-                done(err)
+                done(err);
             }
         });
     });
@@ -311,13 +311,13 @@ describe("Setting Default Values for Cloud Object", function(){
         obj.save({
             success : function(obj){
                 if(obj.get("NameEmail") === defaults.Email){
-                    done()
+                    done();
                 }
                 else {
-                    done("Not setting default Value for Boolean columns")
+                    done("Not setting default Value for Boolean columns");
                 }
             },error : function(err){
-                done(err)
+                done(err);
             }
         });
     });
@@ -330,16 +330,16 @@ describe("Setting Default Values for Cloud Object", function(){
         obj.save({
             success : function(obj){
                 if(obj.get("NameEmail") === "test@google.com"){
-                    done()
+                    done();
                 }
                 else if (obj.get("NameEmail") === defaults.Email) {
-                    done("Setting the default value instead of the provided Value for Text columns")
+                    done("Setting the default value instead of the provided Value for Text columns");
                 }
                 else {
                     done("Not setting the provided Value for Text columns");
                 }
             },error : function(err){
-                done(err)
+                done(err);
             }
         });
     });

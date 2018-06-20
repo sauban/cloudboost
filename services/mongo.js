@@ -77,7 +77,7 @@ mongoService.app = {
 
         return deferred.promise;
     }
-}
+};
 
 mongoService.document = {
 
@@ -268,7 +268,7 @@ mongoService.collection = {
         return deferred.promise;
     },
 
-    deleteAndCreateTextIndexes: function(appId, collectionName, oldColumns, schema) {
+    deleteAndCreateTextIndexes: function(appId, collectionName) {
         var deferred = q.defer();
 
         try {
@@ -353,12 +353,9 @@ mongoService.collection = {
             }, function(err, result) {
                 if (err) {
                     global.winston.log('error', err);
-                    
-                    
                     deferred.reject(err);
                 } else {
-                    
-                    deferred.resolve();
+                    deferred.resolve(result);
                 }
             });
 
@@ -378,12 +375,6 @@ mongoService.collection = {
         var deferred = q.defer();
 
         try {
-            
-            
-            
-
-            var _self = mongoService;
-
             if (config.mongoDisconnected) {
                 deferred.reject("Database Not Connected");
                 return deferred.promise;
@@ -460,11 +451,9 @@ mongoService.collection = {
             collection.drop(function(err, reply) {
                 if (err) {
                     if (err.message === 'ns not found') {
-                        
-                        deferred.resolve();
+                        deferred.resolve(reply);
                     } else {
                         global.winston.log('error', err);
-                        
                         deferred.reject(err);
                     }
                 } else {
@@ -486,35 +475,23 @@ mongoService.collection = {
     },
 
     renameCollection: function(appId, oldCollectionName, newCollectionName) {
-
         var deferred = q.defer();
-
         try {
-        
             var _self = mongoService;
-
             var collection = config.mongoClient.db(appId).collection(_self.collection.getId(appId, oldCollectionName));
-
             collection.rename(_self.collection.getId(appId, newCollectionName), function(err, collection) {
                 if (err) {
-
-                    
-
                     if (err.message === 'source namespace does not exist') {
                          //if oldCollectionName is not found.
-                        deferred.resolve();
+                        deferred.resolve(collection);
                     } else {
-                        
                         global.winston.log('error', err);
                         deferred.reject(err);
                     }
-
                 } else {
-                    
                     deferred.resolve();
                 }
             });
-
         } catch (err) {
             global.winston.log('error', {
                 "error": String(err),
@@ -615,11 +592,10 @@ function _unsetColumn(appId, collectionName, query) {
                 multi: true
             }, function(err, result) {
                 if (err) {
-                    
+                    global.winston.error(err);
                     deferred.reject(err);
                 } else {
-                    
-                    deferred.resolve();
+                    deferred.resolve(result);
                 }
             });
         } else {

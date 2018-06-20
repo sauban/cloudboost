@@ -66,13 +66,13 @@ describe("Version Test",function(done){
                     }
                 },function(){
                     throw "unable to find saved object";
-                })
+                });
             }, function () {
                 throw "unable to save object";
-            })
+            });
         },function(){
             throw "unable to find saved object";
-        })
+        });
     });
 
     var username = util.makeString();
@@ -96,7 +96,7 @@ describe("Version Test",function(done){
                 done();
             }
             else
-                throw "create user error"
+                throw "create user error";
         }, function () {
             throw "user create error";
         });

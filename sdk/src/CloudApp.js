@@ -1,6 +1,6 @@
 
-import localforage from 'localforage'
-import CB from './CB'
+import localforage from 'localforage';
+import CB from './CB';
 /*
  CloudApp
  */
@@ -29,8 +29,8 @@ class CloudApp {
         if (opts && opts.disableRealtime === true) {
             CB._isRealtimeDisabled = true;
         } else {
-            var socketRelativeUrl = getUrlFromUri(CB.apiUrl)
-            var urlWithoutNamespace = getUrlWithoutNsc(CB.apiUrl,socketRelativeUrl)
+            var socketRelativeUrl = getUrlFromUri(CB.apiUrl);
+            var urlWithoutNamespace = getUrlWithoutNsc(CB.apiUrl,socketRelativeUrl);
             if (CB._isNode) {
                 CB.io = require('IO');
                 CB.Socket = CB.io(urlWithoutNamespace,{
@@ -39,7 +39,7 @@ class CloudApp {
                     path: socketRelativeUrl + '/socket.io'
                 });
             } else {
-                CB.io = require('./CloudSocketClientLib.js')
+                CB.io = require('./CloudSocketClientLib.js');
                 CB.Socket = CB.io(urlWithoutNamespace,{
                     path: socketRelativeUrl + '/socket.io'
                 });
@@ -127,7 +127,7 @@ function getUrlFromUri(url){
     socketRelativeUrl = socketRelativeUrl.replace('://','');
     socketRelativeUrl = socketRelativeUrl.split('/');
     // remove null value
-    socketRelativeUrl = socketRelativeUrl.filter(function(x){ return x });
+    socketRelativeUrl = socketRelativeUrl.filter(function(x){ return x; });
     if(socketRelativeUrl.length > 1){
         socketRelativeUrl.splice(0,1,'');
         url = socketRelativeUrl.join('/');
@@ -139,11 +139,11 @@ function getUrlFromUri(url){
 
 function getUrlWithoutNsc(uri,url){
     if(url == ""){
-        return uri
+        return uri;
     }
-    return uri.replace(url,'')
+    return uri.replace(url,'');
 }
 
-CB.CloudApp = new CloudApp()
+CB.CloudApp = new CloudApp();
 
-export default CloudApp
+export default CloudApp;

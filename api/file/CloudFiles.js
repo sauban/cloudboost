@@ -71,12 +71,10 @@ module.exports = function(app) {
         var sdk = req.body.sdk || "REST";
         config.fileUrl = config.myURL + "/file/";
         appService.isMasterKey(appId, appKey).then(function(isMasterKey) {
-            fileService.delete(appId, fileObj, customHelper.getAccessList(req), isMasterKey).then(function(file) {
-                
+            fileService.delete(appId, fileObj, customHelper.getAccessList(req), isMasterKey).then(function() {
                 return res.status(200).send(null);
             }, function(err) {
-                
-                
+                global.winston.error(err);
                 return res.status(500).send(err);
             });
         });

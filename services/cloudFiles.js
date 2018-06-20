@@ -25,17 +25,13 @@ module.exports = {
 
         try {
             var promises = [];
-            var newFileName = '';
 
             keyService.getMyUrl().then(function(url) {
 
                 if (!fileObj._id) {
                     fileObj._id = util.getId();
                     fileObj._version = 0;
-                    newFileName = fileObj._id + fileObj.name.slice(fileObj.name.indexOf('.'), fileObj.name.length);
                     fileObj.url = url + "/file/" + appId + "/" + fileObj._id + fileObj.name.slice(fileObj.name.indexOf('.'), fileObj.name.length);
-                    
-                    
                 } else {
                     fileObj._version = fileObj._version + 1;
                 }
@@ -44,10 +40,8 @@ module.exports = {
                     promises.push(mongoService.document.saveFileStream(appId, fileStream, fileObj._id, contentType));
                     promises.push(customService.save(appId, collectionName, fileObj, accessList, isMasterKey));
                 } catch (error) {
-                    console.log(error);
+                    global.winston.error(error);
                 }
-                // promises.push(mongoService.document.saveFileStream(appId, fileStream, fileObj._id, contentType));
-                // promises.push(customService.save(appId, collectionName, fileObj, accessList, isMasterKey));
                 q.all(promises).then(function(array) {
                     deferred.resolve(array[1]);
                 }, function(err) {
@@ -76,14 +70,12 @@ module.exports = {
     */
     delete: function(appId, fileObj, accessList, isMasterKey) {
         
-        var collectionName = '_File';
         var deferred = q.defer();
         try {
             var collectionName = "_File";
             var fileUrl = config.fileUrl + appId + "/";
-            var filename = fileObj.url.substr(fileUrl.length, fileObj.url.length + 1);
+            var filename = fileObj.url.substr(fileUrl.length, fileObj.url.length + 1); // eslint-disable-line no-unused-vars
             
-
             var promises = [];
             promises.push(mongoService.document.deleteFileFromGridFs(appId, fileObj._id));
             promises.push(customService.delete(appId, collectionName, fileObj, accessList, isMasterKey));

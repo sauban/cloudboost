@@ -29,7 +29,7 @@ describe("CloudQuery - Encryption", function () {
                         //cannot query. 
                         throw "Cannot query over encrypted type";
                     }
-                })
+                });
             }
 
             else
@@ -78,7 +78,7 @@ describe("CloudQuery - Encryption", function () {
                         //cannot query. 
                         throw "Cannot query over encrypted type";
                     }
-                })
+                });
             }
 
             else

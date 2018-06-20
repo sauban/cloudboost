@@ -59,7 +59,7 @@ describe("Cloud Object", function() {
             List: util.makeString(),
             GeoPoint: util.makeString(),
             File: util.makeString()
-        }
+        };
 
         var obj = new CB.CloudObject(aNewTableName);
         var geoPoint = new CB.CloudGeoPoint(queryLocation.longitude, queryLocation.latitude);
@@ -145,7 +145,7 @@ describe("Cloud Object", function() {
                             type: columns[i].document.dataType,
                             name: columns[i].document.name
                         })
-                    )
+                    );
                 }
             }
             for (column in autoColumns) {
@@ -606,7 +606,7 @@ describe("Cloud Object", function() {
                         if (doc._id === newObj.id && doc._tableName === 'student1' && doc._type === 'custom')
                             done();
                         else {
-                            throw "Object is not related"
+                            throw "Object is not related";
                         }
                     },
                     error: function(error) {
@@ -636,7 +636,7 @@ describe("Cloud Object", function() {
                         if (doc._id === newObj.id && doc._tableName === 'student1' && doc._type === 'custom')
                             done();
                         else {
-                            throw "Object is not related"
+                            throw "Object is not related";
                         }
                     },
                     error: function(error) {
@@ -666,7 +666,7 @@ describe("Cloud Object", function() {
                         if (doc._id === newObj.id && doc._tableName === 'student1' && doc._type === 'custom')
                             done();
                         else {
-                            throw "Object is not related"
+                            throw "Object is not related";
                         }
                     },
                     error: function(error) {
@@ -746,7 +746,7 @@ describe("Cloud Object", function() {
 
         obj.save({
             success: function(newObj) {
-                throw "Saved an object with a wrong relation."
+                throw "Saved an object with a wrong relation.";
             },
             error: function(error) {
                 done();
@@ -1207,7 +1207,7 @@ describe("Cloud Object", function() {
                             if (Date.parse(newObj.createdAt) === createdAt && Date.parse(newObj.updatedAt) !== createdAt) {
                                 done();
                             } else {
-                                done("Throw CreatedAt updated when the object is updated.")
+                                done("Throw CreatedAt updated when the object is updated.");
                             }
 
                         },

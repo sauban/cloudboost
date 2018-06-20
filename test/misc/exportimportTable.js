@@ -22,7 +22,7 @@ describe("Export & Import Table", function () {
         obj.save().then(function (res) {
             done();
         }, function (err) {
-            throw err
+            throw err;
         });
     });
 
@@ -34,7 +34,7 @@ describe("Export & Import Table", function () {
         obj.set('Name', 'kashish');
         obj.save({
             success: function (obj) {
-                savedObject.push(obj.document)
+                savedObject.push(obj.document);
                 done();
             }, error: function (error) {
                 done(error);
@@ -50,7 +50,7 @@ describe("Export & Import Table", function () {
         obj.set('Name', 'kash');
         obj.save({
             success: function (obj) {
-                savedObject.push(obj.document)
+                savedObject.push(obj.document);
                 done();
             }, error: function (error) {
                 done(error);
@@ -67,7 +67,7 @@ describe("Export & Import Table", function () {
 
                 data = JSON.parse(data);
                 if (data.length !== savedObject.length) {
-                    return done('ERROR')
+                    return done('ERROR');
                 }
                 var flag = false;
                 for (let i in savedObject) {
@@ -111,7 +111,7 @@ describe("Export & Import Table", function () {
                                         if (typeof ele["Revenue"] == "number" && typeof ele["Name"] == "string") {
                                             flag = true;
                                         } else {
-                                            done("Type mismatch")
+                                            done("Type mismatch");
                                         }
                                     });
                                     if (flag == true) {
@@ -119,7 +119,7 @@ describe("Export & Import Table", function () {
                                             if (file.url === null)
                                                 done();
                                             else
-                                                throw "file delete error"
+                                                throw "file delete error";
                                         }, function (err) {
                                             done(err);
                                             throw "unable to delete file";
@@ -137,11 +137,11 @@ describe("Export & Import Table", function () {
                             throw "Unable to save file";
                         });
                     }, function (err) {
-                        throw err
+                        throw err;
                     });
                 }
             }, function (err) {
-                done(err)
+                done(err);
             });
         } else {
             $.ajax({
@@ -150,9 +150,9 @@ describe("Export & Import Table", function () {
                 data: exportParams,
                 success: function (resp) {
                     try {
-                        var data = resp
+                        var data = resp;
                         if (data.length !== savedObject.length) {
-                            return done('ERROR')
+                            return done('ERROR');
                         }
                         var flag = false;
                         for (let i in savedObject) {
@@ -199,7 +199,7 @@ describe("Export & Import Table", function () {
                                                     if (typeof ele["Revenue"] == "number" && typeof ele["Name"] == "string") {
                                                         flag = true;
                                                     } else {
-                                                        done("Type mismatch")
+                                                        done("Type mismatch");
                                                     }
                                                 });
                                                 if (flag == true) {
@@ -207,7 +207,7 @@ describe("Export & Import Table", function () {
                                                         if (file.url === null)
                                                             done();
                                                         else
-                                                            throw "file delete error"
+                                                            throw "file delete error";
                                                     }, function (err) {
                                                         done(err);
                                                         throw "unable to delete file";
@@ -226,7 +226,7 @@ describe("Export & Import Table", function () {
                                     throw "Unable to save file";
                                 });
                             }, function (err) {
-                                throw err
+                                throw err;
                             });
                         }
                     } catch (e) {
@@ -282,7 +282,7 @@ describe("Export & Import Table", function () {
                                     if (typeof ele["Revenue"] == "number" && typeof ele["Name"] == "string") {
                                         flag = true;
                                     } else {
-                                        done("Type mismatch")
+                                        done("Type mismatch");
                                     }
                                 });
                                 if (flag == true) {
@@ -290,7 +290,7 @@ describe("Export & Import Table", function () {
                                         if (file.url === null)
                                             done();
                                         else
-                                            throw "file delete error"
+                                            throw "file delete error";
                                     }, function (err) {
                                         done(err);
                                         throw "unable to delete file";
@@ -308,10 +308,10 @@ describe("Export & Import Table", function () {
                         throw "Unable to save file";
                     });
                 }, function (err) {
-                    throw err
+                    throw err;
                 });
             }, function (err) {
-                done(err)
+                done(err);
             });
         } else {
             $.ajax({
@@ -347,7 +347,7 @@ describe("Export & Import Table", function () {
                                             if (typeof ele["Revenue"] == "number" && typeof ele["Name"] == "string") {
                                                 flag = true;
                                             } else {
-                                                done("Type mismatch")
+                                                done("Type mismatch");
                                             }
                                         });
                                         if (flag == true) {
@@ -355,7 +355,7 @@ describe("Export & Import Table", function () {
                                                 if (file.url === null)
                                                     done();
                                                 else
-                                                    throw "file delete error"
+                                                    throw "file delete error";
                                             }, function (err) {
                                                 done(err);
                                                 throw "unable to delete file";
@@ -374,7 +374,7 @@ describe("Export & Import Table", function () {
                                 throw "Unable to save file";
                             });
                         }, function (err) {
-                            throw err
+                            throw err;
                         });
                     } catch (e) {
                         

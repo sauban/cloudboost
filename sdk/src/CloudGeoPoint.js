@@ -1,4 +1,4 @@
-import CB from './CB'
+import CB from './CB';
 /*
  *CloudGeoPoint
  */
@@ -26,11 +26,11 @@ class CloudGeoPoint {
         else{
             throw "latitude and longitudes are not in range";
         }
-    };
+    }
     get(name) { //for getting data of a particular column
 
         return this.document[name];
-    };
+    }
 
     set(name,value) { //for getting data of a particular column
 
@@ -52,24 +52,24 @@ class CloudGeoPoint {
             else
                 throw "Latitude is not in Range";
         }
-    };
+    }
     distanceInKMs(point) {
 
         var earthRedius = 6371; //in Kilometer
         return earthRedius * greatCircleFormula(this, point);
-    };
+    }
 
     distanceInMiles(point){
 
-        var earthRedius = 3959 // in Miles
+        var earthRedius = 3959; // in Miles
         return earthRedius * greatCircleFormula(this, point);
 
-    };
+    }
 
     distanceInRadians(point){
 
         return greatCircleFormula(this, point);
-    };
+    }
 }
 
 Object.defineProperty(CloudGeoPoint.prototype, 'latitude', {
@@ -116,10 +116,10 @@ function greatCircleFormula(thisObj, point){
 if (typeof(Number.prototype.toRad) === "undefined") {
     Number.prototype.toRad = function() {
         return this * Math.PI / 180;
-    }
+    };
 }
 
 
-CB.CloudGeoPoint = CB.CloudGeoPoint || CloudGeoPoint
+CB.CloudGeoPoint = CB.CloudGeoPoint || CloudGeoPoint;
 
-export default CB.CloudGeoPoint
+export default CB.CloudGeoPoint;

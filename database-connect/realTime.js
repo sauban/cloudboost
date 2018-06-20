@@ -33,10 +33,7 @@ module.exports = function (io) {
 
             socket.on('join-custom-channel', function (data) {
                 try {
-                    
-                    
                     socket.join(data);
-
                 } catch (e) {
                     global.winston.log('error', {
                         "error": String(e),
@@ -45,7 +42,7 @@ module.exports = function (io) {
                 }
             });
 
-            socket.on('socket-disconnect', function (data) {
+            socket.on('socket-disconnect', function () {
                 try {
                     socket.disconnect();
                 } catch (e) {
@@ -74,9 +71,6 @@ module.exports = function (io) {
                     
                     
                     //if this doucment is an instance of a table Object.
-                    var roomSockets = io.to(data.channel);
-                    var sockets = roomSockets.sockets;
-
                     // if (typeof sockets === "object") {
                     //     for (var key in sockets) {
                     //         if (sockets[key]) {

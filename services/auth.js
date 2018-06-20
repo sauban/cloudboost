@@ -52,7 +52,7 @@ var authService = {
 				}else{
 					
 
-					var document={};				    	
+					document={};				    	
 					document._version=0;			    	
 
 					document.ACL={};				    	

@@ -1,4 +1,4 @@
-import CB from './CB'
+import CB from './CB';
 /*
  CloudRole
  */
@@ -14,9 +14,9 @@ class CloudRole {
         this.document.expires = null;
         this.document._isModified = true;
         this.document._modifiedColumns = ['createdAt','updatedAt','ACL','name','expires'];
-    };
+    }
 }
-CloudRole.prototype = Object.create(CB.CloudObject.prototype)
+CloudRole.prototype = Object.create(CB.CloudObject.prototype);
 
 Object.defineProperty(CloudRole.prototype, 'name', {
     get: function() {
@@ -26,8 +26,8 @@ Object.defineProperty(CloudRole.prototype, 'name', {
         this.document.name = name;
         CB._modified(this,name);
     }
-})
+});
 
-CB.CloudRole = CB.CloudRole || CloudRole
+CB.CloudRole = CB.CloudRole || CloudRole;
 
-export default CB.CloudRole
+export default CB.CloudRole;

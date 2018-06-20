@@ -1,5 +1,3 @@
-
-
 /*
 #     CloudBoost - Core Engine that powers Bakend as a Service
 #     (c) 2014 HackerBay, Inc. 
@@ -11,100 +9,114 @@ var Twitter = require("node-twitter-api");
 
 module.exports = {
 
-	getLoginUrl : function(req, appId, authSettings){
-		var deferred = q.defer();
+    getLoginUrl: function (req, appId, authSettings) {
+        var deferred = q.defer();
 
-		try{
+        try {
 
-            var consumerKey=authSettings.twitter.appId;
-            var consumerSecret=authSettings.twitter.appSecret;
+            var consumerKey = authSettings.twitter.appId;
+            var consumerSecret = authSettings.twitter.appSecret;
 
-			var twitter = new Twitter({
-                consumerKey: consumerKey ,
+            var twitter = new Twitter({
+                consumerKey: consumerKey,
                 consumerSecret: consumerSecret,
-                callback: req.protocol + '://' + req.headers.host + "/auth/"+appId+"/twitter/callback",
+                callback: req.protocol + '://' + req.headers.host + "/auth/" + appId + "/twitter/callback",
                 x_auth_access_type: "write"
             });
 
-            twitter.getRequestToken(function(err, requestToken, requestSecret) {
-                if (err){
-                	deferred.reject(err);                    
-                }else {
-                    var url= "https://api.twitter.com/oauth/authenticate?oauth_token=" + requestToken;                   
-                    deferred.resolve({loginUrl:url,requestSecret:requestSecret});                                    
+            twitter.getRequestToken(function (err, requestToken, requestSecret) {
+                if (err) {
+                    deferred.reject(err);
+                } else {
+                    var url = "https://api.twitter.com/oauth/authenticate?oauth_token=" + requestToken;
+                    deferred.resolve({
+                        loginUrl: url,
+                        requestSecret: requestSecret
+                    });
                 }
             });
 
-		}catch(err){                    
-            global.winston.log('error',{"error":String(err),"stack": new Error().stack});
-            deferred.reject(err);                                                  
+        } catch (err) {
+            global.winston.log('error', {
+                "error": String(err),
+                "stack": new Error().stack
+            });
+            deferred.reject(err);
         }
 
-		return deferred.promise;
-	},
+        return deferred.promise;
+    },
 
-	getAccessToken : function(req, appId, authSettings, requestToken, twitterReqSecret, verifier){
-		var deferred = q.defer();
+    getAccessToken: function (req, appId, authSettings, requestToken, twitterReqSecret, verifier) {
+        var deferred = q.defer();
 
-		try{
-			
-            var consumerKey=authSettings.twitter.appId;
-            var consumerSecret=authSettings.twitter.appSecret;
+        try {
 
-			var twitter = new Twitter({
-                consumerKey: consumerKey ,
+            var consumerKey = authSettings.twitter.appId;
+            var consumerSecret = authSettings.twitter.appSecret;
+
+            var twitter = new Twitter({
+                consumerKey: consumerKey,
                 consumerSecret: consumerSecret,
-                callback: req.protocol + '://' + req.headers.host + "/auth/"+appId+"/twitter/callback",
+                callback: req.protocol + '://' + req.headers.host + "/auth/" + appId + "/twitter/callback",
                 x_auth_access_type: "write"
             });
 
-            twitter.getAccessToken(requestToken, twitterReqSecret, verifier, function(err, accessToken, accessSecret) {
-                if (err){                    
+            twitter.getAccessToken(requestToken, twitterReqSecret, verifier, function (err, accessToken, accessSecret) {
+                if (err) {
                     deferred.reject(err);
-                }else{
-                	deferred.resolve({accessToken:accessToken,accessSecret:accessSecret});
-           		}    
-            });    	
-
-
-		}catch(err){                    
-            global.winston.log('error',{"error":String(err),"stack": new Error().stack});
-            deferred.reject(err);                                                  
-        }
-
-		return deferred.promise;
-	},
-
-	getUserByTokens : function(req, appId, authSettings, accessToken, accessSecret){
-		var deferred = q.defer();
-
-		try{
-			
-            var consumerKey=authSettings.twitter.appId;
-            var consumerSecret=authSettings.twitter.appSecret;
-            
-			var twitter = new Twitter({
-                consumerKey: consumerKey ,
-                consumerSecret: consumerSecret,
-                callback: req.protocol + '://' + req.headers.host + "/auth/"+appId+"/twitter/callback",
-                x_auth_access_type: "write"
-            });
-
-            twitter.verifyCredentials(accessToken, accessSecret, function(err, user) {
-                if (err){                    
-                    deferred.reject(err);
-                }else{ 
-                	deferred.resolve(user);                                              
+                } else {
+                    deferred.resolve({
+                        accessToken: accessToken,
+                        accessSecret: accessSecret
+                    });
                 }
-            });    	
+            });
 
 
-		}catch(err){                    
-            global.winston.log('error',{"error":String(err),"stack": new Error().stack});
-            deferred.reject(err);                                                  
+        } catch (err) {
+            global.winston.log('error', {
+                "error": String(err),
+                "stack": new Error().stack
+            });
+            deferred.reject(err);
         }
 
-		return deferred.promise;
-	}				
-};	
+        return deferred.promise;
+    },
 
+    getUserByTokens: function (req, appId, authSettings, accessToken, accessSecret) {
+        var deferred = q.defer();
+
+        try {
+
+            var consumerKey = authSettings.twitter.appId;
+            var consumerSecret = authSettings.twitter.appSecret;
+
+            var twitter = new Twitter({
+                consumerKey: consumerKey,
+                consumerSecret: consumerSecret,
+                callback: req.protocol + '://' + req.headers.host + "/auth/" + appId + "/twitter/callback",
+                x_auth_access_type: "write"
+            });
+
+            twitter.verifyCredentials(accessToken, accessSecret, function (err, user) {
+                if (err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(user);
+                }
+            });
+
+
+        } catch (err) {
+            global.winston.log('error', {
+                "error": String(err),
+                "stack": new Error().stack
+            });
+            deferred.reject(err);
+        }
+
+        return deferred.promise;
+    }
+};

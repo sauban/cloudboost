@@ -1,4 +1,4 @@
-import CB from './CB'
+import CB from './CB';
 /* CloudNotificiation */
 
 CB.CloudNotification = CB.CloudNotification || {};
@@ -86,4 +86,4 @@ CB.CloudNotification.publish = function(channelName, data, done) {
 
 };
 
-export default CB.CloudNotification
+export default CB.CloudNotification;

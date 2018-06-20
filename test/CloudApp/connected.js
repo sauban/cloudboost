@@ -15,6 +15,6 @@ describe("Cloud App is connected.", function() {
         }else{
             done("Cloud App is not connected.");
         }
-    })
+    });
     
 });

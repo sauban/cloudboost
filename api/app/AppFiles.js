@@ -10,9 +10,6 @@ module.exports = function(app) {
 
     //get file from gridfs
     app.get('/appfile/:appId/icon', function(req, res) {
-
-        
-
         var appId = req.params.appId;
         var fileName = appId;
 
@@ -39,6 +36,5 @@ module.exports = function(app) {
         }, function(error) {
             return res.status(500).send(error);
         });
-
     });
 };

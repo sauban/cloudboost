@@ -16,10 +16,10 @@ describe("Table level ACL, for editing and getting table via clientKey", functio
             if(table.id){
                 CB.appKey = CB.jsKey;
                 CB.CloudTable.get(tableName).then(function(table){
-                    done('table should not be fetched via clientKey')
+                    done('table should not be fetched via clientKey');
                 },function(err){
-                    done()
-                })
+                    done();
+                });
             }else{
               done("Table cannot be created");
             }
@@ -33,15 +33,15 @@ describe("Table level ACL, for editing and getting table via clientKey", functio
         this.timeout(80000);
         CB.appKey = CB.masterKey;
         CB.CloudTable.get(tableName).then(function(table){
-            table.isEditableByClientKey = true
+            table.isEditableByClientKey = true;
             table.save().then(function(res){
-                done()
+                done();
             },function(err){
-                done(err)
-            })
+                done(err);
+            });
         },function(err){
-            done(err)
-        })
+            done(err);
+        });
     
     });
 
@@ -51,13 +51,13 @@ describe("Table level ACL, for editing and getting table via clientKey", functio
         CB.appKey = CB.jsKey;
         CB.CloudTable.get(tableName).then(function(table){
             if(table.id){
-                done()
+                done();
             }else{
                 done("Table cannot be created");
             }
         },function(err){
-            done(err)
-        })
+            done(err);
+        });
     
     });
 
@@ -78,8 +78,8 @@ describe("Table level ACL, for editing and getting table via clientKey", functio
                 done("Table cannot be created");
             }
         },function(err){
-            done(err)
-        })
+            done(err);
+        });
     
     });
 

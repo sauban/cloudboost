@@ -2,21 +2,21 @@ if (!CB._isNode) {
     //Socket.io Client library
     (function(f) {
         if (typeof exports === "object" && typeof module !== "undefined") {
-            module.exports = f()
+            module.exports = f();
         } else if (typeof define === "function" && define.amd) {
-            define([], f)
+            define([], f);
         } else {
             var g;
             if (typeof window !== "undefined") {
-                g = window
+                g = window;
             } else if (typeof global !== "undefined") {
-                g = global
+                g = global;
             } else if (typeof self !== "undefined") {
-                g = self
+                g = self;
             } else {
-                g = this
+                g = this;
             }
-            g.io = f()
+            g.io = f();
         }
     })(function() {
         var define,
@@ -33,7 +33,7 @@ if (!CB._isNode) {
                             return i(o, !0);
                         var f = new Error("Cannot find module '" + o + "'");
                         throw f.code = "MODULE_NOT_FOUND",
-                        f
+                        f;
                     }
                     var l = n[o] = {
                         exports: {}
@@ -42,15 +42,15 @@ if (!CB._isNode) {
                         var n = t[o][1][e];
                         return s(n
                             ? n
-                            : e)
-                    }, l, l.exports, e, t, n, r)
+                            : e);
+                    }, l, l.exports, e, t, n, r);
                 }
-                return n[o].exports
+                return n[o].exports;
             }
             var i = typeof require == "function" && require;
             for (var o = 0; o < r.length; o++)
                 s(r[o]);
-            return s
+            return s;
         })(
         {
             1: [
@@ -847,7 +847,7 @@ if (!CB._isNode) {
                             ? window
                             : typeof global !== "undefined"
                                 ? global
-                                : {})
+                                : {});
                 }, {
                     "./transport": 4,
                     "./transports": 5,
@@ -1089,7 +1089,7 @@ if (!CB._isNode) {
                             ? window
                             : typeof global !== "undefined"
                                 ? global
-                                : {})
+                                : {});
                 }, {
                     "./polling-jsonp": 6,
                     "./polling-xhr": 7,
@@ -1347,7 +1347,7 @@ if (!CB._isNode) {
                             ? window
                             : typeof global !== "undefined"
                                 ? global
-                                : {})
+                                : {});
                 }, {
                     "./polling": 8,
                     "component-inherit": 16
@@ -1784,7 +1784,7 @@ if (!CB._isNode) {
                             ? window
                             : typeof global !== "undefined"
                                 ? global
-                                : {})
+                                : {});
                 }, {
                     "./polling": 8,
                     "component-emitter": 15,
@@ -2364,7 +2364,7 @@ if (!CB._isNode) {
                             ? window
                             : typeof global !== "undefined"
                                 ? global
-                                : {})
+                                : {});
                 }, {
                     "../transport": 4,
                     "component-inherit": 16,
@@ -2412,7 +2412,7 @@ if (!CB._isNode) {
                                 return new ActiveXObject('Microsoft.XMLHTTP');
                             } catch (e) {}
                         }
-                    }
+                    };
 
                 }, {
                     "has-cors": 22
@@ -2420,31 +2420,31 @@ if (!CB._isNode) {
             ],
             11: [
                 function(_dereq_, module, exports) {
-                    module.exports = after
+                    module.exports = after;
 
                     function after(count, callback, err_cb) {
-                        var bail = false
-                        err_cb = err_cb || noop
-                        proxy.count = count
+                        var bail = false;
+                        err_cb = err_cb || noop;
+                        proxy.count = count;
 
                         return (count === 0)
                             ? callback()
-                            : proxy
+                            : proxy;
 
                         function proxy(err, result) {
                             if (proxy.count <= 0) {
-                                throw new Error('after called too many times')
+                                throw new Error('after called too many times');
                             }
-                            --proxy.count
+                            --proxy.count;
 
                             // after first error, rest are passed to err_cb
                             if (err) {
-                                bail = true
-                                callback(err)
+                                bail = true;
+                                callback(err);
                                 // future error callbacks will go to error handler
-                                callback = err_cb
+                                callback = err_cb;
                             } else if (proxy.count === 0 && !bail) {
-                                callback(null, result)
+                                callback(null, result);
                             }
                         }
                     }
@@ -2646,12 +2646,12 @@ if (!CB._isNode) {
                             return (options.type)
                                 ? bb.getBlob(options.type)
                                 : bb.getBlob();
-                        };
+                        }
 
                         function BlobConstructor(ary, options) {
                             mapArrayBufferViews(ary);
                             return new Blob(ary, options || {});
-                        };
+                        }
 
                         module.exports = (function() {
                             if (blobSupported) {
@@ -2671,7 +2671,7 @@ if (!CB._isNode) {
                             ? window
                             : typeof global !== "undefined"
                                 ? global
-                                : {})
+                                : {});
                 }, {}
             ],
             15: [
@@ -2692,7 +2692,7 @@ if (!CB._isNode) {
                     function Emitter(obj) {
                         if (obj)
                             return mixin(obj);
-                        };
+                        }
 
                     /**
  * Mixin the emitter properties.
@@ -3857,7 +3857,7 @@ if (!CB._isNode) {
                             ? window
                             : typeof global !== "undefined"
                                 ? global
-                                : {})
+                                : {});
                 }, {
                     "./keys": 20,
                     "after": 11,
@@ -3957,7 +3957,7 @@ if (!CB._isNode) {
                             ? window
                             : typeof global !== "undefined"
                                 ? global
-                                : {})
+                                : {});
                 }, {
                     "isarray": 24
                 }
@@ -4181,7 +4181,7 @@ if (!CB._isNode) {
                             ? window
                             : typeof global !== "undefined"
                                 ? global
-                                : {})
+                                : {});
                 }, {}
             ],
             27: [
@@ -4287,7 +4287,7 @@ if (!CB._isNode) {
             29: [
                 function(_dereq_, module, exports) {
                     (function(global) {
-                        /*! https://mths.be/utf8js v2.0.0 by @mathias */;
+                        /*! https://mths.be/utf8js v2.0.0 by @mathias */
                         (function(root) {
 
                             // Detect free variables `exports`
@@ -4527,7 +4527,7 @@ if (!CB._isNode) {
                             ? window
                             : typeof global !== "undefined"
                                 ? global
-                                : {})
+                                : {});
                 }, {}
             ],
             30: [
@@ -5842,7 +5842,7 @@ if (!CB._isNode) {
                             ? window
                             : typeof global !== "undefined"
                                 ? global
-                                : {})
+                                : {});
                 }, {
                     "debug": 39,
                     "parseuri": 45
@@ -5966,7 +5966,7 @@ if (!CB._isNode) {
                         var args = slice.call(arguments, 2);
                         return function() {
                             return fn.apply(obj, args.concat(slice.call(arguments)));
-                        }
+                        };
                     };
 
                 }, {}
@@ -5989,7 +5989,7 @@ if (!CB._isNode) {
                     function Emitter(obj) {
                         if (obj)
                             return mixin(obj);
-                        };
+                        }
 
                     /**
  * Mixin the emitter properties.
@@ -6136,7 +6136,7 @@ if (!CB._isNode) {
             ],
             39: [
                 function(_dereq_, module, exports) {
-                    arguments[4][17][0].apply(exports, arguments)
+                    arguments[4][17][0].apply(exports, arguments);
                 }, {
                     "./debug": 40,
                     "dup": 17
@@ -6144,7 +6144,7 @@ if (!CB._isNode) {
             ],
             40: [
                 function(_dereq_, module, exports) {
-                    arguments[4][18][0].apply(exports, arguments)
+                    arguments[4][18][0].apply(exports, arguments);
                 }, {
                     "dup": 18,
                     "ms": 44
@@ -6216,35 +6216,35 @@ if (!CB._isNode) {
                             ? window
                             : typeof global !== "undefined"
                                 ? global
-                                : {})
+                                : {});
                 }, {
                     "isarray": 43
                 }
             ],
             42: [
                 function(_dereq_, module, exports) {
-                    arguments[4][23][0].apply(exports, arguments)
+                    arguments[4][23][0].apply(exports, arguments);
                 }, {
                     "dup": 23
                 }
             ],
             43: [
                 function(_dereq_, module, exports) {
-                    arguments[4][24][0].apply(exports, arguments)
+                    arguments[4][24][0].apply(exports, arguments);
                 }, {
                     "dup": 24
                 }
             ],
             44: [
                 function(_dereq_, module, exports) {
-                    arguments[4][25][0].apply(exports, arguments)
+                    arguments[4][25][0].apply(exports, arguments);
                 }, {
                     "dup": 25
                 }
             ],
             45: [
                 function(_dereq_, module, exports) {
-                    arguments[4][28][0].apply(exports, arguments)
+                    arguments[4][28][0].apply(exports, arguments);
                 }, {
                     "dup": 28
                 }
@@ -6403,7 +6403,7 @@ if (!CB._isNode) {
                             ? window
                             : typeof global !== "undefined"
                                 ? global
-                                : {})
+                                : {});
                 }, {
                     "./is-buffer": 48,
                     "isarray": 43
@@ -6843,12 +6843,12 @@ if (!CB._isNode) {
                             ? window
                             : typeof global !== "undefined"
                                 ? global
-                                : {})
+                                : {});
                 }, {}
             ],
             49: [
                 function(_dereq_, module, exports) {
-                    arguments[4][15][0].apply(exports, arguments)
+                    arguments[4][15][0].apply(exports, arguments);
                 }, {
                     "dup": 15
                 }
@@ -6856,7 +6856,7 @@ if (!CB._isNode) {
             50: [
                 function(_dereq_, module, exports) {
                     (function(global) {
-                        /*! JSON v3.3.2 | http://bestiejs.github.io/json3 | Copyright 2012-2014, Kit Cambridge | http://kit.mit-license.org */;
+                        /*! JSON v3.3.2 | http://bestiejs.github.io/json3 | Copyright 2012-2014, Kit Cambridge | http://kit.mit-license.org */
                         (function() {
                             // Detect the `define` function exposed by asynchronous module loaders. The
                             // strict `define` check is necessary for compatibility with `r.js`.
@@ -7891,29 +7891,29 @@ if (!CB._isNode) {
                         ? window
                         : typeof global !== "undefined"
                             ? global
-                            : {})
+                            : {});
             }, {}
         ],
         51: [
             function(_dereq_, module, exports) {
-                module.exports = toArray
+                module.exports = toArray;
 
                 function toArray(list, index) {
-                    var array = []
+                    var array = [];
 
-                    index = index || 0
+                    index = index || 0;
 
                     for (var i = index || 0; i < list.length; i++) {
-                        array[i - index] = list[i]
+                        array[i - index] = list[i];
                     }
 
-                    return array
+                    return array;
                 }
 
             }, {}
         ]
     }, {},
-    [31])(31)
+    [31])(31);
 });
 
 }

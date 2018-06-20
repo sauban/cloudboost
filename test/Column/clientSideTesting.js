@@ -13,7 +13,7 @@ describe("cliend side tests of Cloud Column", function(){
                             done();
             }
             catch (err) {
-                            done(err)
+                            done(err);
             }
     });
 
@@ -62,7 +62,7 @@ describe("cliend side tests of Cloud Column", function(){
                                 done();
                 }
                 catch (err) {
-                                done(err)
+                                done(err);
                 }
     });
 
@@ -114,7 +114,7 @@ describe("cliend side tests of Cloud Column", function(){
                                 done();
                 }
                 catch (err) {
-                                done(err)
+                                done(err);
                 }
     });
 
@@ -191,7 +191,7 @@ describe("cliend side tests of Cloud Column", function(){
                                 done();
                 }
                 catch (err) {
-                                done(err)
+                                done(err);
                 }
     });
 

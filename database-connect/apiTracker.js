@@ -13,12 +13,11 @@ var config = require('../config/config');
 
 obj.log = function(appId, actionName, url,sdk, checkReleaseRequest){   
 
-    try{  
-        var url = null;
+    try{
         if(checkReleaseRequest){
-            url= config.analyticsUrl+"/app/isReleased";
+            url = config.analyticsUrl+"/app/isReleased";
         }else{
-            url= config.analyticsUrl+"/api/store";
+            url = config.analyticsUrl+"/api/store";
         } 
         var post_data = JSON.stringify({
             host : config.secureKey,
@@ -38,20 +37,18 @@ obj.log = function(appId, actionName, url,sdk, checkReleaseRequest){
         }, function (err,response,body){
             if(!err){
                 try{
-                    var body = JSON.parse(body);
-                    if(body.limitExceeded){
-                        obj.blockApp(body.appId).then(function(){
+                    var respbody = JSON.parse(body);
+                    if(respbody.limitExceeded){
+                        obj.blockApp(respbody.appId).then(function(){
                             
                         }, function(error){
-                            
-                            
+                            global.winston.error(error);
                         });
                     }else{
-                        obj.releaseApp(body.appId).then(function(){
+                        obj.releaseApp(respbody.appId).then(function(){
                             
                         }, function(error){
-                            
-                            
+                            global.winston.error(error);
                         });
                     }
                 }catch(e){
@@ -59,8 +56,7 @@ obj.log = function(appId, actionName, url,sdk, checkReleaseRequest){
                     obj.releaseApp(body.appId).then(function(){
                         
                     }, function(error){
-                        
-                        
+                        global.winston.error(error);
                     });
                 }
                 

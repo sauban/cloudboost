@@ -6,6 +6,16 @@
 var util = require('../helpers/util.js');
 var config = require('../config/config');
 
+function trimStart(character, string) {
+    var startIndex = 0;
+
+    while (string[startIndex] === character) {
+        startIndex++;
+    }
+
+    return string.substr(startIndex);
+}
+
 var obj = {
 
     /* Gets the query connected to a socketId.
@@ -31,7 +41,7 @@ var obj = {
      */
     setData: function(socketId, data, callback) {
         try {
-            data = data || {}
+            data = data || {};
             config.redisClient.set('cb-socket-' + socketId + '-data' + data.eventType, JSON.stringify(data), function(err, reply) {
                 if (callback)
                     callback(err, reply);
@@ -93,9 +103,9 @@ var obj = {
                                     lon1 = cbVal.longitude,
                                     lat2 = qVal['$geometry'].coordinates[1],
                                     lon2 = qVal['$geometry'].coordinates[0];
-                                var maxDistance = qVal['$maxDistance'];
+                                var maxDistance = qVal['$maxDistance'],
                                     minDistance = qVal['$minDistance'];
-                                var distance = util.getLatLongDistance(lat1, lon1, lat2, lon2)
+                                var distance = util.getLatLongDistance(lat1, lon1, lat2, lon2);
                                 if (!minDistance)
                                     minDistance = 0;
                                 if (!maxDistance)
@@ -167,7 +177,7 @@ var obj = {
                                 else {
                                     if (query[key]['$options'] === 'im') { //test starts with.
                                         //starts with.
-                                        var value = trimStart('^', query[key][objectKeys]);
+                                        let value = trimStart('^', query[key][objectKeys]);
                                         if (cloudObject[key].indexOf(value) !== 0)
                                             return false;
                                         }
@@ -180,7 +190,7 @@ var obj = {
 
                                 if (query[key][objectKeys]) {
                                     var arr = query[key][objectKeys];
-                                    var value = null;
+                                    let value = null;
                                     if (key.indexOf('.') > -1) { //for CloudObjects
                                         var tempKey = key.substr(0, key.indexOf('.'));
                                         value = cloudObject[tempKey];
@@ -190,7 +200,7 @@ var obj = {
 
                                     if (Object.prototype.toString.call(value) === '[object Array]') {
                                         var exists = false;
-                                        for (var i = 0; i < value.length; i++) {
+                                        for (let i = 0; i < value.length; i++) {
                                             if (value[i]._type === 'custom') {
                                                 if (arr.indexOf(value[i]._id) > -1) {
                                                     exists = true;
@@ -221,18 +231,18 @@ var obj = {
                             //doesNot containedIn.
                             if (objectKeys === '$nin') {
                                 if (query[key][objectKeys]) {
-                                    var arr = query[key][objectKeys];
-                                    var value = null;
+                                    let arr = query[key][objectKeys];
+                                    let value = null;
                                     if (key.indexOf('.') > -1) { //for CloudObjects
-                                        var tempKey = key.substr(0, key.indexOf('.'));
+                                        let tempKey = key.substr(0, key.indexOf('.'));
                                         value = cloudObject[tempKey];
                                     } else {
                                         value = cloudObject[key];
                                     }
 
                                     if (Object.prototype.toString.call(value) === '[object Array]') {
-                                        var exists = false;
-                                        for (var i = 0; i < value.length; i++) {
+                                        let exists = false;
+                                        for (let i = 0; i < value.length; i++) {
                                             if (value[i]._type === 'custom') {
                                                 if (arr.indexOf(value[i]._id) !== -1) {
                                                     exists = true;
@@ -263,17 +273,17 @@ var obj = {
                             //containsAll.
                             if (objectKeys === '$all') {
                                 if (query[key][objectKeys]) {
-                                    var arr = query[key][objectKeys];
-                                    var value = null;
+                                    let arr = query[key][objectKeys];
+                                    let value = null;
                                     if (key.indexOf('.') > -1) { //for CloudObjects
-                                        var tempKey = key.substr(0, key.indexOf('.'));
+                                        let tempKey = key.substr(0, key.indexOf('.'));
                                         value = cloudObject[tempKey];
                                     } else {
                                         value = cloudObject[key];
                                     }
 
                                     if (Object.prototype.toString.call(value) === '[object Array]') {
-                                        for (var i = 0; i < value.length; i++) {
+                                        for (let i = 0; i < value.length; i++) {
                                             if (value[i]._type === 'custom') {
                                                 if (arr.indexOf(value[i]._id) === -1) {
                                                     return false;
@@ -304,7 +314,7 @@ var obj = {
                         }
                         var a = cloudObject[temp]._id;
                         var b = query[key];
-                        if (cloudObject[temp]._id !== query[key]) {
+                        if (a !== b) {
                             return false;
                         }
                     } else {

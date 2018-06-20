@@ -1,4 +1,3 @@
-
 /*
 #     CloudBoost - Core Engine that powers Bakend as a Service
 #     (c) 2014 HackerBay, Inc. 
@@ -9,119 +8,135 @@ var FB = require('fb');
 
 module.exports = {
 
-	getLoginUrl : function(req, appId, authSettings){
-		var deferred = q.defer();
+    getLoginUrl: function (req, appId, authSettings) {
+        var deferred = q.defer();
 
-		try{           
+        try {
 
-            var fbAppId=authSettings.facebook.appId;
-            var fbAppSecret=authSettings.facebook.appSecret;
-           
+            var fbAppId = authSettings.facebook.appId;
+            var fbAppSecret = authSettings.facebook.appSecret;
+
             FB.options({
-                appId:          fbAppId,
-                appSecret:      fbAppSecret,
-                redirectUri:    req.protocol + '://' + req.headers.host+"/auth/"+appId+"/facebook/callback"
+                appId: fbAppId,
+                appSecret: fbAppSecret,
+                redirectUri: req.protocol + '://' + req.headers.host + "/auth/" + appId + "/facebook/callback"
             });
 
-            var url=FB.getLoginUrl({ scope: _getFbScopeString(authSettings) }); 
+            var url = FB.getLoginUrl({
+                scope: _getFbScopeString(authSettings)
+            });
 
-            deferred.resolve({loginUrl:url});
+            deferred.resolve({
+                loginUrl: url
+            });
 
-		}catch(err){                    
-	        global.winston.log('error',{"error":String(err),"stack": new Error().stack});
-	        deferred.reject(err);                                                  
-	    }
+        } catch (err) {
+            global.winston.log('error', {
+                "error": String(err),
+                "stack": new Error().stack
+            });
+            deferred.reject(err);
+        }
 
-		return deferred.promise;
-	},
+        return deferred.promise;
+    },
 
-	getAccessToken : function(req, appId, authSettings, code){
-		var deferred = q.defer();
+    getAccessToken: function (req, appId, authSettings, code) {
+        var deferred = q.defer();
 
-		try{           
+        try {
 
-            var fbAppId=authSettings.facebook.appId;
-            var fbAppSecret=authSettings.facebook.appSecret;
-           
+            var fbAppId = authSettings.facebook.appId;
+            var fbAppSecret = authSettings.facebook.appSecret;
+
             FB.options({
-                appId:          fbAppId,
-                appSecret:      fbAppSecret,
-                redirectUri:    req.protocol + '://' + req.headers.host+"/auth/"+appId+"/facebook/callback"
+                appId: fbAppId,
+                appSecret: fbAppSecret,
+                redirectUri: req.protocol + '://' + req.headers.host + "/auth/" + appId + "/facebook/callback"
             });
 
             FB.api('oauth/access_token', {
-                client_id:      FB.options('appId'),
-                client_secret:  FB.options('appSecret'),
-                redirect_uri:   FB.options('redirectUri'),
-                code:           code
+                client_id: FB.options('appId'),
+                client_secret: FB.options('appSecret'),
+                redirect_uri: FB.options('redirectUri'),
+                code: code
             }, function (results) {
-                if(!results || results.error) {                    
-                    deferred.reject(results.error); 
-                }else{                
-                	deferred.resolve(results.access_token);
+                if (!results || results.error) {
+                    deferred.reject(results.error);
+                } else {
+                    deferred.resolve(results.access_token);
                 }
-            });            
+            });
 
-		}catch(err){                    
-	        global.winston.log('error',{"error":String(err),"stack": new Error().stack});
-	        deferred.reject(err);                                                  
-	    }
+        } catch (err) {
+            global.winston.log('error', {
+                "error": String(err),
+                "stack": new Error().stack
+            });
+            deferred.reject(err);
+        }
 
-		return deferred.promise;
-	},
+        return deferred.promise;
+    },
 
-	getUserByAccessToken : function(req, appId, authSettings, accessToken){
-		var deferred = q.defer();
+    getUserByAccessToken: function (req, appId, authSettings, accessToken) {
+        var deferred = q.defer();
 
-		try{           
+        try {
 
-	        var fbAppId=authSettings.facebook.appId;
-	        var fbAppSecret=authSettings.facebook.appSecret;
-	       
-	        FB.options({
-	            appId:          fbAppId,
-	            appSecret:      fbAppSecret,
-	            redirectUri:    req.protocol + '://' + req.headers.host+"/auth/"+appId+"/facebook/callback"
-	        });	                          
-                    
+            var fbAppId = authSettings.facebook.appId;
+            var fbAppSecret = authSettings.facebook.appSecret;
+
+            FB.options({
+                appId: fbAppId,
+                appSecret: fbAppSecret,
+                redirectUri: req.protocol + '://' + req.headers.host + "/auth/" + appId + "/facebook/callback"
+            });
+
             FB.setAccessToken(accessToken);
-            FB.api('me', { fields: _getFbFieldString(authSettings), access_token: accessToken }, function (fbRes) {
-            	deferred.resolve(fbRes);
-            });	
-                               
-
-		}catch(err){                    
-	        global.winston.log('error',{"error":String(err),"stack": new Error().stack});
-	        deferred.reject(err);                                                  
-	    }
-
-		return deferred.promise;
-	},
-};	
+            FB.api('me', {
+                fields: _getFbFieldString(authSettings),
+                access_token: accessToken
+            }, function (fbRes) {
+                deferred.resolve(fbRes);
+            });
 
 
-function _getFbScopeString(authSettings){
-    var json=authSettings.facebook.permissions;
+        } catch (err) {
+            global.winston.log('error', {
+                "error": String(err),
+                "stack": new Error().stack
+            });
+            deferred.reject(err);
+        }
 
-    var scopeArray=[];
+        return deferred.promise;
+    },
+};
+
+
+function _getFbScopeString(authSettings) {
+    var json = authSettings.facebook.permissions;
+
+    var scopeArray = [];
     for (var key in json) {
         if (json.hasOwnProperty(key) && json[key].enabled) {
-          scopeArray.push(json[key].scope);
+            scopeArray.push(json[key].scope);
         }
     }
 
     return scopeArray.toString();
 }
 
-function _getFbFieldString(authSettings){
-    var json=authSettings.facebook.attributes;
+function _getFbFieldString(authSettings) {
+    var json = authSettings.facebook.attributes;
 
-    var fieldArray=[];
+    var fieldArray = [];
     for (var key in json) {
         if (json.hasOwnProperty(key) && json[key]) {
-          fieldArray.push(key.toString());
+            fieldArray.push(key.toString());
         }
     }
 
     return fieldArray;
-} 
+}

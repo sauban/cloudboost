@@ -1,4 +1,4 @@
-import CB from './CB'
+import CB from './CB';
 
 CB.ACL = function() { //constructor for ACL class
     this.document = {};
@@ -138,4 +138,4 @@ CB.ACL.prototype.setRoleReadAccess = function(roleId, value) {
 };
 
 
-export default CB.ACL
+export default CB.ACL;

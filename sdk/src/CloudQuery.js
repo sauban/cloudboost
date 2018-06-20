@@ -1,5 +1,5 @@
-import CB from './CB'
-import localforage from 'localforage'
+import CB from './CB';
+import localforage from 'localforage';
 
 /*
  CloudQuery
@@ -17,7 +17,7 @@ class CloudQuery {
         this.sort = {};
         this.skip = 0;
         this.limit = 10; //default limit is 10
-    };
+    }
     search(search, language, caseSensitive, diacriticSensitive) {
 
         //Validations
@@ -30,7 +30,7 @@ class CloudQuery {
         }
 
         if ((caseSensitive !== null) && (typeof caseSensitive !== "undefined") && (typeof caseSensitive !== "boolean")) {
-            throw "Third parameter should be a boolean."
+            throw "Third parameter should be a boolean.";
         }
 
         if ((diacriticSensitive !== null) && (typeof diacriticSensitive !== "undefined") && (typeof diacriticSensitive !== "boolean")) {
@@ -56,14 +56,14 @@ class CloudQuery {
         }
 
         return this;
-    };
+    }
 
     equalTo(columnName, data) {
 
         if (columnName === 'id')
             columnName = '_' + columnName;
 
-        if (!!data) {
+        if (data) {
             if (data.constructor === CB.CloudObject) {
                 columnName = columnName + '._id';
                 data = data.get('id');
@@ -73,7 +73,7 @@ class CloudQuery {
         this.query[columnName] = data;
 
         return this;
-    };
+    }
     delete(callback) {
         var def;
         if (!callback)
@@ -89,7 +89,7 @@ class CloudQuery {
                     def.reject(err);
                 }
             }
-        })
+        });
     }
     includeList(columnName) {
         if (columnName === 'id')
@@ -98,7 +98,7 @@ class CloudQuery {
         this.query.$includeList.push(columnName);
 
         return this;
-    };
+    }
 
     include(columnName) {
         if (columnName === 'id')
@@ -107,7 +107,7 @@ class CloudQuery {
         this.query.$include.push(columnName);
 
         return this;
-    };
+    }
 
     all(columnName) {
         if (columnName === 'id')
@@ -116,7 +116,7 @@ class CloudQuery {
         this.query.$all = columnName;
 
         return this;
-    };
+    }
 
     any(columnName) {
         if (columnName === 'id')
@@ -125,7 +125,7 @@ class CloudQuery {
         this.query.$any = columnName;
 
         return this;
-    };
+    }
 
     first(columnName) {
         if (columnName === 'id')
@@ -134,7 +134,7 @@ class CloudQuery {
         this.query.$first = columnName;
 
         return this;
-    };
+    }
 
     notEqualTo(columnName, data) {
         if (columnName === 'id')
@@ -152,7 +152,7 @@ class CloudQuery {
         };
 
         return this;
-    };
+    }
     greaterThan(columnName, data) {
 
         if (columnName === 'id')
@@ -164,7 +164,7 @@ class CloudQuery {
         this.query[columnName]["$gt"] = data;
 
         return this;
-    };
+    }
     greaterThanEqualTo(columnName, data) {
 
         if (columnName === 'id')
@@ -176,7 +176,7 @@ class CloudQuery {
         this.query[columnName]["$gte"] = data;
 
         return this;
-    };
+    }
     lessThan(columnName, data) {
 
         if (columnName === 'id')
@@ -188,7 +188,7 @@ class CloudQuery {
         this.query[columnName]["$lt"] = data;
 
         return this;
-    };
+    }
     lessThanEqualTo(columnName, data) {
 
         if (columnName === 'id')
@@ -200,7 +200,7 @@ class CloudQuery {
         this.query[columnName]["$lte"] = data;
 
         return this;
-    };
+    }
 
     //Sorting
     orderByAsc(columnName) {
@@ -211,7 +211,7 @@ class CloudQuery {
         this.sort[columnName] = 1;
 
         return this;
-    };
+    }
 
     orderByDesc(columnName) {
 
@@ -221,18 +221,18 @@ class CloudQuery {
         this.sort[columnName] = -1;
 
         return this;
-    };
+    }
 
     //Limit and skip
     setLimit(data) {
 
         this.limit = data;
         return this;
-    };
+    }
     setSkip(data) {
         this.skip = data;
         return this;
-    };
+    }
 
     paginate(pageNo, totalItemsInPage, callback) {
 
@@ -317,7 +317,7 @@ class CloudQuery {
             return def.promise;
         }
 
-    };
+    }
 
     //select/deselect columns to show
     selectColumn(columnNames) {
@@ -330,7 +330,7 @@ class CloudQuery {
                 ACL: 1,
                 _type: 1,
                 _tableName: 1
-            }
+            };
         }
 
         if (Object.prototype.toString.call(columnNames) === '[object Object]') {
@@ -344,7 +344,7 @@ class CloudQuery {
         }
 
         return this;
-    };
+    }
 
     doNotSelectColumn(columnNames) {
         if (Object.prototype.toString.call(columnNames) === '[object Object]') {
@@ -358,7 +358,7 @@ class CloudQuery {
         }
 
         return this;
-    };
+    }
 
     containedIn(columnName, data) {
 
@@ -368,7 +368,7 @@ class CloudQuery {
         if (columnName === 'id')
             columnName = '_' + columnName;
 
-        if (Object.prototype.toString.call(data) === '[object Object]' && !data instanceof CB.CloudObject) { //if object is passed as an argument
+        if (Object.prototype.toString.call(data) === '[object Object]' && !(data instanceof CB.CloudObject)) { //if object is passed as an argument
             throw 'Array / value / CloudObject expected as an argument';
         }
 
@@ -445,7 +445,7 @@ class CloudQuery {
         if (columnName === 'id')
             columnName = '_' + columnName;
 
-        if (Object.prototype.toString.call(data) === '[object Object]' && !data instanceof CB.CloudObject) { //if object is passed as an argument
+        if (Object.prototype.toString.call(data) === '[object Object]' && !(data instanceof CB.CloudObject)) { //if object is passed as an argument
             throw 'Array or string expected as an argument';
         }
 
@@ -548,7 +548,7 @@ class CloudQuery {
         if (columnName === 'id')
             columnName = '_' + columnName;
 
-        if (Object.prototype.toString.call(data) === '[object Object]' && !data instanceof CB.CloudObject) { //if object is passed as an argument
+        if (Object.prototype.toString.call(data) === '[object Object]' && !(data instanceof CB.CloudObject)) { //if object is passed as an argument
             throw 'Array or string expected as an argument';
         }
 
@@ -698,7 +698,7 @@ class CloudQuery {
                 '$minDistance': minDistance
             };
         }
-    };
+    }
 
     //GeoPoint geoWithin query
     geoWithin(columnName, geoPoint, radius) {
@@ -737,7 +737,7 @@ class CloudQuery {
                 };
             }
         }
-    };
+    }
 
     count(callback) {
         if (!CB.appId) {
@@ -772,7 +772,7 @@ class CloudQuery {
         if (!callback) {
             return def.promise;
         }
-    };
+    }
 
     distinct(keys, callback) {
 
@@ -825,7 +825,7 @@ class CloudQuery {
         if (!callback) {
             return def.promise;
         }
-    };
+    }
 
     find(callback) { //find the document(s) matching the given query
         if (!CB.appId) {
@@ -870,7 +870,7 @@ class CloudQuery {
         if (!callback) {
             return def.promise;
         }
-    };
+    }
 
     findFromLocalStore(callback) {
 
@@ -908,12 +908,12 @@ class CloudQuery {
         if (!callback) {
             return def.promise;
         }
-    };
+    }
 
     get(objectId, callback) {
         var query = new CB.CloudQuery(this.tableName);
         return query.findById(objectId, callback);
-    };
+    }
 
     findById(objectId, callback) { //find the document(s) matching the given query
 
@@ -976,7 +976,7 @@ class CloudQuery {
         if (!callback) {
             return def.promise;
         }
-    };
+    }
     findOne(callback) { //find a single document matching the given query
         if (!CB.appId) {
             throw "CB.appId is null.";
@@ -1009,7 +1009,7 @@ class CloudQuery {
         if (!callback) {
             return def.promise;
         }
-    };
+    }
 }
 
 // Logical operations
@@ -1025,7 +1025,7 @@ CloudQuery.or = function(obj1, obj2) {
                 throw "Table names are not same";
                 break;
             }
-            if (!obj1[i]instanceof CB.CloudQuery) {
+            if (!(obj1[i]instanceof CB.CloudQuery)) {
                 throw "Array items are not instanceof of CloudQuery";
                 break;
             }
@@ -1041,10 +1041,10 @@ CloudQuery.or = function(obj1, obj2) {
         if (!obj1.tableName === obj2.tableName) {
             throw "Table names are not same";
         }
-        if (!obj1 instanceof CB.CloudQuery) {
+        if (!(obj1 instanceof CB.CloudQuery)) {
             throw "Data passed is not an instance of CloudQuery";
         }
-        if (!obj2 instanceof CB.CloudQuery) {
+        if (!(obj2 instanceof CB.CloudQuery)) {
             throw "Data passed is not an instance of CloudQuery";
         }
         tableName = obj1.tableName;
@@ -1057,7 +1057,7 @@ CloudQuery.or = function(obj1, obj2) {
     var obj = new CB.CloudQuery(tableName);
     obj.query["$or"] = queryArray;
     return obj;
-}
+};
 CloudQuery._validateQuery = function(cloudObject, query) {
     //validate query.
     for (var key in query) {
@@ -1296,6 +1296,6 @@ CloudQuery._validateQuery = function(cloudObject, query) {
     return true;
 };
 
-CB.CloudQuery = CloudQuery
+CB.CloudQuery = CloudQuery;
 
-export default CB.CloudQuery
+export default CB.CloudQuery;

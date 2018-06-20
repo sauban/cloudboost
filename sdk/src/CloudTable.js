@@ -1,4 +1,4 @@
-import CB from './CB'
+import CB from './CB';
 
 /*
   CloudTable
@@ -10,7 +10,7 @@ class CloudTable {
       this.document.name = tableName;
       this.document.appId = CB.appId;
       this.document._type = 'table';
-      this.document.isEditableByClientKey = false
+      this.document.isEditableByClientKey = false;
 
       if(tableName.toLowerCase() === "user") {
           this.document.type = "user";
@@ -46,7 +46,7 @@ class CloudTable {
               this.document.columns.push(column[i]);
           }
       }
-    };
+    }
 
     getColumn(columnName){
         if(Object.prototype.toString.call(columnName) !== '[object String]') {
@@ -58,7 +58,7 @@ class CloudTable {
                 return columns[i];
         }
         throw "Column Does Not Exists";
-    };
+    }
 
     updateColumn(column){
         if (Object.prototype.toString.call(column) === '[object Object]') {
@@ -78,7 +78,7 @@ class CloudTable {
             throw "Invalid Column";
         }
 
-    };
+    }
 
 
     deleteColumn(column){
@@ -108,7 +108,7 @@ class CloudTable {
             }
           }
       }
-    };
+    }
     /**
      * Deletes a table from database.
      *
@@ -229,7 +229,7 @@ Object.defineProperty(CloudTable.prototype,'isEditableByClientKey',{
     }
 });
 
-CB.CloudTable = CloudTable
+CB.CloudTable = CloudTable;
 
 /**
  * Gets All the Tables from an App
@@ -271,7 +271,7 @@ CB.CloudTable.getAll = function(callback){
   if (!callback) {
       return def.promise;
   }
-}
+};
 
 /**
  * Gets a table
@@ -332,6 +332,6 @@ CB.CloudTable.get = function(table, callback){
   } else if (Object.prototype.toString.call(table) === '[object Array]') {
     throw "cannot fetch array of tables";
   }
-}
+};
 
-export default CB.CloudTable
+export default CB.CloudTable;

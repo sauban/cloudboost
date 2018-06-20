@@ -1,21 +1,12 @@
 var q = require('q');
 var apiTracker = require('./database-connect/apiTracker');
 var utilHelper = require('./helpers/util');
-// var util = require('util');
 var sessionHelper = require('./helpers/session');
 var appService = require('./services/app');
-var mung = require('express-mung');
 var uuid = require('uuid');
 
 module.exports = function (app) {
     
-    // app.use(mung.json(
-    //     function transform(body) {
-    //         console.log(body);
-    //         return body;
-    //     }
-    // ));
-
     app.use(function(req, res, next) {
         if (req.is('text/*')) {
             req.text = '';

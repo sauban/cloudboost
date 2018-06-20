@@ -1,4 +1,4 @@
-import CB from './CB'
+import CB from './CB';
 /*CloudBoost Push Notifications*/
 
 CB.CloudPush={};
@@ -410,4 +410,4 @@ CB.CloudPush._deleteDevice = function(deviceOS, endPoint, callback) { //delete a
 
 
 
-export default CB.CloudPush
+export default CB.CloudPush;

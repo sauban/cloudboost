@@ -51,11 +51,10 @@ function deleteFromQueue(message) {
     try {
         global.queue.deleteMessage(config.deleteQueue, message[0].messageid, message[0].popreceipt, function (err, res) {
             if (err) {
-
+                global.winston.error(err);
             } else {
-
+                global.winston.info(res);
             }
-
         });
     } catch (err) {
         global.winston.log('error', {

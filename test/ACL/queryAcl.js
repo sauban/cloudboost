@@ -23,7 +23,7 @@ describe("Query_ACL", function () {
             if(list.get('username') === username)
                 done();
             else
-                throw "create user error"
+                throw "create user error";
         }, function () {
             throw "user create error";
         });
@@ -60,7 +60,7 @@ describe("Query_ACL", function () {
                 });
             }
             else
-                throw "public read access set error"
+                throw "public read access set error";
         }, function () {
             throw "public read access save error";
         });

@@ -6,7 +6,6 @@
 */
 
 var config = require('../config/config');
-var uuid = require('uuid');
 
 module.exports = {
 

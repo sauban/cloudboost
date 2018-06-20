@@ -1,4 +1,4 @@
-import CB from './CB'
+import CB from './CB';
 /*
  CloudFiles
  */
@@ -105,7 +105,7 @@ CB.CloudFile = CB.CloudFile || function(file, data, type, path) {
                     _id: file,
                     _type: 'file',
                     _tableName: '_File'
-                }
+                };
                 this.document._modifiedColumns = [
                     'name',
                     'updatedAt',
@@ -349,4 +349,4 @@ CB.CloudFile.prototype.getFileContent = function(callback) {
     }
 };
 
-export default CB.CloudFile
+export default CB.CloudFile;

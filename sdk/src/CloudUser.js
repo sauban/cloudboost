@@ -1,4 +1,4 @@
-import CB from './CB'
+import CB from './CB';
 /*
  CloudUser
  */
@@ -14,10 +14,10 @@ class CloudUser {
         this.document.ACL = new CB.ACL();
         this.document._isModified = true;
         this.document._modifiedColumns = ['createdAt', 'updatedAt', 'ACL', 'expires'];
-    };
+    }
 }
 
-CB.CloudUser = CB.CloudUser || CloudUser
+CB.CloudUser = CB.CloudUser || CloudUser;
 
 //Description  : This function gets the current user from the server by taking the sessionId from querystring.
 //Params :
@@ -206,8 +206,8 @@ CB.CloudUser.prototype.signUp = function(callback) {
                         username: thisObj.username,
                         email: thisObj.email
                     });
-                }, 1000)
-            })(thisObj)
+                }, 1000);
+            })(thisObj);
 
         }
 
@@ -491,4 +491,4 @@ CB.CloudUser.prototype.removeFromRole = function(role, callback) {
     }
 };
 
-export default CB.CloudUser
+export default CB.CloudUser;

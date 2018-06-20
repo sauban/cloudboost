@@ -41,6 +41,7 @@ module.exports = function(app) {
                 appService.updateSettings(appId, category, settings).then(function(settings) {
                     return res.status(200).send(settings);
                 }, function(err) {
+                    global.winston.error(err);
                     return res.status(500).send('Error');
                 });
 
@@ -48,6 +49,7 @@ module.exports = function(app) {
                 return res.status(401).send({status: 'Unauthorized'});
             }
         }, function(error) {
+            global.winston.error(error);
             return res.status(500).send('Cannot retrieve security keys.');
         });
 
@@ -72,6 +74,7 @@ module.exports = function(app) {
                 appService.getAllSettings(appId).then(function(settings) {
                     return res.status(200).send(settings);
                 }, function(err) {
+                    global.winston.error(err);
                     return res.status(500).send('Error');
                 });
 
@@ -79,6 +82,7 @@ module.exports = function(app) {
                 return res.status(401).send({status: 'Unauthorized'});
             }
         }, function(error) {
+            global.winston.error(error);
             return res.status(500).send('Cannot retrieve security keys.');
         });
 
@@ -94,9 +98,6 @@ module.exports = function(app) {
         5.Save current file to gridfs
     */
     app.put('/settings/:appId/file/:category', function(req, res) {
-
-        
-
         var appId = req.params.appId;
         var appKey = req.body.key || req.params.key;
         var category = req.params.category;
@@ -147,7 +148,7 @@ module.exports = function(app) {
             //Server URI
             thisUri = resultList[3];
 
-            var fileName = util.getId();
+            fileName = util.getId();
             if (category == "general") {
                 fileName = appId;
             }

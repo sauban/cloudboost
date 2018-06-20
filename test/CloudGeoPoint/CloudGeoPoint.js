@@ -109,7 +109,7 @@ describe("Cloud GeoPoint Test", function() {
             }
         }, function (err) {
             done(err);
-        })
+        });
 	});
 	
 	it("should get list of CloudGeoPoint Object from server Polygon type geoWithin", function(done) {
@@ -128,7 +128,7 @@ describe("Cloud GeoPoint Test", function() {
             
         }, function () {
             throw "find data error";
-        })
+        });
 	});
 	
 	it("should get list of CloudGeoPoint Object from server Polygon type geoWithin + equal to + limit", function(done) {
@@ -148,7 +148,7 @@ describe("Cloud GeoPoint Test", function() {
             
         }, function () {
             throw "find data error";
-        })
+        });
 	});
 	
 	it("1. should get list of CloudGeoPoint Object from server for Circle type geoWithin", function(done) {
@@ -160,7 +160,7 @@ describe("Cloud GeoPoint Test", function() {
             if(list.length>0){
                done();
             } else{
-               done("didnot retrieve the records.")
+               done("didnot retrieve the records.");
             }
         }, function (error) {
             
@@ -182,7 +182,7 @@ describe("Cloud GeoPoint Test", function() {
             }
         }, function () {
             throw "find data error";
-        })
+        });
 	});
 
     it("should update a saved GeoPoint", function(done) {
@@ -195,7 +195,7 @@ describe("Cloud GeoPoint Test", function() {
                 obj = newObj;
                 obj.get('location').set('latitude',55);
                 obj.save().then(function(obj1){                  
-                    done()
+                    done();
                 },function(){
                     throw "";
                 });

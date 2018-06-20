@@ -62,7 +62,7 @@ describe("Disabled - Cloud Objects Notification", function() {
           			    throw 'Error Saving an object.';
           		    });
                 },function(){
-                    throw 'Error Saving an object.'
+                    throw 'Error Saving an object.';
                 });
           	}, error : function(error){
           		throw 'Error listening to an event.';

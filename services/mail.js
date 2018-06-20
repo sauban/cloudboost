@@ -189,8 +189,6 @@ mail.emailCampaign = function(appId,userEmail,emailBody,emailSubject){
     try{         
 
         var emailSettings=null;
-        var emailTemplate=null;
-        var serverUrl=null;
 
         appService.getAllSettings(appId).then(function(settings){
 
@@ -433,13 +431,14 @@ function _getEmailTemplate(settings,templateName){
         if(!emailTemplateFound){
             _getTemplateByName(templateName).then(function(defaultTemp){
                 deferred.resolve(defaultTemp);
-            },function(error){
+            },function(err){
+                global.winston.error(err);
                 deferred.reject(err);
             });
         } 
 
     } catch(err){           
-        global.winston.log('error',{"error":String(err),"stack": new Error().stack});
+        global.winston.error({"error":String(err),"stack": new Error().stack});
         deferred.reject(err);
     }
 

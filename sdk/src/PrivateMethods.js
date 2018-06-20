@@ -1,8 +1,8 @@
-import CB from './CB'
+import CB from './CB';
 import { log } from 'util';
 
 if (typeof localStorage === "undefined" || localStorage === null) {
-    var localStorage = require('localStorage')
+    var localStorage = require('localStorage');
 }
 
 function lsWrapper() {
@@ -22,11 +22,11 @@ function lsWrapper() {
 
         removeItem: function (key) {
             if(nodeLocalStorage) {
-                localStorage.getItem(key)
+                localStorage.getItem(key);
             }
         }
 
-    }
+    };
     
 }
 
@@ -63,7 +63,7 @@ CB.toJSON = function(thisObj) {
 
     var obj = CB._clone(thisObj, id, longitude, latitude, tableName || columnName);
 
-    if (!obj instanceof CB.CloudObject || !obj instanceof CB.CloudFile || !obj instanceof CB.CloudGeoPoint || !obj instanceof CB.CloudTable || !obj instanceof CB.Column) {
+    if (!(obj instanceof CB.CloudObject) || !(obj instanceof CB.CloudFile) || !(obj instanceof CB.CloudGeoPoint) || !(obj instanceof CB.CloudTable) || !(obj instanceof CB.Column)) {
         throw "Data passed is not an instance of CloudObject or CloudFile or CloudGeoPoint";
     }
 
@@ -152,9 +152,9 @@ CB.fromJSON = function(data, thisObj) {
                 document[key] = data[key];
             }
         }
-        var id = thisObj
+        var id = thisObj;
         if (thisObj instanceof Object) 
-            id = thisObj._id || thisObj.id
+            id = thisObj._id || thisObj.id;
         if (!thisObj || data['_id'] === id) {
             var id = null;
             var latitude = null;
@@ -252,7 +252,7 @@ function _all(arrayOfPromises) {
     return jQuery.when.apply(jQuery, arrayOfPromises).then(function() {
         return Array.prototype.slice.call(arguments, 0);
     });
-};
+}
 
 CB._clone = function(obj, id, longitude, latitude, name) {
     var n_obj = {};
@@ -311,7 +311,7 @@ CB._request = function(method, url, params, isServiceUrl, isFile, progressCallba
     if (!isServiceUrl) {
         var ssid = CB._getSessionId();
         if (ssid != null)
-            headers.sessionID = ssid
+            headers.sessionID = ssid;
     }
 
     if (params && typeof params != "object") {
@@ -327,12 +327,12 @@ CB._request = function(method, url, params, isServiceUrl, isFile, progressCallba
             if (event.lengthComputable) {
                 var percentComplete = event.loaded / event.total;
                 if (progressCallback)
-                    progressCallback(percentComplete)
+                    progressCallback(percentComplete);
             }
         }
     }).then(function(res) {
         if (!isServiceUrl) {
-            var sessionID = res.headers.sessionid
+            var sessionID = res.headers.sessionid;
             if (sessionID)
                 localStorage.setItem('sessionID', sessionID);
             else
@@ -341,14 +341,14 @@ CB._request = function(method, url, params, isServiceUrl, isFile, progressCallba
         def.resolve(JSON.stringify(res.data));
     }, function(err) {
         def.reject(err);
-    })
+    });
 
     return def.promise;
 };
 
 CB._getSessionId = function() {
     return localStorage.getItem('sessionID');
-}
+};
 
 CB._columnValidation = function(column, cloudtable) {
     var defaultColumn = ['id', 'createdAt', 'updatedAt', 'ACL'];
@@ -686,7 +686,7 @@ CB._getCookie = function(name) {
         }
     }
 
-}
+};
 
 //Description : Deletes the cookie
 //Params : @name : Name of the cookie.
@@ -705,7 +705,7 @@ CB._deleteCookie = function(name) {
             document.cookie = name + "=" + + "; " + expires;
         }
     }
-}
+};
 
 //Description : Creates cookie.
 //Params : @name : Name of the cookie.
@@ -726,7 +726,7 @@ CB._createCookie = function(name, content, expires) {
             document.cookie = +name + "=" + content.toString() + "; " + expires;
         }
     }
-}
+};
 
 //Description : returns query string.
 //Params : @key : key
@@ -738,7 +738,7 @@ CB._getQuerystringByKey = function(key) {
     return results === null
         ? ""
         : decodeURIComponent(results[1].replace(/\+/g, " "));
-}
+};
 
 //Set sessionId if cbtoken is found in url
 if (typeof(location) !== 'undefined' && location.search) {
@@ -828,6 +828,6 @@ CB._getThisBrowserName = function() {
         return "unidentified";
 
     }
-}
+};
 
-export default true
+export default true;

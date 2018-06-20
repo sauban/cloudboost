@@ -440,7 +440,7 @@ describe("Should Create All Test Tables", function(done) {
                 done();
             }, function(err) {
                 throw "Unable to Update schema of the table";
-            })
+            });
         }, function() {
             throw "Unable to get table";
         });
@@ -1003,7 +1003,7 @@ describe("Export & Import Table", function () {
         obj.save().then(function (res) {
             done();
         }, function (err) {
-            throw err
+            throw err;
         });
     });
 
@@ -1015,7 +1015,7 @@ describe("Export & Import Table", function () {
         obj.set('Name', 'kashish');
         obj.save({
             success: function (obj) {
-                savedObject.push(obj.document)
+                savedObject.push(obj.document);
                 done();
             }, error: function (error) {
                 done(error);
@@ -1031,7 +1031,7 @@ describe("Export & Import Table", function () {
         obj.set('Name', 'kash');
         obj.save({
             success: function (obj) {
-                savedObject.push(obj.document)
+                savedObject.push(obj.document);
                 done();
             }, error: function (error) {
                 done(error);
@@ -1048,7 +1048,7 @@ describe("Export & Import Table", function () {
 
                 data = JSON.parse(data);
                 if (data.length !== savedObject.length) {
-                    return done('ERROR')
+                    return done('ERROR');
                 }
                 var flag = false;
                 for (let i in savedObject) {
@@ -1092,7 +1092,7 @@ describe("Export & Import Table", function () {
                                         if (typeof ele["Revenue"] == "number" && typeof ele["Name"] == "string") {
                                             flag = true;
                                         } else {
-                                            done("Type mismatch")
+                                            done("Type mismatch");
                                         }
                                     });
                                     if (flag == true) {
@@ -1100,7 +1100,7 @@ describe("Export & Import Table", function () {
                                             if (file.url === null)
                                                 done();
                                             else
-                                                throw "file delete error"
+                                                throw "file delete error";
                                         }, function (err) {
                                             done(err);
                                             throw "unable to delete file";
@@ -1118,11 +1118,11 @@ describe("Export & Import Table", function () {
                             throw "Unable to save file";
                         });
                     }, function (err) {
-                        throw err
+                        throw err;
                     });
                 }
             }, function (err) {
-                done(err)
+                done(err);
             });
         } else {
             $.ajax({
@@ -1131,9 +1131,9 @@ describe("Export & Import Table", function () {
                 data: exportParams,
                 success: function (resp) {
                     try {
-                        var data = resp
+                        var data = resp;
                         if (data.length !== savedObject.length) {
-                            return done('ERROR')
+                            return done('ERROR');
                         }
                         var flag = false;
                         for (let i in savedObject) {
@@ -1180,7 +1180,7 @@ describe("Export & Import Table", function () {
                                                     if (typeof ele["Revenue"] == "number" && typeof ele["Name"] == "string") {
                                                         flag = true;
                                                     } else {
-                                                        done("Type mismatch")
+                                                        done("Type mismatch");
                                                     }
                                                 });
                                                 if (flag == true) {
@@ -1188,7 +1188,7 @@ describe("Export & Import Table", function () {
                                                         if (file.url === null)
                                                             done();
                                                         else
-                                                            throw "file delete error"
+                                                            throw "file delete error";
                                                     }, function (err) {
                                                         done(err);
                                                         throw "unable to delete file";
@@ -1207,7 +1207,7 @@ describe("Export & Import Table", function () {
                                     throw "Unable to save file";
                                 });
                             }, function (err) {
-                                throw err
+                                throw err;
                             });
                         }
                     } catch (e) {
@@ -1263,7 +1263,7 @@ describe("Export & Import Table", function () {
                                     if (typeof ele["Revenue"] == "number" && typeof ele["Name"] == "string") {
                                         flag = true;
                                     } else {
-                                        done("Type mismatch")
+                                        done("Type mismatch");
                                     }
                                 });
                                 if (flag == true) {
@@ -1271,7 +1271,7 @@ describe("Export & Import Table", function () {
                                         if (file.url === null)
                                             done();
                                         else
-                                            throw "file delete error"
+                                            throw "file delete error";
                                     }, function (err) {
                                         done(err);
                                         throw "unable to delete file";
@@ -1289,10 +1289,10 @@ describe("Export & Import Table", function () {
                         throw "Unable to save file";
                     });
                 }, function (err) {
-                    throw err
+                    throw err;
                 });
             }, function (err) {
-                done(err)
+                done(err);
             });
         } else {
             $.ajax({
@@ -1328,7 +1328,7 @@ describe("Export & Import Table", function () {
                                             if (typeof ele["Revenue"] == "number" && typeof ele["Name"] == "string") {
                                                 flag = true;
                                             } else {
-                                                done("Type mismatch")
+                                                done("Type mismatch");
                                             }
                                         });
                                         if (flag == true) {
@@ -1336,7 +1336,7 @@ describe("Export & Import Table", function () {
                                                 if (file.url === null)
                                                     done();
                                                 else
-                                                    throw "file delete error"
+                                                    throw "file delete error";
                                             }, function (err) {
                                                 done(err);
                                                 throw "unable to delete file";
@@ -1355,7 +1355,7 @@ describe("Export & Import Table", function () {
                                 throw "Unable to save file";
                             });
                         }, function (err) {
-                            throw err
+                            throw err;
                         });
                     } catch (e) {
                         
@@ -1454,7 +1454,7 @@ describe("Cloud Files", function(done) {
                                 }
                             }, function(err) {
                                 done(err);
-                            })
+                            });
                         }
                     });
                 } else {
@@ -1475,7 +1475,7 @@ describe("Cloud Files", function(done) {
                                 }
                             }, function(err) {
                                 done(err);
-                            })
+                            });
 
                         },
                         // Code to run if the request fails; the raw request and
@@ -1726,7 +1726,7 @@ describe("Cloud Files", function(done) {
                     if (file.url === null)
                         done();
                     else
-                        throw "file delete error"
+                        throw "file delete error";
                 }, function(err) {
                     throw "unable to delete file";
                 });
@@ -1839,7 +1839,7 @@ describe("Cloud Files", function(done) {
                                 }
                             }, function(err) {
                                 throw "Error deleting file";
-                            })
+                            });
                         } else {
                             throw "Upload success. But cannot find the URL.";
                         }
@@ -2253,7 +2253,7 @@ describe("CloudUser", function () {
                 done();
             }
             else {
-                throw "create user error"
+                throw "create user error";
             }
         }, function (error) {
             throw error;
@@ -2313,11 +2313,11 @@ describe("CloudUser", function () {
             newUser.logIn().then(function(){
                 done();
             }, function(error){
-                done("Cannot log in")
+                done("Cannot log in");
             });
         }, function(error){
-            done("Cannot save a user.")
-        })
+            done("Cannot save a user.");
+        });
 
     });
 
@@ -2346,13 +2346,13 @@ describe("CloudUser", function () {
                                     success: function () {
                                         done();
                                     }, error: function (err) {
-                                        done("Error signing in.")
+                                        done("Error signing in.");
                                     }
                                 });
                             }, error: function () {
                                 done("Cannot log out");
                             }
-                        })
+                        });
                     }, error: function (error) {
                         done(error);
                     }
@@ -2420,7 +2420,7 @@ describe("CloudUser", function () {
                     done();
                 }
             }, error: function (error) {
-                done("Failed to log out a user. ")
+                done("Failed to log out a user. ");
             }
         });
     });
@@ -2460,7 +2460,7 @@ describe("CloudUser", function () {
                     }
                 });
             else
-                throw "create user error"
+                throw "create user error";
         }, function (error) {
             throw error;
         });
@@ -2476,7 +2476,7 @@ describe("CloudUser", function () {
         this.timeout(300000);
         CB.CloudUser.resetPassword("911@cloudboost.io", {
             success: function () {
-                done()
+                done();
             }, error: function (error) {
                 done();
             }
@@ -2503,7 +2503,7 @@ describe("CloudUser", function () {
                 done();
             }
             else
-                throw "create user error"
+                throw "create user error";
         }, function () {
             throw "user create error";
         });
@@ -2536,7 +2536,7 @@ describe("CloudUser", function () {
                 });
             }
             else
-                throw "create user error"
+                throw "create user error";
         }, function () {
             throw "user create error";
         });
@@ -2634,7 +2634,7 @@ describe("CloudUser", function () {
             });
         }, function () {
             throw "role create error";
-        })
+        });
 
     });
 
@@ -2795,7 +2795,7 @@ describe("CloudUser", function () {
                 }
             }, function () {
                 throw "Unable to Get User By ID";
-            })
+            });
         }, function (err) {
             throw "Unable to Create User";
         });
@@ -2819,7 +2819,7 @@ describe("CloudUser", function () {
                 }
             }, function () {
                 throw "Unable to Get User By ID";
-            })
+            });
         }, function (err) {
             throw "Unable to Create User";
         });
@@ -2843,7 +2843,7 @@ describe("CloudUser", function () {
                 }
             }, function () {
                 throw "Unable to Get User By ID";
-            })
+            });
         }, function (err) {
             throw "Unable to Create User";
         });
@@ -3277,7 +3277,7 @@ describe("CloudEvent", function() {
             , function(err) {
                 done(err);
             });
-        }, 10000)
+        }, 10000);
 
     });
 
@@ -3306,7 +3306,7 @@ describe("CloudEvent", function() {
             }, function(err) {
                 done(err);
             });
-        }, 10000)
+        }, 10000);
 
     });
 
@@ -3373,7 +3373,7 @@ describe("Cloud Object", function() {
             List: util.makeString(),
             GeoPoint: util.makeString(),
             File: util.makeString()
-        }
+        };
 
         var obj = new CB.CloudObject(aNewTableName);
         var geoPoint = new CB.CloudGeoPoint(queryLocation.longitude, queryLocation.latitude);
@@ -3459,7 +3459,7 @@ describe("Cloud Object", function() {
                             type: columns[i].document.dataType,
                             name: columns[i].document.name
                         })
-                    )
+                    );
                 }
             }
             for (column in autoColumns) {
@@ -3920,7 +3920,7 @@ describe("Cloud Object", function() {
                         if (doc._id === newObj.id && doc._tableName === 'student1' && doc._type === 'custom')
                             done();
                         else {
-                            throw "Object is not related"
+                            throw "Object is not related";
                         }
                     },
                     error: function(error) {
@@ -3950,7 +3950,7 @@ describe("Cloud Object", function() {
                         if (doc._id === newObj.id && doc._tableName === 'student1' && doc._type === 'custom')
                             done();
                         else {
-                            throw "Object is not related"
+                            throw "Object is not related";
                         }
                     },
                     error: function(error) {
@@ -3980,7 +3980,7 @@ describe("Cloud Object", function() {
                         if (doc._id === newObj.id && doc._tableName === 'student1' && doc._type === 'custom')
                             done();
                         else {
-                            throw "Object is not related"
+                            throw "Object is not related";
                         }
                     },
                     error: function(error) {
@@ -4060,7 +4060,7 @@ describe("Cloud Object", function() {
 
         obj.save({
             success: function(newObj) {
-                throw "Saved an object with a wrong relation."
+                throw "Saved an object with a wrong relation.";
             },
             error: function(error) {
                 done();
@@ -4521,7 +4521,7 @@ describe("Cloud Object", function() {
                             if (Date.parse(newObj.createdAt) === createdAt && Date.parse(newObj.updatedAt) !== createdAt) {
                                 done();
                             } else {
-                                done("Throw CreatedAt updated when the object is updated.")
+                                done("Throw CreatedAt updated when the object is updated.");
                             }
 
                         },
@@ -5119,7 +5119,7 @@ describe("Cloud Objects Notification", function () {
 
 		this.timeout(40000);
 		CB.CloudObject.on('Student', 'created', function (data) {
-			done('should not have triggered this event')
+			done('should not have triggered this event');
 		}, {
 				success: function () {
 					var obj = new CB.CloudObject('Student');
@@ -5128,8 +5128,8 @@ describe("Cloud Objects Notification", function () {
 					obj.ACL.setPublicReadAccess(false);
 					obj.ACL.setPublicWriteAccess(false);
 					setTimeout(function () {
-						obj.save()
-					}, 2000)
+						obj.save();
+					}, 2000);
 
 				}, error: function (error) {
 					throw 'Error listening to an event.';
@@ -5138,8 +5138,8 @@ describe("Cloud Objects Notification", function () {
 
 		setTimeout(function () {
 			CB.CloudObject.off('Student', 'created', { success: function () { }, error: function () { } });
-			done()
-		}, 5000)
+			done();
+		}, 5000);
 	});
 
 
@@ -5175,7 +5175,7 @@ describe("Cloud Objects Notification", function () {
 							throw 'Error Saving an object.';
 						});
 					}, function () {
-						throw 'Error Saving an object.'
+						throw 'Error Saving an object.';
 					});
 				}, error: function (error) {
 					throw 'Error listening to an event.';
@@ -5330,14 +5330,14 @@ describe("Query on Cloud Object Notifications ", function() {
                 if (!isDone) {
                     isDone = true;
                     done();
-                };
+                }
             } else {
                 if (!isDone) {
                     isDone = true;
                     done("Limit Error");
-                };
+                }
             }
-        }, 30000)
+        }, 30000);
 
     });
 
@@ -5514,12 +5514,12 @@ describe("Query on Cloud Object Notifications ", function() {
                 if (!isDone) {
                     isDone = true;
                     done();
-                };
+                }
             } else {
                 if (!isDone) {
                     isDone = true;
                     done("Limit Error");
-                };
+                }
             }
         }, 20000);
 
@@ -5593,7 +5593,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         });
 
         //attach it to the event.
@@ -5629,7 +5629,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         }, 10000);
     });
 
@@ -5646,7 +5646,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         });
 
         //attach it to the event.
@@ -5681,7 +5681,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         }, 10000);
 
     });
@@ -5699,7 +5699,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         });
 
         //attach it to the event.
@@ -5734,7 +5734,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         }, 10000);
 
     });
@@ -5752,7 +5752,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         });
 
         //attach it to the event.
@@ -5787,7 +5787,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         }, 10000);
 
     });
@@ -5805,7 +5805,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         });
 
         //attach it to the event.
@@ -5840,7 +5840,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         }, 10000);
 
     });
@@ -5858,7 +5858,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         });
 
         //attach it to the event.
@@ -5893,7 +5893,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         }, 10000);
 
     });
@@ -5911,7 +5911,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         });
 
         //attach it to the event.
@@ -5946,7 +5946,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         }, 10000);
 
     });
@@ -5964,7 +5964,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         });
 
         //attach it to the event.
@@ -5999,7 +5999,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         }, 10000);
 
     });
@@ -6017,7 +6017,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         });
 
         //attach it to the event.
@@ -6052,7 +6052,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         }, 10000);
 
     });
@@ -6070,7 +6070,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         });
 
         //attach it to the event.
@@ -6105,7 +6105,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         }, 10000);
 
     });
@@ -6128,7 +6128,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         });
 
         //attach it to the event.
@@ -6168,7 +6168,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         }, 10000);
 
     });
@@ -6291,7 +6291,7 @@ describe("Query on Cloud Object Notifications ", function() {
                             if (!isDone) {
                                 isDone = true;
                                 done();
-                            };
+                            }
                         }, 10000);
                     },
                     error: function(error) {
@@ -6371,7 +6371,7 @@ describe("Query on Cloud Object Notifications ", function() {
                             if (!isDone) {
                                 isDone = true;
                                 done();
-                            };
+                            }
                         }, 10000);
                     },
                     error: function(error) {
@@ -6451,7 +6451,7 @@ describe("Query on Cloud Object Notifications ", function() {
                             if (!isDone) {
                                 isDone = true;
                                 done();
-                            };
+                            }
                         }, 10000);
                     },
                     error: function(error) {
@@ -6495,7 +6495,7 @@ describe("Query on Cloud Object Notifications ", function() {
                     if (!isDone) {
                         isDone = true;
                         done();
-                    };
+                    }
                 }, 10000);
 
             },
@@ -6643,7 +6643,7 @@ describe("CloudExpire", function () {
 
         }, function(error){
             done(error);
-        })
+        });
 
     });
 
@@ -6826,12 +6826,12 @@ describe("CloudQuery Include", function (done) {
                         throw "Cannot retrieve a saved relation.";
                     }
                 }, function(error){
-                    throw "Unsuccessful join"
+                    throw "Unsuccessful join";
                 });
             }, error : function(error){
                 throw "Cannot save a CloudObject";
             }
-        })
+        });
     });
 
     it("should query over a linked column if a object is passed in equalTo",function(done){
@@ -6854,7 +6854,7 @@ describe("CloudQuery Include", function (done) {
                 //
             },function(){
                 throw "unable to save data";
-            })
+            });
     });
 
 
@@ -8544,7 +8544,7 @@ describe("CloudQuery", function(done) {
                 }
                 done();
             } else {
-                throw "data not received"
+                throw "data not received";
             }
         }, function() {
             throw "find data error";
@@ -9099,7 +9099,7 @@ describe("CloudQuery", function(done) {
                     error: function(err) {
                         done(err);
                     }
-                })
+                });
             } else
                 throw "object could not saved properly";
             }
@@ -9142,7 +9142,7 @@ describe("CloudQuery - Encryption", function () {
                         //cannot query. 
                         throw "Cannot query over encrypted type";
                     }
-                })
+                });
             }
 
             else
@@ -9191,7 +9191,7 @@ describe("CloudQuery - Encryption", function () {
                         //cannot query. 
                         throw "Cannot query over encrypted type";
                     }
-                })
+                });
             }
 
             else
@@ -9267,7 +9267,7 @@ describe("CloudRole", function (done) {
             });
         },function(){
             throw "unable to create a role.";
-        })
+        });
 
 
     });
@@ -9304,7 +9304,7 @@ describe("ACL", function () {
                     }, error : function(error) {
                          done(error);
                     }
-                })
+                });
             }, function(error){
                 done(error);
             });
@@ -9339,7 +9339,7 @@ describe("ACL", function () {
                 });
             }
             else
-                throw "public write access set error"
+                throw "public write access set error";
         }, function () {
             throw "public write access save error";
         });
@@ -9404,7 +9404,7 @@ describe("ACL", function () {
             if(acl.document.read.deny.user.length === 0)
                 done();
             else
-                throw "public read access set error"
+                throw "public read access set error";
         }, function () {
             throw "public read access save error";
         });
@@ -9458,7 +9458,7 @@ describe("ACL", function () {
             if(acl.document.read.allow.user.indexOf(userObj.get('id')) >= 0)
                 done();
             else
-                throw "user read access set error"
+                throw "user read access set error";
         }, function () {
             throw "user read access save error";
         });
@@ -9483,7 +9483,7 @@ describe("ACL", function () {
             if(acl.document.write.allow.role.indexOf(userObj.get('id'))>=0)
                 done();
             else
-                throw "user role write access set error"
+                throw "user role write access set error";
         }, function () {
             throw "user role write access save error";
         });
@@ -9507,7 +9507,7 @@ describe("ACL", function () {
             if(acl.document.read.allow.role.indexOf(userObj.get('id'))>=0)
                 done();
             else
-                throw "user role read access set error"
+                throw "user role read access set error";
         }, function () {
             throw "user role read access save error";
         });
@@ -9541,7 +9541,7 @@ describe("Query_ACL", function () {
             if(list.get('username') === username)
                 done();
             else
-                throw "create user error"
+                throw "create user error";
         }, function () {
             throw "user create error";
         });
@@ -9578,7 +9578,7 @@ describe("Query_ACL", function () {
                 });
             }
             else
-                throw "public read access set error"
+                throw "public read access set error";
         }, function () {
             throw "public read access save error";
         });
@@ -9651,7 +9651,7 @@ describe("Query_ACL", function () {
                 if(list.get('username') === username)
                     done();
                 else
-                    throw "create user error"
+                    throw "create user error";
             }, function () {
                 throw "user create error";
             });
@@ -9814,7 +9814,7 @@ describe("MasterKey ACL", function () {
                     }, error : function(error) {
                          done(error);
                     }
-                })
+                });
             }, function(error){
                 done(error);
             });           
@@ -9942,7 +9942,7 @@ describe("Cloud GeoPoint Test", function() {
             }
         }, function (err) {
             done(err);
-        })
+        });
 	});
 	
 	it("should get list of CloudGeoPoint Object from server Polygon type geoWithin", function(done) {
@@ -9961,7 +9961,7 @@ describe("Cloud GeoPoint Test", function() {
             
         }, function () {
             throw "find data error";
-        })
+        });
 	});
 	
 	it("should get list of CloudGeoPoint Object from server Polygon type geoWithin + equal to + limit", function(done) {
@@ -9981,7 +9981,7 @@ describe("Cloud GeoPoint Test", function() {
             
         }, function () {
             throw "find data error";
-        })
+        });
 	});
 	
 	it("1. should get list of CloudGeoPoint Object from server for Circle type geoWithin", function(done) {
@@ -9993,7 +9993,7 @@ describe("Cloud GeoPoint Test", function() {
             if(list.length>0){
                done();
             } else{
-               done("didnot retrieve the records.")
+               done("didnot retrieve the records.");
             }
         }, function (error) {
             
@@ -10015,7 +10015,7 @@ describe("Cloud GeoPoint Test", function() {
             }
         }, function () {
             throw "find data error";
-        })
+        });
 	});
 
     it("should update a saved GeoPoint", function(done) {
@@ -10028,7 +10028,7 @@ describe("Cloud GeoPoint Test", function() {
                 obj = newObj;
                 obj.get('location').set('latitude',55);
                 obj.save().then(function(obj1){                  
-                    done()
+                    done();
                 },function(){
                     throw "";
                 });
@@ -10133,13 +10133,13 @@ describe("Version Test",function(done){
                     }
                 },function(){
                     throw "unable to find saved object";
-                })
+                });
             }, function () {
                 throw "unable to save object";
-            })
+            });
         },function(){
             throw "unable to find saved object";
-        })
+        });
     });
 
     var username = util.makeString();
@@ -10163,7 +10163,7 @@ describe("Version Test",function(done){
                 done();
             }
             else
-                throw "create user error"
+                throw "create user error";
         }, function () {
             throw "user create error";
         });
@@ -10414,7 +10414,7 @@ describe("Cloud Table", function(){
                 });
             },function(){
                 throw "Should Save Table";
-            })
+            });
         },function(){
             throw "Should Save Table";
         });
@@ -10447,7 +10447,7 @@ describe("Cloud Table", function(){
 		    table.save().then(function(table){
 		          done();
 		    },function(){
-                throw "Unable to add column to existing table"
+                throw "Unable to add column to existing table";
             });
         },function(){
             done("should fetch the table");
@@ -10757,10 +10757,10 @@ describe("Table level ACL, for editing and getting table via clientKey", functio
             if(table.id){
                 CB.appKey = CB.jsKey;
                 CB.CloudTable.get(tableName).then(function(table){
-                    done('table should not be fetched via clientKey')
+                    done('table should not be fetched via clientKey');
                 },function(err){
-                    done()
-                })
+                    done();
+                });
             }else{
               done("Table cannot be created");
             }
@@ -10774,15 +10774,15 @@ describe("Table level ACL, for editing and getting table via clientKey", functio
         this.timeout(80000);
         CB.appKey = CB.masterKey;
         CB.CloudTable.get(tableName).then(function(table){
-            table.isEditableByClientKey = true
+            table.isEditableByClientKey = true;
             table.save().then(function(res){
-                done()
+                done();
             },function(err){
-                done(err)
-            })
+                done(err);
+            });
         },function(err){
-            done(err)
-        })
+            done(err);
+        });
     
     });
 
@@ -10792,13 +10792,13 @@ describe("Table level ACL, for editing and getting table via clientKey", functio
         CB.appKey = CB.jsKey;
         CB.CloudTable.get(tableName).then(function(table){
             if(table.id){
-                done()
+                done();
             }else{
                 done("Table cannot be created");
             }
         },function(err){
-            done(err)
-        })
+            done(err);
+        });
     
     });
 
@@ -10819,8 +10819,8 @@ describe("Table level ACL, for editing and getting table via clientKey", functio
                 done("Table cannot be created");
             }
         },function(err){
-            done(err)
-        })
+            done(err);
+        });
     
     });
 
@@ -10848,7 +10848,7 @@ describe("Cloud App is connected.", function() {
         }else{
             done("Cloud App is not connected.");
         }
-    })
+    });
     
 });
 describe("App level ACL, for adding deleting tables of an app via clientKey", function(){
@@ -10869,10 +10869,10 @@ describe("App level ACL, for adding deleting tables of an app via clientKey", fu
             if(table.id){
                 CB.appKey = CB.jsKey;
                 CB.CloudTable.getAll().then(function(table){
-                    done('tables should not be fetched via clientKey')
+                    done('tables should not be fetched via clientKey');
                 },function(err){
-                    done()
-                })
+                    done();
+                });
             }else{
               done("Table cannot be created");
             }
@@ -10944,13 +10944,13 @@ describe("App level ACL, for adding deleting tables of an app via clientKey", fu
         CB.appKey = CB.jsKey;
         CB.CloudTable.getAll().then(function(tables){
             if(tables){
-                done()
+                done();
             }else{
                 done("Table cannot be created");
             }
         },function(err){
-            done(err)
-        })
+            done(err);
+        });
     
     });
 
@@ -10962,13 +10962,13 @@ describe("App level ACL, for adding deleting tables of an app via clientKey", fu
 
         obj.save().then(function(table){
             if(table.id){
-                done()
-                table.delete()
+                done();
+                table.delete();
             }else{
               done("Table cannot be created");
             }
         },function(err){
-            done(err)
+            done(err);
         });
         
     
@@ -11068,7 +11068,7 @@ describe("Atomicity Tests",function(done){
                                 throw "should get the record back";
                             }
                         },function(){
-                            throw "unable to do find by id"
+                            throw "unable to do find by id";
                         });
                     },function(){
                         throw "Unable to connect back Mongo";
@@ -11076,11 +11076,11 @@ describe("Atomicity Tests",function(done){
 
                 });
             },function(){
-                throw "Unable to delete"
+                throw "Unable to delete";
             });
         }, function (err) {
             throw "Unable to find document by Id";
-        })
+        });
     });
 
     it("Should Attach the Database",function(done){
@@ -11498,7 +11498,7 @@ describe("Disabled - Cloud Objects Notification", function() {
           			    throw 'Error Saving an object.';
           		    });
                 },function(){
-                    throw 'Error Saving an object.'
+                    throw 'Error Saving an object.';
                 });
           	}, error : function(error){
           		throw 'Error listening to an event.';

@@ -1593,7 +1593,7 @@ describe("CloudQuery", function(done) {
                 }
                 done();
             } else {
-                throw "data not received"
+                throw "data not received";
             }
         }, function() {
             throw "find data error";
@@ -2148,7 +2148,7 @@ describe("CloudQuery", function(done) {
                     error: function(err) {
                         done(err);
                     }
-                })
+                });
             } else
                 throw "object could not saved properly";
             }

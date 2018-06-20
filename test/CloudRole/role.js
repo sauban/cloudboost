@@ -35,7 +35,7 @@ describe("CloudRole", function (done) {
             });
         },function(){
             throw "unable to create a role.";
-        })
+        });
 
 
     });

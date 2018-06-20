@@ -31,14 +31,14 @@ describe("Query on Cloud Object Notifications ", function() {
                 if (!isDone) {
                     isDone = true;
                     done();
-                };
+                }
             } else {
                 if (!isDone) {
                     isDone = true;
                     done("Limit Error");
-                };
+                }
             }
-        }, 30000)
+        }, 30000);
 
     });
 
@@ -215,12 +215,12 @@ describe("Query on Cloud Object Notifications ", function() {
                 if (!isDone) {
                     isDone = true;
                     done();
-                };
+                }
             } else {
                 if (!isDone) {
                     isDone = true;
                     done("Limit Error");
-                };
+                }
             }
         }, 20000);
 
@@ -294,7 +294,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         });
 
         //attach it to the event.
@@ -330,7 +330,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         }, 10000);
     });
 
@@ -347,7 +347,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         });
 
         //attach it to the event.
@@ -382,7 +382,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         }, 10000);
 
     });
@@ -400,7 +400,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         });
 
         //attach it to the event.
@@ -435,7 +435,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         }, 10000);
 
     });
@@ -453,7 +453,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         });
 
         //attach it to the event.
@@ -488,7 +488,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         }, 10000);
 
     });
@@ -506,7 +506,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         });
 
         //attach it to the event.
@@ -541,7 +541,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         }, 10000);
 
     });
@@ -559,7 +559,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         });
 
         //attach it to the event.
@@ -594,7 +594,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         }, 10000);
 
     });
@@ -612,7 +612,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         });
 
         //attach it to the event.
@@ -647,7 +647,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         }, 10000);
 
     });
@@ -665,7 +665,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         });
 
         //attach it to the event.
@@ -700,7 +700,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         }, 10000);
 
     });
@@ -718,7 +718,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         });
 
         //attach it to the event.
@@ -753,7 +753,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         }, 10000);
 
     });
@@ -771,7 +771,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         });
 
         //attach it to the event.
@@ -806,7 +806,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         }, 10000);
 
     });
@@ -829,7 +829,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         });
 
         //attach it to the event.
@@ -869,7 +869,7 @@ describe("Query on Cloud Object Notifications ", function() {
             if (!isDone) {
                 isDone = true;
                 done();
-            };
+            }
         }, 10000);
 
     });
@@ -992,7 +992,7 @@ describe("Query on Cloud Object Notifications ", function() {
                             if (!isDone) {
                                 isDone = true;
                                 done();
-                            };
+                            }
                         }, 10000);
                     },
                     error: function(error) {
@@ -1072,7 +1072,7 @@ describe("Query on Cloud Object Notifications ", function() {
                             if (!isDone) {
                                 isDone = true;
                                 done();
-                            };
+                            }
                         }, 10000);
                     },
                     error: function(error) {
@@ -1152,7 +1152,7 @@ describe("Query on Cloud Object Notifications ", function() {
                             if (!isDone) {
                                 isDone = true;
                                 done();
-                            };
+                            }
                         }, 10000);
                     },
                     error: function(error) {
@@ -1196,7 +1196,7 @@ describe("Query on Cloud Object Notifications ", function() {
                     if (!isDone) {
                         isDone = true;
                         done();
-                    };
+                    }
                 }, 10000);
 
             },

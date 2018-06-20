@@ -176,12 +176,12 @@
                         throw "Cannot retrieve a saved relation.";
                     }
                 }, function(error){
-                    throw "Unsuccessful join"
+                    throw "Unsuccessful join";
                 });
             }, error : function(error){
                 throw "Cannot save a CloudObject";
             }
-        })
+        });
     });
 
     it("should query over a linked column if a object is passed in equalTo",function(done){
@@ -204,7 +204,7 @@
                 //
             },function(){
                 throw "unable to save data";
-            })
+            });
     });
 
 

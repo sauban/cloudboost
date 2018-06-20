@@ -153,7 +153,7 @@ CB.Promise = function() {
             });
         }
         return CB.Promise.as();
-    }
+    };
 };
 
 CB.Promise.is = function(promise) {
@@ -381,7 +381,7 @@ CB.Promise.prototype["_thenRunCallbacks"] = function(optionsOrCallback, model) {
         // either jQuery or Promises/A semantics.
         return CB.Promise.error(error);
     });
-}
+};
 
 /**
  * Returns a new promise that is fulfilled when all of the input promises
@@ -502,7 +502,7 @@ CB.Events = {
 
         return this;
     }
-}
+};
 /**
  * Adds a callback function that should be called regardless of whether
  * this promise failed or succeeded. The callback will be given either the
@@ -557,8 +557,8 @@ CB.toJSON = function(thisObj) {
 
     var obj= CB._clone(thisObj,id,latitude,longitude,tableName,columnName);
 
-    if (!obj instanceof CB.CloudObject || !obj instanceof CB.CloudFile || !obj instanceof CB.CloudGeoPoint
-        || !obj instanceof CB.CloudTable || !obj instanceof CB.Column || !obj instanceof CB.QueueMessage || !obj instanceof CB.CloudQueue || !obj instanceof CB.CloudCache) {
+    if (!(obj instanceof CB.CloudObject) || !(obj instanceof CB.CloudFile) || !(obj instanceof CB.CloudGeoPoint)
+        || !(obj instanceof CB.CloudTable) || !(obj instanceof CB.Column) || !(obj instanceof CB.QueueMessage) || !(obj instanceof CB.CloudQueue) || !(obj instanceof CB.CloudCache)) {
         throw "Data passed is not an instance of CloudObject or CloudFile or CloudGeoPoint";
     }
 
@@ -768,7 +768,7 @@ function _all(arrayOfPromises) {
     return jQuery.when.apply(jQuery, arrayOfPromises).then(function() {
         return Array.prototype.slice.call(arguments, 0);
     });
-};
+}
 
 if(CB._isNode){
     module.exports = {};
@@ -881,7 +881,7 @@ CB._request=function(method,url,params,isServiceUrl,isFile, progressCallback)
 
 CB._getSessionId = function() {
     return localStorage.getItem('sessionID');
-}
+};
 
 CB._columnValidation = function(column, cloudtable){
   var defaultColumn = ['id', 'createdAt', 'updatedAt', 'ACL'];
@@ -1169,7 +1169,7 @@ CB._isJsonString = function(str) {
         return false;
     }
     return true;
-}
+};
 
 //Description : This fucntion get the content of the cookie .
 //Params : @name : Name of the cookie.
@@ -1196,7 +1196,7 @@ CB._getCookie = function(name) {
         }        
     }
     
-}
+};
 
 //Description : Deletes the cookie
 //Params : @name : Name of the cookie.
@@ -1215,7 +1215,7 @@ CB._deleteCookie = function(name){
             document.cookie =  name+ "=" +  + "; " + expires;
         }
     }
-}
+};
 
 //Description : Creates cookie. 
 //Params : @name : Name of the cookie.
@@ -1236,7 +1236,7 @@ CB._createCookie = function(name, content, expires){
             document.cookie =  + name+"=" + content.toString() + "; " + expires;
         }
     }
-}
+};
 
 //Description : returns query string. 
 //Params : @key : key         
@@ -1246,10 +1246,10 @@ CB._getQuerystringByKey = function(key){
     var regex = new RegExp("[\\?&]" + key + "=([^&#]*)"),
     results = regex.exec(location.search);
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-}
+};
 if(!CB._isNode) {
 	//Socket.io Client library 
-	(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.io = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
+	(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f();}else if(typeof define==="function"&&define.amd){define([],f);}else{var g;if(typeof window!=="undefined"){g=window;}else if(typeof global!=="undefined"){g=global;}else if(typeof self!=="undefined"){g=self;}else{g=this;}g.io = f();}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f;}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e);},l,l.exports,e,t,n,r);}return n[o].exports;}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s;})({1:[function(_dereq_,module,exports){
 
 module.exports =  _dereq_('./lib/');
 
@@ -1996,7 +1996,7 @@ Socket.prototype.filterUpgrades = function (upgrades) {
   return filteredUpgrades;
 };
 
-}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : {})
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : {});
 },{"./transport":4,"./transports":5,"component-emitter":15,"debug":17,"engine.io-parser":19,"indexof":23,"parsejson":26,"parseqs":27,"parseuri":28}],4:[function(_dereq_,module,exports){
 /**
  * Module dependencies.
@@ -2210,7 +2210,7 @@ function polling(opts){
   }
 }
 
-}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : {})
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : {});
 },{"./polling-jsonp":6,"./polling-xhr":7,"./websocket":9,"xmlhttprequest-ssl":10}],6:[function(_dereq_,module,exports){
 (function (global){
 
@@ -2452,7 +2452,7 @@ JSONPPolling.prototype.doWrite = function (data, fn) {
   }
 };
 
-}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : {})
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : {});
 },{"./polling":8,"component-inherit":16}],7:[function(_dereq_,module,exports){
 (function (global){
 /**
@@ -2868,7 +2868,7 @@ function unloadHandler() {
   }
 }
 
-}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : {})
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : {});
 },{"./polling":8,"component-emitter":15,"component-inherit":16,"debug":17,"xmlhttprequest-ssl":10}],8:[function(_dereq_,module,exports){
 /**
  * Module dependencies.
@@ -3409,7 +3409,7 @@ WS.prototype.check = function(){
   return !!WebSocket && !('__initialize' in WebSocket && this.name === WS.prototype.name);
 };
 
-}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : {})
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : {});
 },{"../transport":4,"component-inherit":16,"debug":17,"engine.io-parser":19,"parseqs":27,"ws":undefined,"yeast":30}],10:[function(_dereq_,module,exports){
 // browser shim for xmlhttprequest module
 var hasCORS = _dereq_('has-cors');
@@ -3446,32 +3446,32 @@ module.exports = function(opts) {
       return new ActiveXObject('Microsoft.XMLHTTP');
     } catch(e) { }
   }
-}
+};
 
 },{"has-cors":22}],11:[function(_dereq_,module,exports){
-module.exports = after
+module.exports = after;
 
 function after(count, callback, err_cb) {
-    var bail = false
-    err_cb = err_cb || noop
-    proxy.count = count
+    var bail = false;
+    err_cb = err_cb || noop;
+    proxy.count = count;
 
-    return (count === 0) ? callback() : proxy
+    return (count === 0) ? callback() : proxy;
 
     function proxy(err, result) {
         if (proxy.count <= 0) {
-            throw new Error('after called too many times')
+            throw new Error('after called too many times');
         }
-        --proxy.count
+        --proxy.count;
 
         // after first error, rest are passed to err_cb
         if (err) {
-            bail = true
-            callback(err)
+            bail = true;
+            callback(err);
             // future error callbacks will go to error handler
-            callback = err_cb
+            callback = err_cb;
         } else if (proxy.count === 0 && !bail) {
-            callback(null, result)
+            callback(null, result);
         }
     }
 }
@@ -3652,12 +3652,12 @@ function BlobBuilderConstructor(ary, options) {
   }
 
   return (options.type) ? bb.getBlob(options.type) : bb.getBlob();
-};
+}
 
 function BlobConstructor(ary, options) {
   mapArrayBufferViews(ary);
   return new Blob(ary, options || {});
-};
+}
 
 module.exports = (function() {
   if (blobSupported) {
@@ -3669,7 +3669,7 @@ module.exports = (function() {
   }
 })();
 
-}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : {})
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : {});
 },{}],15:[function(_dereq_,module,exports){
 
 /**
@@ -3686,7 +3686,7 @@ module.exports = Emitter;
 
 function Emitter(obj) {
   if (obj) return mixin(obj);
-};
+}
 
 /**
  * Mixin the emitter properties.
@@ -4810,7 +4810,7 @@ exports.decodePayloadAsBinary = function (data, binaryType, callback) {
   });
 };
 
-}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : {})
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : {});
 },{"./keys":20,"after":11,"arraybuffer.slice":12,"base64-arraybuffer":13,"blob":14,"has-binary":21,"utf8":29}],20:[function(_dereq_,module,exports){
 
 /**
@@ -4893,7 +4893,7 @@ function hasBinary(data) {
   return _hasBinary(data);
 }
 
-}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : {})
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : {});
 },{"isarray":24}],22:[function(_dereq_,module,exports){
 
 /**
@@ -5090,7 +5090,7 @@ module.exports = function parsejson(data) {
     return (new Function('return ' + data))();
   }
 };
-}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : {})
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : {});
 },{}],27:[function(_dereq_,module,exports){
 /**
  * Compiles a querystring
@@ -5174,7 +5174,7 @@ module.exports = function parseuri(str) {
 },{}],29:[function(_dereq_,module,exports){
 (function (global){
 /*! https://mths.be/utf8js v2.0.0 by @mathias */
-;(function(root) {
+(function(root) {
 
 	// Detect free variables `exports`
 	var freeExports = typeof exports == 'object' && exports;
@@ -5418,7 +5418,7 @@ module.exports = function parseuri(str) {
 
 }(this));
 
-}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : {})
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : {});
 },{}],30:[function(_dereq_,module,exports){
 'use strict';
 
@@ -6661,7 +6661,7 @@ function url(uri, loc){
   return obj;
 }
 
-}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : {})
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : {});
 },{"debug":39,"parseuri":45}],36:[function(_dereq_,module,exports){
 
 /**
@@ -6771,7 +6771,7 @@ module.exports = function(obj, fn){
   var args = slice.call(arguments, 2);
   return function(){
     return fn.apply(obj, args.concat(slice.call(arguments)));
-  }
+  };
 };
 
 },{}],38:[function(_dereq_,module,exports){
@@ -6790,7 +6790,7 @@ module.exports = Emitter;
 
 function Emitter(obj) {
   if (obj) return mixin(obj);
-};
+}
 
 /**
  * Mixin the emitter properties.
@@ -6938,9 +6938,9 @@ Emitter.prototype.hasListeners = function(event){
 };
 
 },{}],39:[function(_dereq_,module,exports){
-arguments[4][17][0].apply(exports,arguments)
+arguments[4][17][0].apply(exports,arguments);
 },{"./debug":40,"dup":17}],40:[function(_dereq_,module,exports){
-arguments[4][18][0].apply(exports,arguments)
+arguments[4][18][0].apply(exports,arguments);
 },{"dup":18,"ms":44}],41:[function(_dereq_,module,exports){
 (function (global){
 
@@ -7003,15 +7003,15 @@ function hasBinary(data) {
   return _hasBinary(data);
 }
 
-}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : {})
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : {});
 },{"isarray":43}],42:[function(_dereq_,module,exports){
-arguments[4][23][0].apply(exports,arguments)
+arguments[4][23][0].apply(exports,arguments);
 },{"dup":23}],43:[function(_dereq_,module,exports){
-arguments[4][24][0].apply(exports,arguments)
+arguments[4][24][0].apply(exports,arguments);
 },{"dup":24}],44:[function(_dereq_,module,exports){
-arguments[4][25][0].apply(exports,arguments)
+arguments[4][25][0].apply(exports,arguments);
 },{"dup":25}],45:[function(_dereq_,module,exports){
-arguments[4][28][0].apply(exports,arguments)
+arguments[4][28][0].apply(exports,arguments);
 },{"dup":28}],46:[function(_dereq_,module,exports){
 (function (global){
 /*global Blob,File*/
@@ -7156,7 +7156,7 @@ exports.removeBlobs = function(data, callback) {
   }
 };
 
-}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : {})
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : {});
 },{"./is-buffer":48,"isarray":43}],47:[function(_dereq_,module,exports){
 
 /**
@@ -7575,13 +7575,13 @@ function isBuf(obj) {
          (global.ArrayBuffer && obj instanceof ArrayBuffer);
 }
 
-}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : {})
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : {});
 },{}],49:[function(_dereq_,module,exports){
-arguments[4][15][0].apply(exports,arguments)
+arguments[4][15][0].apply(exports,arguments);
 },{"dup":15}],50:[function(_dereq_,module,exports){
 (function (global){
 /*! JSON v3.3.2 | http://bestiejs.github.io/json3 | Copyright 2012-2014, Kit Cambridge | http://kit.mit-license.org */
-;(function () {
+(function () {
   // Detect the `define` function exposed by asynchronous module loaders. The
   // strict `define` check is necessary for compatibility with `r.js`.
   var isLoader = typeof define === "function" && define.amd;
@@ -8483,23 +8483,23 @@ arguments[4][15][0].apply(exports,arguments)
   }
 }).call(this);
 
-}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : {})
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : {});
 },{}],51:[function(_dereq_,module,exports){
-module.exports = toArray
+module.exports = toArray;
 
 function toArray(list, index) {
-    var array = []
+    var array = [];
 
-    index = index || 0
+    index = index || 0;
 
     for (var i = index || 0; i < list.length; i++) {
-        array[i - index] = list[i]
+        array[i - index] = list[i];
     }
 
-    return array
+    return array;
 }
 
-},{}]},{},[31])(31)
+},{}]},{},[31])(31);
 });
 
 }
@@ -9122,7 +9122,7 @@ CB.CloudObject.prototype.fetch = function(callback) { //fetch the document from 
         throw "CB.appId is null.";
     }
     if (!this.document._id) {
-        throw "Can't fetch an object which is not saved."
+        throw "Can't fetch an object which is not saved.";
     }
     var thisObj = this;
     var def;
@@ -9160,7 +9160,7 @@ CB.CloudObject.prototype.delete = function(callback) { //delete an object matchi
         throw "CB.appId is null.";
     }
     if (!this.document._id) {
-        throw "You cannot delete an object which is not saved."
+        throw "You cannot delete an object which is not saved.";
     }
     var thisObj = this;
     var def;
@@ -9353,7 +9353,7 @@ CB.CloudQuery.or = function(obj1, obj2) {
     var obj = new CB.CloudQuery(obj1.tableName);
     obj.query["$or"] = [obj1.query, obj2.query];
     return obj;
-}
+};
 
 
 CB.CloudQuery.prototype.equalTo = function(columnName, data) {
@@ -9623,7 +9623,7 @@ CB.CloudQuery.prototype.selectColumn = function(columnNames) {
             ACL : 1,
             _type : 1,
             _tableName : 1
-        }
+        };
     }
 
     if (Object.prototype.toString.call(columnNames) === '[object Object]') {
@@ -9661,7 +9661,7 @@ CB.CloudQuery.prototype.containedIn = function(columnName, data) {
     if (columnName === 'id')
         columnName = '_' + columnName;
 
-    if (Object.prototype.toString.call(data) === '[object Object]' && !data instanceof CB.CloudObject) { //if object is passed as an argument
+    if (Object.prototype.toString.call(data) === '[object Object]' && !(data instanceof CB.CloudObject)) { //if object is passed as an argument
         throw 'Array / value / CloudObject expected as an argument';
     }
 
@@ -9733,7 +9733,7 @@ CB.CloudQuery.prototype.containedIn = function(columnName, data) {
 
 
     return this;
-}
+};
 
 CB.CloudQuery.prototype.notContainedIn = function(columnName, data) {
 
@@ -9743,7 +9743,7 @@ CB.CloudQuery.prototype.notContainedIn = function(columnName, data) {
     if (columnName === 'id' )
         columnName = '_' + columnName;
 
-    if (Object.prototype.toString.call(data) === '[object Object]' && !data instanceof CB.CloudObject) { //if object is passed as an argument
+    if (Object.prototype.toString.call(data) === '[object Object]' && !(data instanceof CB.CloudObject)) { //if object is passed as an argument
         throw 'Array or string expected as an argument';
     }
 
@@ -9813,7 +9813,7 @@ CB.CloudQuery.prototype.notContainedIn = function(columnName, data) {
     }
 
     return this;
-}
+};
 
 CB.CloudQuery.prototype.exists = function(columnName) {
     if (columnName === 'id')
@@ -9825,7 +9825,7 @@ CB.CloudQuery.prototype.exists = function(columnName) {
     this.query[columnName]["$exists"] = true;
 
     return this;
-}
+};
 
 CB.CloudQuery.prototype.doesNotExists = function(columnName) {
     if (columnName === 'id')
@@ -9837,7 +9837,7 @@ CB.CloudQuery.prototype.doesNotExists = function(columnName) {
     this.query[columnName]["$exists"] = false;
 
     return this;
-}
+};
 
 CB.CloudQuery.prototype.containsAll = function(columnName, data) {
 
@@ -9848,7 +9848,7 @@ CB.CloudQuery.prototype.containsAll = function(columnName, data) {
     if (columnName === 'id')
         columnName = '_' + columnName;
 
-    if (Object.prototype.toString.call(data) === '[object Object]' && !data instanceof CB.CloudObject) { //if object is passed as an argument
+    if (Object.prototype.toString.call(data) === '[object Object]' && !(data instanceof CB.CloudObject)) { //if object is passed as an argument
         throw 'Array or string expected as an argument';
     }
 
@@ -9911,7 +9911,7 @@ CB.CloudQuery.prototype.containsAll = function(columnName, data) {
     }
 
     return this;
-}
+};
 
 
 CB.CloudQuery.prototype.startsWith = function(columnName, value) {
@@ -9927,7 +9927,7 @@ CB.CloudQuery.prototype.startsWith = function(columnName, value) {
     this.query[columnName]["$options"] = 'im';
     
     return this;
-}
+};
 
 
 CB.CloudQuery.prototype.regex = function(columnName, value) {
@@ -9941,7 +9941,7 @@ CB.CloudQuery.prototype.regex = function(columnName, value) {
     this.query[columnName]["$regex"] = value;
     
     return this;
-}
+};
 
 CB.CloudQuery.prototype.substring = function(columnName, value) {
 
@@ -9974,7 +9974,7 @@ CB.CloudQuery.prototype.substring = function(columnName, value) {
       }
 
       return this;
-}
+};
 
 //GeoPoint near query
 CB.CloudQuery.prototype.near = function(columnName, geoPoint, maxDistance, minDistance){
@@ -10684,7 +10684,7 @@ CB.SearchFilter.prototype.and = function(searchFilter) {
 
     delete searchFilter.$include;
 
-    if(!searchFilter instanceof CB.SearchFilter){
+    if(!(searchFilter instanceof CB.SearchFilter)){
         throw "data should be of type CB.SearchFilter";
     }
 
@@ -10702,7 +10702,7 @@ CB.SearchFilter.prototype.or = function(searchFilter) {
 
     delete searchFilter.$include;
 
-    if(!searchFilter instanceof CB.SearchFilter){
+    if(!(searchFilter instanceof CB.SearchFilter)){
         throw "data should be of type CB.SearchFilter";
     }
 
@@ -10721,7 +10721,7 @@ CB.SearchFilter.prototype.not = function(searchFilter) {
 
     delete searchFilter.$include;
 
-   if(!searchFilter instanceof CB.SearchFilter){
+   if(!(searchFilter instanceof CB.SearchFilter)){
         throw "data should be of type CB.SearchFilter";
    }
 
@@ -10767,7 +10767,7 @@ CB.SearchQuery.prototype._buildSearchPhrase = function(columns, query, slop, boo
 
      return obj;
 
-}
+};
 
 
 CB.SearchQuery.prototype._buildBestColumns = function(columns, query, fuzziness, operator, match_percent, boost) {
@@ -10847,7 +10847,7 @@ CB.SearchQuery.prototype._buildSearchOn = function(columns, query, fuzziness, op
 
         return obj;
 
-}
+};
 
 CB.SearchQuery.prototype.searchOn = function(columns, query, fuzziness, all_words, match_percent, priority) {
 
@@ -10876,7 +10876,7 @@ CB.SearchQuery.prototype.phrase = function(columns, query,fuzziness, priority) {
 
 CB.SearchQuery.prototype.bestColumns = function(columns, query, fuzziness, all_words, match_percent, priority) {
 
-    if(!columns instanceof Array || columns.length<2)
+    if(!(columns instanceof Array) || columns.length<2)
            throw "There should be more than one columns in-order to use this function";
 
     if(all_words){
@@ -10892,7 +10892,7 @@ CB.SearchQuery.prototype.bestColumns = function(columns, query, fuzziness, all_w
 
 CB.SearchQuery.prototype.mostColumns = function(columns, query, fuzziness, all_words, match_percent, priority) {
 
-    if(!columns instanceof Array || columns.length<2)
+    if(!(columns instanceof Array) || columns.length<2)
            throw "There should be more than one columns in-order to use this function";
 
     if(all_words){
@@ -10953,7 +10953,7 @@ CB.SearchQuery.prototype.regexp = function(column, value, priority) {
 //And logical function. 
 CB.SearchQuery.prototype.and = function(searchQuery) {
 
-    if(!searchQuery instanceof CB.SearchQuery){
+    if(!(searchQuery instanceof CB.SearchQuery)){
         throw "data should be of type CB.SearchQuery";
     }
 
@@ -10963,7 +10963,7 @@ CB.SearchQuery.prototype.and = function(searchQuery) {
 //OR Logical function
 CB.SearchQuery.prototype.or = function(searchQuery) {
 
-    if(!searchQuery instanceof CB.SearchQuery){
+    if(!(searchQuery instanceof CB.SearchQuery)){
         throw "data should be of type CB.SearchQuery";
     }
 
@@ -10974,7 +10974,7 @@ CB.SearchQuery.prototype.or = function(searchQuery) {
 //NOT logical function
 CB.SearchQuery.prototype.not = function(searchQuery) {
 
-    if(!searchQuery instanceof CB.SearchQuery){
+    if(!(searchQuery instanceof CB.SearchQuery)){
         throw "data should be of type CB.SearchQuery";
     }
 
@@ -11200,7 +11200,7 @@ CB.CloudFile = CB.CloudFile || function(file,data,type) {
                 this.document = {
                     _id: file,
                     _type: 'file'
-                }
+                };
             }
         }
     }
@@ -11503,7 +11503,7 @@ CB.CloudGeoPoint.prototype.distanceInKMs = function(point) {
 
 CB.CloudGeoPoint.prototype.distanceInMiles = function(point){
 
-    var earthRedius = 3959 // in Miles
+    var earthRedius = 3959; // in Miles
     return earthRedius * greatCircleFormula(this, point);
 
 };
@@ -11527,7 +11527,7 @@ function greatCircleFormula(thisObj, point){
 if (typeof(Number.prototype.toRad) === "undefined") {
     Number.prototype.toRad = function() {
         return this * Math.PI / 180;
-    }
+    };
 }
 
 /*
@@ -11702,7 +11702,7 @@ CB.CloudTable.getAll = function(callback){
   if (!callback) {
       return def;
   }
-}
+};
 
 /**
  * Gets a table
@@ -11763,7 +11763,7 @@ CB.CloudTable.get = function(table, callback){
   } else if (Object.prototype.toString.call(table) === '[object Array]') {
     throw "cannot fetch array of tables";
   }
-}
+};
 
 
 /**
@@ -11809,7 +11809,7 @@ CB.CloudTable.prototype.delete = function(callback){
     if (!callback) {
         return def;
     }
-}
+};
 
 /**
  * Saves a table

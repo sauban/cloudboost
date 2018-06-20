@@ -84,7 +84,7 @@ module.exports = function(app) {
         
         appService.getApp(appId).then(function (application) {
             userService.resetUserPassword(appId, username, newPassword, resetKey, customHelper.getAccessList(req), true, application.keys.encryption_key)
-            .then(function(result) {
+            .then(function() {
                 res.json({message : "Password changed successfully."});
             }, function(error) {
                 res.json(400, {
@@ -189,6 +189,7 @@ module.exports = function(app) {
             });
 
         },function(error){
+            global.winston.error(error);
             res.render(config.rootPath+'/page-templates/user/signup-activate',{               
                 verified:false                                   
             });

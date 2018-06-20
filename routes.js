@@ -37,19 +37,18 @@ module.exports = function (app) {
     require('./cron/expire.js');
 
 
-    console.log('+++++++++++ API Status : OK ++++++++++++++++++');
+    global.winston.info('+++++++++++ API Status : OK ++++++++++++++++++');
 
-    app.use(function (req, res, next) {
+    app.use(function (req, res) {
         res.status(404).json({
             status: 404,
             message: 'The endpoint was not found. Please check again.'
         });
     });
 
-    app.use(function (err, req, res, next) {
-        console.log("FATAL : Internal Server Error");
-        console.log(err);
-        console.log(config.env);
+    app.use(function (err, req, res) {
+        global.winston.error("FATAL : Internal Server Error");
+        global.winston.error(err);
         if(config.env === 'development'){
             res.status(500).json({
                 message: err.message,

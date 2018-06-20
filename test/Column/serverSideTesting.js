@@ -22,7 +22,7 @@ describe("server side tests of Cloud Column", function(){
                 done();
             },
             error : function(error){
-                done(err)
+                done(err);
             }
         });
     });
@@ -42,7 +42,7 @@ describe("server side tests of Cloud Column", function(){
                 done(new TypeError("Validation did not work"));
             }, 
             error : function(error){
-                done()
+                done();
             }
         });
     });
@@ -59,7 +59,7 @@ describe("server side tests of Cloud Column", function(){
 
         table.save({
             success : function(table){
-                done()
+                done();
                 
             }, 
             error : function(err){

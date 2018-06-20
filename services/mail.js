@@ -83,7 +83,7 @@ mail.sendResetPasswordMail = function(appId, email, user, passwordResetKey){
         });    
 
     } catch(err){           
-        global.winston.log('error',{"error":String(err),"stack": new Error().stack});
+        global.logger.log('error',{"error":String(err),"stack": new Error().stack});
         deferred.reject(err);
     }
 
@@ -169,7 +169,7 @@ mail.sendSignupMail = function(appId, user, activateKey){
         });     
 
     } catch(err){           
-        global.winston.log('error',{"error":String(err),"stack": new Error().stack});
+        global.logger.log('error',{"error":String(err),"stack": new Error().stack});
         deferred.reject(err);
     }
 
@@ -221,7 +221,7 @@ mail.emailCampaign = function(appId,userEmail,emailBody,emailSubject){
         });     
 
     } catch(err){           
-        global.winston.log('error',{"error":String(err),"stack": new Error().stack});
+        global.logger.log('error',{"error":String(err),"stack": new Error().stack});
         deferred.reject(err);
     }
 
@@ -277,7 +277,7 @@ function _mandrill(emailSettings){
         });
 
     } catch(err){           
-        global.winston.log('error',{"error":String(err),"stack": new Error().stack});
+        global.logger.log('error',{"error":String(err),"stack": new Error().stack});
         deferred.reject(err);
     } 
 
@@ -321,7 +321,7 @@ function _mailGun(emailSettings){
         });
 
     } catch(err){           
-        global.winston.log('error',{"error":String(err),"stack": new Error().stack});
+        global.logger.log('error',{"error":String(err),"stack": new Error().stack});
         deferred.reject(err);
     }
 
@@ -388,7 +388,7 @@ function _getEmailSettings(settings,returnDefault){
         }
 
     } catch(err){           
-        global.winston.log('error',{"error":String(err),"stack": new Error().stack});
+        global.logger.log('error',{"error":String(err),"stack": new Error().stack});
         deferred.reject(err);
     }
 
@@ -432,13 +432,13 @@ function _getEmailTemplate(settings,templateName){
             _getTemplateByName(templateName).then(function(defaultTemp){
                 deferred.resolve(defaultTemp);
             },function(err){
-                global.winston.error(err);
+                global.logger.error(err);
                 deferred.reject(err);
             });
         } 
 
     } catch(err){           
-        global.winston.error({"error":String(err),"stack": new Error().stack});
+        global.logger.error({"error":String(err),"stack": new Error().stack});
         deferred.reject(err);
     }
 
@@ -464,7 +464,7 @@ function _getTemplateByName(templateName){
         });
 
     } catch(err){           
-        global.winston.log('error',{"error":String(err),"stack": new Error().stack});
+        global.logger.log('error',{"error":String(err),"stack": new Error().stack});
         deferred.reject(err);
     }
 
@@ -514,7 +514,7 @@ function _mergeVariablesInTemplate(template, variableArray){
         });       
 
     } catch(err){           
-        global.winston.log('error',{"error":String(err),"stack": new Error().stack});
+        global.logger.log('error',{"error":String(err),"stack": new Error().stack});
         deferred.reject(err);
     }  
 

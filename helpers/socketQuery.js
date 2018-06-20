@@ -30,7 +30,7 @@ var obj = {
             });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -48,7 +48,7 @@ var obj = {
                 }
             );
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -64,7 +64,7 @@ var obj = {
                 }
             );
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });

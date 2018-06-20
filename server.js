@@ -11,47 +11,9 @@ var cors = require('cors');
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+
 var config = require('./config/config');
-var slack = require('winston-bishop-slack').Slack;
-
-var winston = require('winston');
-require('winston-loggly');
-
-var logglyTags = config.logglyTags ? config.logglyTags.split(',') : [];
 var port = config.port || 4730;
-
-winston.add(winston.transports.Loggly, {
-    inputToken: config.logToken,
-    subdomain: config.logglySubDomain,
-    tags: logglyTags,
-    json: true
-});
-
-// add slack transport if API key found
-if (config.slackWebHook) {
-    winston.add(slack, {
-        webhook_url: config.slackWebHook,
-        icon_url: config.slackIconUrl,
-        channel: config.slackChannel,
-        username: "API ERROR BOT - " + config.env,
-        level: 'error',
-        handleExceptions: true,
-        customFormatter: function (level, message, meta) {
-            return {
-                attachments: [{
-                    fallback: "An Error occured on API POD in - " + config.env,
-                    pretext: "An Error occured on API POD in - " + config.env,
-                    color: '#D00000',
-                    fields: [{
-                        title: meta.error,
-                        value: meta.stack,
-                        short: false
-                    }]
-                }]
-            };
-        }
-    });
-}
 
 app.use(cors());
 //For pages in cloudboost
@@ -65,6 +27,7 @@ app.use(bodyParser.json());
 app.use(busboyBodyParser());
 app.set('port', port); //SET THE DEFAULT PORT.
 
+const logger = require('./config/logger')();
 
 // var http = null;
 var https = null;
@@ -80,8 +43,8 @@ try {
 
     }
 } catch (e) {
-    winston.info("INFO : SSL Certificate not found or is invalid.");
-    winston.info("Switching ONLY to HTTP...");
+    logger.info("INFO : SSL Certificate not found or is invalid.");
+    logger.info("Switching ONLY to HTTP...");
 }
 
 var http = require('http').createServer(app);
@@ -94,7 +57,7 @@ if (https) {
     io.attach(https);
 }
 
-global.winston = winston;
+global.logger = logger;
 
 //Server kickstart:
 http.listen(app.get('port'), function () {
@@ -112,7 +75,7 @@ http.listen(app.get('port'), function () {
 
         require('./routes')(app); //Setup routes
     } catch (e) {
-        winston.error(e);
+        logger.error(e);
         process.exit(1);
     }
 });

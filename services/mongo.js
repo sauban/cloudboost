@@ -32,7 +32,7 @@ mongoService.app = {
             });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -62,13 +62,13 @@ mongoService.app = {
                 deferred.resolve(db);
             } else {
                 
-                global.winston.log("Error : Creating an app in the Storage Backend ");
+                global.logger.log("Error : Creating an app in the Storage Backend ");
                 deferred.reject("Error : Creating an app in the Storage Backend ");
             }
         } catch (e) {
             
             
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(e),
                 "stack": new Error().stack
             });
@@ -104,7 +104,7 @@ mongoService.document = {
             });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -141,7 +141,7 @@ mongoService.database = {
             });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -169,7 +169,7 @@ mongoService.collection = {
                 mongoService.collection.createIndex(appId, collectionName, column.name, column.dataType).then(function() {
                     deferred.resolve("Index Created");
                 }, function(err) {
-                    global.winston.log('error', err);
+                    global.logger.log('error', err);
                     deferred.reject("Unable to create Index in Mongo");
                 });
             } else {
@@ -177,7 +177,7 @@ mongoService.collection = {
             }
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -205,7 +205,7 @@ mongoService.collection = {
                 q.all(promises).then(function() {
                     deferred.resolve("Index Created");
                 }, function(err) {
-                    global.winston.log('error', err);
+                    global.logger.log('error', err);
                     deferred.reject("Unable to create Index in Mongo");
                 });
             } else {
@@ -213,7 +213,7 @@ mongoService.collection = {
             }
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -259,7 +259,7 @@ mongoService.collection = {
             }
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -284,7 +284,7 @@ mongoService.collection = {
                 "$**": "text"
             }, function(err, res) {
                 if (err) {
-                    global.winston.log('error', err);
+                    global.logger.log('error', err);
                     
                     deferred.reject(err);
                 } else {
@@ -295,7 +295,7 @@ mongoService.collection = {
             });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -325,7 +325,7 @@ mongoService.collection = {
             });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -352,7 +352,7 @@ mongoService.collection = {
                 multi: true
             }, function(err, result) {
                 if (err) {
-                    global.winston.log('error', err);
+                    global.logger.log('error', err);
                     deferred.reject(err);
                 } else {
                     deferred.resolve(result);
@@ -360,7 +360,7 @@ mongoService.collection = {
             });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -422,7 +422,7 @@ mongoService.collection = {
             }
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -453,7 +453,7 @@ mongoService.collection = {
                     if (err.message === 'ns not found') {
                         deferred.resolve(reply);
                     } else {
-                        global.winston.log('error', err);
+                        global.logger.log('error', err);
                         deferred.reject(err);
                     }
                 } else {
@@ -463,7 +463,7 @@ mongoService.collection = {
             });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -485,7 +485,7 @@ mongoService.collection = {
                          //if oldCollectionName is not found.
                         deferred.resolve(collection);
                     } else {
-                        global.winston.log('error', err);
+                        global.logger.log('error', err);
                         deferred.reject(err);
                     }
                 } else {
@@ -493,7 +493,7 @@ mongoService.collection = {
                 }
             });
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -506,7 +506,7 @@ mongoService.collection = {
         try {
             return collectionName;
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -522,7 +522,7 @@ mongoService.collection = {
             var findQuery = collection.find({});
             findQuery.toArray(function(err, res) {
                 if (err) {
-                    global.winston.log('error', err);
+                    global.logger.log('error', err);
                     deferred.reject(err);
                 } else {
                     deferred.resolve(res);
@@ -531,7 +531,7 @@ mongoService.collection = {
             });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -556,7 +556,7 @@ function _dropIndex(appId, collectionName, indexString) {
             var collection = config.mongoClient.db(appId).collection(collectionName);
             collection.dropIndex(indexString, function(err, result) {
                 if (err && err.message && err.message != 'ns not found') {
-                    global.winston.log('error', err);
+                    global.logger.log('error', err);
                     
                     
                     deferred.reject(err);
@@ -569,7 +569,7 @@ function _dropIndex(appId, collectionName, indexString) {
         }
 
     } catch (err) {
-        global.winston.log('error', {
+        global.logger.log('error', {
             "error": String(err),
             "stack": new Error().stack
         });
@@ -592,7 +592,7 @@ function _unsetColumn(appId, collectionName, query) {
                 multi: true
             }, function(err, result) {
                 if (err) {
-                    global.winston.error(err);
+                    global.logger.error(err);
                     deferred.reject(err);
                 } else {
                     deferred.resolve(result);
@@ -603,7 +603,7 @@ function _unsetColumn(appId, collectionName, query) {
         }
 
     } catch (err) {
-        global.winston.log('error', {
+        global.logger.log('error', {
             "error": String(err),
             "stack": new Error().stack
         });

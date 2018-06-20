@@ -10,7 +10,7 @@ function constructUrl () {
     appConfig.loadedConfig = config;
 
     if ((!config.mongo && !process.env["MONGO_1_PORT_27017_TCP_ADDR"] && !process.env["KUBERNETES_STATEFUL_MONGO_URL"])) {
-        global.winston.error("INFO : Not running on Docker. Use docker-compose (recommended) from https://github.com/cloudboost/docker");
+        global.logger.error("INFO : Not running on Docker. Use docker-compose (recommended) from https://github.com/cloudboost/docker");
     }
 
     if (process.env["CLOUDBOOST_MONGODB_USERNAME"] && process.env["CLOUDBOOST_MONGODB_PASSWORD"]) {

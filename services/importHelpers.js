@@ -507,7 +507,7 @@ function detectDataType(data, colProp) {
         try {
             data = JSON.parse(data);
         } catch (e) {
-            global.winston.error(e);
+            global.logger.error(e);
         }
     }
     if (colProp == "relatedTo") {

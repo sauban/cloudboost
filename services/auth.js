@@ -88,7 +88,7 @@ var authService = {
 			});			    						
 
 		} catch(err){           
-			global.winston.log('error',{"error":String(err),"stack": new Error().stack});
+			global.logger.log('error',{"error":String(err),"stack": new Error().stack});
 			deferred.reject(err);
 		}	
 

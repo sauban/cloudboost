@@ -19,7 +19,7 @@ module.exports = function (app) {
                 appService.changeAppClientKey(appId, req.body.value).then(function (app) {
                     res.status(200).json(app);
                 }, function (err) {
-                    global.winston.error(err);
+                    global.logger.error(err);
                     res.status(500).send("Error");
                 });
 
@@ -27,7 +27,7 @@ module.exports = function (app) {
                 res.status(401).send("Unauthorized");
             }
         } catch (e) {
-            global.winston.error(e);
+            global.logger.error(e);
             res.status(500).send('Internal server error');
         }
     });
@@ -44,7 +44,7 @@ module.exports = function (app) {
                 appService.changeAppMasterKey(appId, req.body.value).then(function (app) {
                     res.status(200).json(app);
                 }, function (err) {
-                    global.winston.error(err);
+                    global.logger.error(err);
                     res.status(500).send("Error");
                 });
 
@@ -54,7 +54,7 @@ module.exports = function (app) {
 
 
         } catch (e) {
-            global.winston.error(e);
+            global.logger.error(e);
             res.status(500).send('Internal server error');
         }
     });
@@ -76,7 +76,7 @@ module.exports = function (app) {
                         user: userData
                     });
                 }, function (err) {
-                    global.winston.error(err);
+                    global.logger.error(err);
                     res.status(500).send("Server Erorr");
                 });
             } else {
@@ -84,7 +84,7 @@ module.exports = function (app) {
                 res.status(401).send("Unauthorized");
             }
         } catch (e) {
-            global.winston.error(e);
+            global.logger.error(e);
             res.status(500).send("Server Error");
         }
     });

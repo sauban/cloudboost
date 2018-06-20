@@ -74,7 +74,7 @@ module.exports = function(app) {
             fileService.delete(appId, fileObj, customHelper.getAccessList(req), isMasterKey).then(function() {
                 return res.status(200).send(null);
             }, function(err) {
-                global.winston.error(err);
+                global.logger.error(err);
                 return res.status(500).send(err);
             });
         });

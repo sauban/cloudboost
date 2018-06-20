@@ -18,7 +18,7 @@ module.exports = {
                 return false;
             return true;
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -30,7 +30,7 @@ module.exports = {
             var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             return re.test(data);
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -47,7 +47,7 @@ module.exports = {
             return id;
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -61,7 +61,7 @@ module.exports = {
             return true;
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -75,7 +75,7 @@ module.exports = {
              return true;
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -111,7 +111,7 @@ module.exports = {
             });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });

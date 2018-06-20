@@ -53,7 +53,7 @@ module.exports = {
             });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -81,7 +81,7 @@ module.exports = {
             });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -111,7 +111,7 @@ module.exports = {
                     var findQuery = collection.find({ appId: appId });
                     findQuery.toArray(function (err, docs) {
                         if (err) {
-                            global.winston.log('error', err);
+                            global.logger.log('error', err);
                             deferred.reject(err);
                         } else if (!docs || docs.length == 0) {
                             deferred.reject("App Not found");
@@ -126,7 +126,7 @@ module.exports = {
             });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -146,7 +146,7 @@ module.exports = {
             var findQuery = collection.find({});
             findQuery.toArray(function (err, docs) {
                 if (err) {
-                    global.winston.log('error', err);
+                    global.logger.log('error', err);
                     deferred.reject(err);
                 } else {
                     deferred.resolve(docs);
@@ -154,7 +154,7 @@ module.exports = {
             });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -172,7 +172,7 @@ module.exports = {
             var findQuery = collection.find({ appId: appId });
             findQuery.toArray(function (err, projects) {
                 if (err) {
-                    global.winston.log('error', err);
+                    global.logger.log('error', err);
                     deferred.reject(err);
                 }
                 if (projects.length > 0) {
@@ -211,7 +211,7 @@ module.exports = {
             });
 
         } catch (e) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(e),
                 "stack": new Error().stack
             });
@@ -242,7 +242,7 @@ module.exports = {
                     new: true
                 }, function (err) {
                     if (err) {
-                        global.winston.error(err);
+                        global.logger.error(err);
                         deferred.reject(err);
                     } else {
                         config.redisClient.del(config.cacheAppPrefix + ':' + appId); //delete the app from redis.
@@ -263,7 +263,7 @@ module.exports = {
                     
                 });
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -295,7 +295,7 @@ module.exports = {
             });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -335,7 +335,7 @@ module.exports = {
             });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -363,12 +363,12 @@ module.exports = {
                                 "code": 401,
                                 "message": "You do not have permission to delete"
                             };
-                            global.winston.log('error', err);
+                            global.logger.log('error', err);
                             deferred.reject(err);
                         }
                     }
                     if (err) {
-                        global.winston.log('error', err);
+                        global.logger.log('error', err);
                         deferred.reject(err);
                     } else if (doc.result.n !== 0) {
                         //send a post request to DataServices.
@@ -396,7 +396,7 @@ module.exports = {
                 });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -424,7 +424,7 @@ module.exports = {
             });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -453,7 +453,7 @@ module.exports = {
             }, function () { });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -480,7 +480,7 @@ module.exports = {
             });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -643,7 +643,7 @@ module.exports = {
                             }
                         }
                     } catch (e) {
-                        global.winston.log('error', {
+                        global.logger.log('error', {
                             "error": String(e),
                             "stack": new Error().stack
                         });
@@ -732,7 +732,7 @@ module.exports = {
                                     }
                                 }, function (error) {
                                     //TODO : Rollback.
-                                    global.winston.error(error);
+                                    global.logger.error(error);
                                     deferred.resolve(table);
                                 });
 
@@ -763,12 +763,12 @@ module.exports = {
                                             deferred.resolve(table);
                                         }, function (error) {
                                             //TODO : Rollback.
-                                            global.winston.error(error);
+                                            global.logger.error(error);
                                             deferred.resolve(table);
                                         });
                                     }, function (error) {
                                         //TODO : Rollback.
-                                        global.winston.error(error);
+                                        global.logger.error(error);
                                         deferred.resolve(table);
                                     });
 
@@ -781,7 +781,7 @@ module.exports = {
             });
 
         } catch (e) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(e),
                 "stack": new Error().stack
             });
@@ -808,7 +808,7 @@ module.exports = {
                 }
             });
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -844,7 +844,7 @@ module.exports = {
                     findQuery.toArray(function(err, tables) {
                         var res = tables[0];
                         if (err) {
-                            global.winston.log('error', err);
+                            global.logger.log('error', err);
                             deferred.reject(err);
                         } else if (!res) {
 
@@ -868,7 +868,7 @@ module.exports = {
             });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -905,7 +905,7 @@ module.exports = {
                     returnOriginal: false
                 }, function (err, newDoc) {
                     if (err) {
-                        global.winston.log('error', err);
+                        global.logger.log('error', err);
                         deferred.reject(err);
                     }
                     if (newDoc) {
@@ -920,7 +920,7 @@ module.exports = {
                 });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -957,7 +957,7 @@ module.exports = {
                     returnOriginal: false
                 }, function (err, newDoc) {
                     if (err) {
-                        global.winston.log('error', err);
+                        global.logger.log('error', err);
                         deferred.reject(err);
                     }
                     if (newDoc) {
@@ -972,7 +972,7 @@ module.exports = {
                 });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -987,7 +987,7 @@ module.exports = {
         var promises = [];
         config.mongoClient.db(appId).listCollections().toArray(function (err, collections) {
             if (err) {
-                global.winston.log('error', err);
+                global.logger.log('error', err);
                 deferred.reject(err);
             }
             for (var k in collections) {
@@ -997,7 +997,7 @@ module.exports = {
                         var data = config.mongoClient.db(appId).collection(collections[k].name).find();
                         data.toArray(function (err, data) {
                             if (err) {
-                                global.winston.error(err);
+                                global.logger.error(err);
                                 reject(err);
                             }
                             collections[k].documents.push(data);
@@ -1038,7 +1038,7 @@ module.exports = {
 
         config.mongoClient.db(appId).listCollections().toArray(function (err, Collections) {
             if (err) {
-                global.winston.log('error', err);
+                global.logger.log('error', err);
                 deferred.reject(err);
             }
             for (var k in Collections) {
@@ -1060,18 +1060,18 @@ module.exports = {
                     (function (i) {
                         config.mongoClient.db(appId).createCollection(fileData[i].name, function (err) {
                             if (err){
-                                global.winston.error(err);                                
+                                global.logger.error(err);                                
                                 deferred.reject('Error creating Collections/Tables');
                             }
                             config.mongoClient.db(appId).collection(fileData[i].name, function (err, col) {
                                 if (err){
-                                    global.winston.error(err);
+                                    global.logger.error(err);
                                     deferred.reject('Error getting Collections/Tables');
                                 }
                                 for (var j in fileData[i].documents[0]) {
                                     (function (j) {
                                         col.insert(fileData[i].documents[0][j], function (err) {
-                                            global.winston.error(err);
+                                            global.logger.error(err);
                                             if (i == (fileData.length - 1) && j == (fileData[i].documents[0].length - 1)) {
                                                 deferred.resolve(true);
                                             }
@@ -1258,7 +1258,7 @@ function _generateKey() {
     try {
         return uuid.v4();
     } catch (err) {
-        global.winston.log('error', {
+        global.logger.log('error', {
             "error": String(err),
             "stack": new Error().stack
         });
@@ -1296,7 +1296,7 @@ function _checkDuplicateColumns(columns) {
         return null;
 
     } catch (e) {
-        global.winston.log('error', {
+        global.logger.log('error', {
             "error": String(e),
             "stack": new Error().stack
         });
@@ -1325,7 +1325,7 @@ function _getDefaultColumnList(type) {
         return defaultColumn;
 
     } catch (e) {
-        global.winston.log('error', {
+        global.logger.log('error', {
             "error": String(e),
             "stack": new Error().stack
         });
@@ -1565,7 +1565,7 @@ function _checkValidDataType(columns, deafultDataType, tableType) {
         return true;
 
     } catch (e) {
-        global.winston.log('error', {
+        global.logger.log('error', {
             "error": String(e),
             "stack": new Error().stack
         });
@@ -1584,7 +1584,7 @@ function _getColumnsToDelete(oldColumns, newColumns) {
 
         return originalColumns;
     } catch (e) {
-        global.winston.log('error', {
+        global.logger.log('error', {
             "error": String(e),
             "stack": new Error().stack
         });
@@ -1607,7 +1607,7 @@ function _getColumnsToAdd(oldColumns, newColumns) {
         }
         return addedColumns;
     } catch (e) {
-        global.winston.log('error', {
+        global.logger.log('error', {
             "error": String(e),
             "stack": new Error().stack
         });
@@ -1657,7 +1657,7 @@ function _getDefaultColumnWithDataType(type) {
         return defaultColumn;
 
     } catch (e) {
-        global.winston.log('error', {
+        global.logger.log('error', {
             "error": String(e),
             "stack": new Error().stack
         });
@@ -1679,7 +1679,7 @@ function deleteAppFromRedis(appId) {
         });
 
     } catch (err) {
-        global.winston.log('error', {
+        global.logger.log('error', {
             "error": String(err),
             "stack": new Error().stack
         });

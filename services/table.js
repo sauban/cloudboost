@@ -18,7 +18,7 @@ module.exports = {
                     findQuery.toArray(function(err, tables) {
                         var res = tables[0];
                         if (err) {
-                            global.winston.log('error', err);
+                            global.logger.log('error', err);
                             deferred.reject(err);
                         } else if (!res) {
 
@@ -42,7 +42,7 @@ module.exports = {
             });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });

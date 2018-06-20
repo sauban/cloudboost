@@ -18,7 +18,7 @@ module.exports = function(){
                 return types;
 
             }catch(err){                    
-                global.winston.log('error',{"error":String(err),"stack": new Error().stack});                                                  
+                global.logger.log('error',{"error":String(err),"stack": new Error().stack});                                                  
             }
         },
 
@@ -33,7 +33,7 @@ module.exports = function(){
                 return false;
 
             }catch(err){                    
-                global.winston.log('error',{"error":String(err),"stack": new Error().stack});                                                  
+                global.logger.log('error',{"error":String(err),"stack": new Error().stack});                                                  
             }
         }
     };

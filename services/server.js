@@ -20,7 +20,7 @@ module.exports = {
 				deferred.reject(error);
 			});
 		} catch (err) {
-			global.winston.log('error', {
+			global.logger.log('error', {
 				"error": String(err),
 				"stack": new Error().stack
 			});
@@ -49,7 +49,7 @@ module.exports = {
 			});
 
 		} catch (err) {
-			global.winston.log('error', {
+			global.logger.log('error', {
 				"error": String(err),
 				"stack": new Error().stack
 			});
@@ -91,7 +91,7 @@ function _registerServerAnalytics(secureKey) {
 		});
 
 	} catch (err) {
-		global.winston.log('error', {
+		global.logger.log('error', {
 			"error": String(err),
 			"stack": new Error().stack
 		});
@@ -133,7 +133,7 @@ function _mongoDbStatus() {
 		});
 
 	} catch (err) {
-		global.winston.log('error', {
+		global.logger.log('error', {
 			"error": String(err),
 			"stack": new Error().stack
 		});
@@ -174,7 +174,7 @@ function _redisDbStatus() {
 		});
 
 	} catch (err) {
-		global.winston.log('error', {
+		global.logger.log('error', {
 			"error": String(err),
 			"stack": new Error().stack
 		});

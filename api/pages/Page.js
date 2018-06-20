@@ -189,7 +189,7 @@ module.exports = function(app) {
             });
 
         },function(error){
-            global.winston.error(error);
+            global.logger.error(error);
             res.render(config.rootPath+'/page-templates/user/signup-activate',{               
                 verified:false                                   
             });

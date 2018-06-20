@@ -43,17 +43,17 @@ var job= new CronJob('00 00 22 * * *', function(){
                             }
                         }
                     },function(error) {
-                        global.winston.error(error);
+                        global.logger.error(error);
                     });
                 }
             }            
 
         },function(error){
-            global.winston.error(error);            
+            global.logger.error(error);            
         });        
 
     } catch(err){           
-        global.winston.log('error',{"error":String(err),"stack": new Error().stack});               
+        global.logger.log('error',{"error":String(err),"stack": new Error().stack});               
     }
 },
 
@@ -72,15 +72,15 @@ function removeFiles(appId,curr) {
                 promises.push(fileService.delete(appId, res[i], null, true));
             }
             q.all(promises).then(function(res){
-                global.winston.info(res);                
+                global.logger.info(res);                
             },function(err){
-                global.winston.error(err);                
+                global.logger.error(err);                
             });
         }, function () {
 
         });
     } catch(err){           
-        global.winston.log('error',{"error":String(err),"stack": new Error().stack});               
+        global.logger.log('error',{"error":String(err),"stack": new Error().stack});               
     }
 }
 
@@ -91,14 +91,14 @@ function mongodb(appId,collectionName,curr){
         var que = {"expires": {"$lt": curr,"$exists":true,"$ne":null}};
         collection.remove(que, function (err, number) {
             if(err){
-                global.winston.error(err);
+                global.logger.error(err);
             } else {
-                global.winston.info(number);
+                global.logger.info(number);
             }
 
         });
     } catch(err){           
-        global.winston.log('error',{"error":String(err),"stack": new Error().stack});               
+        global.logger.log('error',{"error":String(err),"stack": new Error().stack});               
     }
 }
 
@@ -125,7 +125,7 @@ function _getDatabases(){
         });
 
     } catch(err){           
-        global.winston.log('error',{"error":String(err),"stack": new Error().stack});               
+        global.logger.log('error',{"error":String(err),"stack": new Error().stack});               
     }
 
     return deferred.promise;

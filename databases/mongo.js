@@ -25,12 +25,12 @@ obj.document = {
             }, null, null, null, accessList, isMasterKey).then(function(doc) {
                 deferred.resolve(doc);
             }, function(error) {
-                global.winston.log('error', error);
+                global.logger.log('error', error);
                 deferred.reject(error);
             });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -161,18 +161,18 @@ obj.document = {
                     docs = _deserialize(docs);
                     deferred.resolve(docs);
                 }, function(error) {
-                    global.winston.log('error', error);
+                    global.logger.log('error', error);
                     
                     deferred.reject(error);
                 });
             }, function(error) {
-                global.winston.log('error', error);
+                global.logger.log('error', error);
                 
                 deferred.reject();
             });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -197,7 +197,7 @@ obj.document = {
 
             config.mongoClient.db(appId).collection(mongoUtil.collection.getId(appId, collectionName)).find(qry).toArray(function(err, includeDocs) {
                 if (err) {
-                    global.winston.log('error', err);
+                    global.logger.log('error', err);
                     includeDeferred.reject(err);
                 } else {
                     includeDeferred.resolve(includeDocs);
@@ -205,7 +205,7 @@ obj.document = {
             });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -394,7 +394,7 @@ obj.document = {
             });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -423,12 +423,12 @@ obj.document = {
                     }
                 }
             }, function(error) {
-                global.winston.log('error', error);
+                global.logger.log('error', error);
                 mainPromise.reject(null);
             });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -456,12 +456,12 @@ obj.document = {
             q.allSettled(promises).then(function(docs) {
                 deferred.resolve(docs);
             }, function(err) {
-                global.winston.log('error', err);
+                global.logger.log('error', err);
                 deferred.reject(err);
             });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -498,7 +498,7 @@ obj.document = {
                 upsert: true
             }, function(err, list) {
                 if (err) {
-                    global.winston.log('error', err);
+                    global.logger.log('error', err);
                     deferred.reject(err);
                 } else if (list) {
                     
@@ -508,7 +508,7 @@ obj.document = {
             });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -542,7 +542,7 @@ obj.document = {
 
             findQuery.count(query, function(err, count) {
                 if (err) {
-                    global.winston.log('error', err);
+                    global.logger.log('error', err);
                     deferred.reject(err);
                 } else {
                     deferred.resolve(count);
@@ -550,7 +550,7 @@ obj.document = {
             });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -658,14 +658,14 @@ obj.document = {
                         docs = _deserialize(docs);
                         deferred.resolve(docs);
                     }, function(error) {
-                        global.winston.log('error', error);
+                        global.logger.log('error', error);
                         deferred.reject(error);
                     });
                 }
             });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -763,7 +763,7 @@ obj.document = {
             });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -787,7 +787,7 @@ obj.document = {
 
             collection.save(document, function(err, doc) {
                 if (err) {
-                    global.winston.log('error', err);
+                    global.logger.log('error', err);
                     deferred.reject(err);
                 } else {
                     //elastic search code.
@@ -800,7 +800,7 @@ obj.document = {
             });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -838,12 +838,12 @@ obj.document = {
                                 "code": 401,
                                 "message": "You do not have permission to delete"
                             };
-                            global.winston.log('error', err);
+                            global.logger.log('error', err);
                             deferred.reject(err);
                         }
                     }
                     if (err) {
-                        global.winston.log('error', err);
+                        global.logger.log('error', err);
                         deferred.reject(err);
                     } else if (doc.result.n !== 0) {
                         deferred.resolve(doc.result);
@@ -854,7 +854,7 @@ obj.document = {
             }
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -880,14 +880,14 @@ obj.document = {
                 w: 1 //returns the number of documents removed
             }, function(err, doc) {
                 if (err) {
-                    global.winston.log('error', err);
+                    global.logger.log('error', err);
                     deferred.reject(err);
                 }
                 deferred.resolve(doc.result);
             });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -925,7 +925,7 @@ obj.document = {
             });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -947,7 +947,7 @@ obj.document = {
             return readstream;
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -996,7 +996,7 @@ obj.document = {
             });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -1035,7 +1035,7 @@ obj.document = {
             });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -1093,12 +1093,12 @@ function _save(appId, collectionName, document) {
             doc = _deserialize(doc);
             deferredMain.resolve(doc);
         }, function(err) {
-            global.winston.log('error', err);
+            global.logger.log('error', err);
             deferredMain.reject(err);
         });
 
     } catch (err) {
-        global.winston.log('error', {
+        global.logger.log('error', {
             "error": String(err),
             "stack": new Error().stack
         });
@@ -1130,7 +1130,7 @@ function _serialize(document) {
         return document;
 
     } catch (err) {
-        global.winston.log('error', {
+        global.logger.log('error', {
             "error": String(err),
             "stack": new Error().stack
         });
@@ -1201,7 +1201,7 @@ function _deserialize(docs) {
         }
         return docs;
     } catch (err) {
-        global.winston.log('error', {
+        global.logger.log('error', {
             "error": String(err),
             "stack": new Error().stack
         });

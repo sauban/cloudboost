@@ -41,7 +41,7 @@ module.exports = function(app) {
                 appService.updateSettings(appId, category, settings).then(function(settings) {
                     return res.status(200).send(settings);
                 }, function(err) {
-                    global.winston.error(err);
+                    global.logger.error(err);
                     return res.status(500).send('Error');
                 });
 
@@ -49,7 +49,7 @@ module.exports = function(app) {
                 return res.status(401).send({status: 'Unauthorized'});
             }
         }, function(error) {
-            global.winston.error(error);
+            global.logger.error(error);
             return res.status(500).send('Cannot retrieve security keys.');
         });
 
@@ -74,7 +74,7 @@ module.exports = function(app) {
                 appService.getAllSettings(appId).then(function(settings) {
                     return res.status(200).send(settings);
                 }, function(err) {
-                    global.winston.error(err);
+                    global.logger.error(err);
                     return res.status(500).send('Error');
                 });
 
@@ -82,7 +82,7 @@ module.exports = function(app) {
                 return res.status(401).send({status: 'Unauthorized'});
             }
         }, function(error) {
-            global.winston.error(error);
+            global.logger.error(error);
             return res.status(500).send('Cannot retrieve security keys.');
         });
 

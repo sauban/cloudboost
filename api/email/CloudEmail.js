@@ -42,11 +42,11 @@ module.exports = function (app) {
                     res.status(401).send({ status: 'Unauthorized' });
                 }
             }, function (error) {
-                global.winston.error(error);
+                global.logger.error(error);
                 return res.status(400).send('Cannot retrieve security keys.');
             });
         } catch (e) {
-            global.winston.error(e);
+            global.logger.error(e);
             return res.status(500).send('Server error');
         }
 

@@ -42,21 +42,21 @@ obj.log = function(appId, actionName, url,sdk, checkReleaseRequest){
                         obj.blockApp(respbody.appId).then(function(){
                             
                         }, function(error){
-                            global.winston.error(error);
+                            global.logger.error(error);
                         });
                     }else{
                         obj.releaseApp(respbody.appId).then(function(){
                             
                         }, function(error){
-                            global.winston.error(error);
+                            global.logger.error(error);
                         });
                     }
                 }catch(e){
-                    global.winston.log('error',{"error":String(e),"stack": new Error().stack});
+                    global.logger.log('error',{"error":String(e),"stack": new Error().stack});
                     obj.releaseApp(body.appId).then(function(){
                         
                     }, function(error){
-                        global.winston.error(error);
+                        global.logger.error(error);
                     });
                 }
                 
@@ -65,7 +65,7 @@ obj.log = function(appId, actionName, url,sdk, checkReleaseRequest){
         
         });  
     } catch(err){           
-        global.winston.log('error',{"error":String(err),"stack": new Error().stack});               
+        global.logger.log('error',{"error":String(err),"stack": new Error().stack});               
     }      
 };
 
@@ -94,7 +94,7 @@ try{
      });
 
 } catch(err){           
-    global.winston.log('error',{"error":String(err),"stack": new Error().stack}); 
+    global.logger.log('error',{"error":String(err),"stack": new Error().stack}); 
     deferred.reject(err);              
 } 
    
@@ -114,7 +114,7 @@ try{
         deferred.resolve();
    });
 } catch(err){           
-    global.winston.log('error',{"error":String(err),"stack": new Error().stack}); 
+    global.logger.log('error',{"error":String(err),"stack": new Error().stack}); 
     deferred.reject(err);              
 }  
    
@@ -134,7 +134,7 @@ try{
     });
 
 } catch(err){           
-    global.winston.log('error',{"error":String(err),"stack": new Error().stack}); 
+    global.logger.log('error',{"error":String(err),"stack": new Error().stack}); 
     deferred.reject(err);              
 }           
 return deferred.promise;

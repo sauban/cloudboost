@@ -31,7 +31,7 @@ module.exports = function(app) {
                     
                     res.status(200).send({status : "success", message : "Cluster URL Updated to "+url});
                 }, function (err) {
-                    global.winston.error(err);
+                    global.logger.error(err);
                     res.status(500).send("Error, Cannot change the cluster URL at this time.");
                 });
             } else {
@@ -39,7 +39,7 @@ module.exports = function(app) {
                 res.status(401).send("Unauthorized");
             }
         }catch(e){
-            global.winston.error(e);
+            global.logger.error(e);
             res.send(500, "Internal Server Error");
         }
     });
@@ -49,7 +49,7 @@ module.exports = function(app) {
         serverService.getDBStatuses().then(function(){           
             return res.status(200).json({status:200, message : "Service Status : OK"});            
         },function(error){
-            global.winston.error(error);
+            global.logger.error(error);
             return res.status(400).send(error);
         });    
                   

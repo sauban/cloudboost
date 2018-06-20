@@ -29,7 +29,7 @@ module.exports = {
             return accessList;
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -51,7 +51,7 @@ module.exports = {
             });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -93,7 +93,7 @@ module.exports = {
             }
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -165,13 +165,13 @@ module.exports = {
                     deferred.resolve(obj);
                 }
             }, function (err) {
-                global.winston.error(err);
+                global.logger.error(err);
                 document._version = 0;
                 deferred.reject(false);
             });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });

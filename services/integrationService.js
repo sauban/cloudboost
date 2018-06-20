@@ -109,7 +109,7 @@ function notifyOnSlack(integrationSettings, document, appName) {
             ])
         }, function (err) {
             if(err){
-                global.winston.error(err);
+                global.logger.error(err);
             }
         });
         return true;

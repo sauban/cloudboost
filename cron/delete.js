@@ -28,7 +28,7 @@ function getMessages() {
                         getMessages();
                     }, function (err) {
                         deleteFromQueue(message);
-                        global.winston.log("error", {
+                        global.logger.log("error", {
                             "error": String(err),
                             "stack": new Error().stack
                         });
@@ -40,7 +40,7 @@ function getMessages() {
         });
 
     } catch (err) {
-        global.winston.log('error', {
+        global.logger.log('error', {
             "error": String(err),
             "stack": new Error().stack
         });
@@ -51,13 +51,13 @@ function deleteFromQueue(message) {
     try {
         global.queue.deleteMessage(config.deleteQueue, message[0].messageid, message[0].popreceipt, function (err, res) {
             if (err) {
-                global.winston.error(err);
+                global.logger.error(err);
             } else {
-                global.winston.info(res);
+                global.logger.info(res);
             }
         });
     } catch (err) {
-        global.winston.log('error', {
+        global.logger.log('error', {
             "error": String(err),
             "stack": new Error().stack
         });
@@ -84,7 +84,7 @@ function _delete(message) {
         });
 
     } catch (err) {
-        global.winston.log('error', {
+        global.logger.log('error', {
             "error": String(err),
             "stack": new Error().stack
         });
@@ -111,7 +111,7 @@ function _appDelete(appId, db) {
             deferred.resolve();
 
     } catch (err) {
-        global.winston.log('error', {
+        global.logger.log('error', {
             "error": String(err),
             "stack": new Error().stack
         });
@@ -139,7 +139,7 @@ function _tableDelete(appId, tableName, db) {
             deferred.resolve();
 
     } catch (err) {
-        global.winston.log('error', {
+        global.logger.log('error', {
             "error": String(err),
             "stack": new Error().stack
         });
@@ -166,7 +166,7 @@ function _columnDelete(appId, tableName, columnName, db) {
             deferred.resolve();
 
     } catch (err) {
-        global.winston.log('error', {
+        global.logger.log('error', {
             "error": String(err),
             "stack": new Error().stack
         });

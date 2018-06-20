@@ -99,7 +99,7 @@ module.exports = {
                                                 customService.save(appId, tableName, document, customHelper.getAccessList(req), isMasterKey).then(function (result) {
                                                     deferred.resolve(result);
                                                 }, function (error) {
-                                                    global.winston.error(error);
+                                                    global.logger.error(error);
                                                     deferred.reject(error);
                                                 });
                                             }, function (err) {

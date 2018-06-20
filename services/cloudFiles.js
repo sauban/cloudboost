@@ -40,7 +40,7 @@ module.exports = {
                     promises.push(mongoService.document.saveFileStream(appId, fileStream, fileObj._id, contentType));
                     promises.push(customService.save(appId, collectionName, fileObj, accessList, isMasterKey));
                 } catch (error) {
-                    global.winston.error(error);
+                    global.logger.error(error);
                 }
                 q.all(promises).then(function(array) {
                     deferred.resolve(array[1]);
@@ -52,7 +52,7 @@ module.exports = {
             });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -86,7 +86,7 @@ module.exports = {
             });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -126,7 +126,7 @@ module.exports = {
             });
 
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -144,7 +144,7 @@ module.exports = {
                 deferred.reject(err);
             });
         } catch (err) {
-            global.winston.log('error', {
+            global.logger.log('error', {
                 "error": String(err),
                 "stack": new Error().stack
             });
@@ -207,7 +207,7 @@ function _processImage(appId, fileName, resizeWidth, resizeHeight, cropX, cropY,
         });
 
     } catch (err) {
-        global.winston.log('error', {
+        global.logger.log('error', {
             "error": String(err),
             "stack": new Error().stack
         });

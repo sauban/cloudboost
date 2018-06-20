@@ -80,7 +80,7 @@ var userService = {
 			});
 
 		} catch (err) {
-			global.winston.log('error', {
+			global.logger.log('error', {
 				"error": String(err),
 				"stack": new Error().stack
 			});
@@ -118,7 +118,7 @@ var userService = {
 					}]).then(function () {
 						deferred.resolve(user); //returns no. of items matched
 					}, function (error) {
-						global.winston.error(error);
+						global.logger.error(error);
 						deferred.reject(error);
 					});
 				} else {
@@ -129,7 +129,7 @@ var userService = {
 			});
 
 		} catch (err) {
-			global.winston.log('error', {
+			global.logger.log('error', {
 				"error": String(err),
 				"stack": new Error().stack
 			});
@@ -175,7 +175,7 @@ var userService = {
 			});
 
 		} catch (err) {
-			global.winston.log('error', {
+			global.logger.log('error', {
 				"error": String(err),
 				"stack": new Error().stack
 			});
@@ -212,7 +212,7 @@ var userService = {
 					}]).then(function () {
 						deferred.resolve(); //returns no. of items matched
 					}, function (error) {
-						global.winston.error(error);
+						global.logger.error(error);
 						deferred.reject(error);
 					});
 				} else {
@@ -223,7 +223,7 @@ var userService = {
 			});
 
 		} catch (err) {
-			global.winston.log('error', {
+			global.logger.log('error', {
 				"error": String(err),
 				"stack": new Error().stack
 			});
@@ -292,7 +292,7 @@ var userService = {
 			});
 
 		} catch (err) {
-			global.winston.log('error', {
+			global.logger.log('error', {
 				"error": String(err),
 				"stack": new Error().stack
 			});
@@ -341,7 +341,7 @@ var userService = {
 				});
 
 		} catch (err) {
-			global.winston.log('error', {
+			global.logger.log('error', {
 				"error": String(err),
 				"stack": new Error().stack
 			});
@@ -426,7 +426,7 @@ var userService = {
 			});
 
 		} catch (err) {
-			global.winston.log('error', {
+			global.logger.log('error', {
 				"error": String(err),
 				"stack": new Error().stack
 			});
@@ -498,7 +498,7 @@ var userService = {
 			});
 
 		} catch (err) {
-			global.winston.log('error', {
+			global.logger.log('error', {
 				"error": String(err),
 				"stack": new Error().stack
 			});

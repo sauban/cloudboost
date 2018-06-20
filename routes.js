@@ -37,7 +37,7 @@ module.exports = function (app) {
     require('./cron/expire.js');
 
 
-    global.winston.info('+++++++++++ API Status : OK ++++++++++++++++++');
+    global.logger.info('+++++++++++ API Status : OK ++++++++++++++++++');
 
     app.use(function (req, res) {
         res.status(404).json({
@@ -47,8 +47,8 @@ module.exports = function (app) {
     });
 
     app.use(function (err, req, res) {
-        global.winston.error("FATAL : Internal Server Error");
-        global.winston.error(err);
+        global.logger.error("FATAL : Internal Server Error");
+        global.logger.error(err);
         if(config.env === 'development'){
             res.status(500).json({
                 message: err.message,

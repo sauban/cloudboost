@@ -80,7 +80,7 @@ module.exports = {
 		} catch (e) {
 
 
-			global.winston.log('error', {
+			global.logger.log('error', {
 				"error": String(e),
 				"stack": new Error().stack
 			});
@@ -151,7 +151,7 @@ module.exports = {
 			}
 			return deferred.promise;
 		} catch (e) {
-			global.winston.log('error', {
+			global.logger.log('error', {
 				"error": String(e),
 				"stack": new Error().stack
 			});
@@ -198,7 +198,7 @@ module.exports = {
 			}
 
 		} catch (e) {
-			global.winston.log('error', {
+			global.logger.log('error', {
 				"error": String(e),
 				"stack": new Error().stack
 			});
@@ -228,7 +228,7 @@ module.exports = {
 
 						collection.save(docs[0], function (err) {
 							if (err) {
-								global.winston.error(err);
+								global.logger.error(err);
 								deferred.reject("Error, cannot change the cluster URL.");
 							} else {
 								config.myURL = url;
@@ -242,7 +242,7 @@ module.exports = {
 			});
 
 		} catch (e) {
-			global.winston.log('error', {
+			global.logger.log('error', {
 				"error": String(e),
 				"stack": new Error().stack
 			});

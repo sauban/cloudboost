@@ -14,7 +14,7 @@ module.exports = {
         try {
             return config.mongoClient.db(appId);
         } catch (e) {
-            global.winston.log('error', { "error": String(e), "stack": new Error().stack });
+            global.logger.log('error', { "error": String(e), "stack": new Error().stack });
         }
 
     },
@@ -47,7 +47,7 @@ module.exports = {
 
             return replSet;
         } catch (e) {
-            global.winston.log('error', { "error": String(e), "stack": new Error().stack });
+            global.logger.log('error', { "error": String(e), "stack": new Error().stack });
             return null;
         }
     },
@@ -68,7 +68,7 @@ module.exports = {
             });
 
         } catch (e) {
-            global.winston.log('error', { "error": String(e), "stack": new Error().stack });
+            global.logger.log('error', { "error": String(e), "stack": new Error().stack });
             deferred.reject(e);
         }
         return deferred.promise;

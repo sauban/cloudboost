@@ -104,7 +104,7 @@ module.exports = function (app) {
                     appService.deleteTable(appId, tableName).then(function (table) {
                         res.status(200).send(table);
                     }, function (error) {
-                        global.winston.error(error);
+                        global.logger.error(error);
                         res.status(500).send('Cannot delete table at this point in time. Please try again later.');
                     });
                 } else return res.status(401).send({ status: 'Unauthorized' });
@@ -185,7 +185,7 @@ module.exports = function (app) {
                     appService.getAllTables(appId).then(function (tables) {
                         return res.status(200).send(tables);
                     }, function (err) {
-                        global.winston.error(err);                        
+                        global.logger.error(err);                        
                         return res.status(500).send('Error');
                     });
                 } else return res.status(401).send({ status: 'Unauthorized' });
@@ -206,7 +206,7 @@ module.exports = function (app) {
                 });
 
             }, function (err) {
-                global.winston.error(err);
+                global.logger.error(err);
                 return res.status(500).send('Error');
             });
         }
@@ -231,18 +231,18 @@ module.exports = function (app) {
                         });
                         res.end(JSON.stringify(data));
                     }, function (err) {
-                        global.winston.error(err);
+                        global.logger.error(err);
                         res.status(500).send("Error");
                     });
                 } else {
                     res.status(401).send({ status: 'Unauthorized' });
                 }
             }, function (error) {
-                global.winston.error(error);
+                global.logger.error(error);
                 return res.status(500).send('Cannot retrieve security keys.');
             });
         } catch (e) {
-            global.winston.error(e);
+            global.logger.error(e);
         }
     });
 
@@ -266,7 +266,7 @@ module.exports = function (app) {
                                 res.status(500).json({ success: false });
                             }
                         }, function (err) {
-                            global.winston.error(err);
+                            global.logger.error(err);
                             res.status(500).send("Error");
                         });
                     }
@@ -274,11 +274,11 @@ module.exports = function (app) {
                     res.status(401).send({ status: 'Unauthorized' });
                 }
             }, function (error) {
-                global.winston.error(error);
+                global.logger.error(error);
                 return res.status(500).send('Cannot retrieve security keys.');
             });
         } catch (e) {
-            global.winston.error(e);
+            global.logger.error(e);
             return res.status(500).send('Internal server error occurred');
         }
     });
@@ -308,11 +308,11 @@ module.exports = function (app) {
                     res.status(200).json(data);
                 } else { res.status(200).send(data); }
             }, function (err) {
-                global.winston.error(err);
+                global.logger.error(err);
                 res.status(500).send(err);
             });
         }, function (error) {
-            global.winston.error(error);
+            global.logger.error(error);
             return res.status(500).send('Cannot retrieve security keys.');
         });
     });

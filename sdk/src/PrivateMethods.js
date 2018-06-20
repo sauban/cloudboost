@@ -1,33 +1,8 @@
 import CB from './CB';
-import { log } from 'util';
+/* eslint-disable no-useless-escape */
 
 if (typeof localStorage === "undefined" || localStorage === null) {
     var localStorage = require('localStorage');
-}
-
-function lsWrapper() {
-    if (typeof localStorage === "undefined" || localStorage === null) {
-        var localStorage = require('localStorage');
-        var nodeLocalStorage = true;
-    }
-
-    return {
-        setItem: function(key, value){
-            if(nodeLocalStorage){
-                localStorage.setItem(key, value).catch(errorCB);
-            } else {
-                localStorage.setItem(key, value);
-            }
-        },
-
-        removeItem: function (key) {
-            if(nodeLocalStorage) {
-                localStorage.getItem(key);
-            }
-        }
-
-    };
-    
 }
 
 
@@ -88,7 +63,7 @@ CB.toJSON = function(thisObj) {
             //then check if this is an array of CloudObjects, if yes, then serialize every CloudObject.
             if (doc[key][0] && (doc[key][0]instanceof CB.CloudObject || doc[key][0]instanceof CB.CloudFile || doc[key][0]instanceof CB.CloudGeoPoint || doc[key][0]instanceof CB.Column)) {
                 var arr = [];
-                for (var i = 0; i < doc[key].length; i++) {
+                for (let i = 0; i < doc[key].length; i++) {
                     arr.push(CB.toJSON(doc[key][i]));
                 }
                 doc[key] = arr;
@@ -156,7 +131,7 @@ CB.fromJSON = function(data, thisObj) {
         if (thisObj instanceof Object) 
             id = thisObj._id || thisObj.id;
         if (!thisObj || data['_id'] === id) {
-            var id = null;
+            let id = null;
             var latitude = null;
             var longitude = null;
             var name = null;
@@ -246,13 +221,6 @@ CB._validate = function() {
         throw "AppKey is null. Please use CB.CloudApp.init to initialize your app.";
     }
 };
-
-function _all(arrayOfPromises) {
-    //this is simplilar to Q.all for jQuery promises.
-    return jQuery.when.apply(jQuery, arrayOfPromises).then(function() {
-        return Array.prototype.slice.call(arguments, 0);
-    });
-}
 
 CB._clone = function(obj, id, longitude, latitude, name) {
     var n_obj = {};
@@ -394,16 +362,6 @@ CB._modified = function(thisObj, columnName) {
         thisObj.document._modifiedColumns.push(columnName);
     }
 };
-
-function trimStart(character, string) {
-    var startIndex = 0;
-
-    while (string[startIndex] === character) {
-        startIndex++;
-    }
-
-    return string.substr(startIndex);
-}
 
 CB._columnNameValidation = function(columnName) {
     if (!columnName) //if table name is empty
@@ -673,7 +631,7 @@ CB._getCookie = function(name) {
     } else {
         // Sorry! No Web Storage support..
         if (typeof(document) !== 'undefined') {
-            var name = name + "=";
+            let name = name + "=";
             var ca = document.cookie.split(';');
             for (var i = 0; i < ca.length; i++) {
                 var c = ca[i];
@@ -721,8 +679,7 @@ CB._createCookie = function(name, content, expires) {
         localStorage.setItem(name + "_expires", d);
     } else {
         if (typeof(document) !== 'undefined') {
-
-            var expires = "expires=" + d.toUTCString();
+            expires = "expires=" + d.toUTCString();
             document.cookie = +name + "=" + content.toString() + "; " + expires;
         }
     }
@@ -759,7 +716,6 @@ CB._getThisBrowserName = function() {
         // store navigator properties to use later
         var userAgent = 'navigator' in window && 'userAgent' in navigator && navigator.userAgent.toLowerCase() || '';
         var vendor = 'navigator' in window && 'vendor' in navigator && navigator.vendor.toLowerCase() || '';
-        var appVersion = 'navigator' in window && 'appVersion' in navigator && navigator.appVersion.toLowerCase() || '';
 
         var is = {};
 

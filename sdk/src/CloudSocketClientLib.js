@@ -1,3 +1,4 @@
+/* eslint-disable  */
 if (!CB._isNode) {
     //Socket.io Client library
     (function(f) {

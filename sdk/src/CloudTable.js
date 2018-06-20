@@ -88,8 +88,8 @@ class CloudTable {
         }
       if (Object.prototype.toString.call(column) === '[object Object]') {
             if(CB._columnValidation(column, this)){
-                var arr = [];
-                for(var i=0;i<this.columns.length;i++){
+                let arr = [];
+                for(let i=0;i<this.columns.length;i++){
                     if(this.columns[i].name !== column.name)
                         arr.push(this.columns[i]);
                 }
@@ -97,12 +97,12 @@ class CloudTable {
             }
 
       } else if (Object.prototype.toString.call(column) === '[object Array]') {
-          var arr = [];
-          for(var i=0; i<column.length; i++){
+          let arr = [];
+          for(let i=0; i<column.length; i++){
             if(CB._columnValidation(column[i], this)){
-                for(var i=0;i<this.columns.length;i++){
-                    if(this.columns[i].name !== column[i].name)
-                        arr.push(this.columns[i]);
+                for(var ind=0;i<this.columns.length;ind++){
+                    if(this.columns[ind].name !== column[ind].name)
+                        arr.push(this.columns[ind]);
                 }
                 this.document.columns = arr;
             }
@@ -135,7 +135,7 @@ class CloudTable {
 
         var url = CB.apiUrl + '/app/' + CB.appId + "/" +this.name;
 
-        CB._request('PUT',url,params,true).then(function(response){
+        CB._request('PUT',url,params,true).then(function(){
             if (callback) {
                 callback.success(thisObj);
             } else {
@@ -172,8 +172,6 @@ class CloudTable {
           key:CB.appKey,
           data:CB.toJSON(thisObj)
       });
-
-      var thisObj = this;
 
       var url = CB.apiUrl +'/app/' + CB.appId + "/" + thisObj.document.name;
 

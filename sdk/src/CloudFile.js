@@ -3,6 +3,7 @@ import CB from './CB';
  CloudFiles
  */
 
+ /*eslint-disable no-useless-escape */
 CB.CloudFile = CB.CloudFile || function(file, data, type, path) {
     if (!path)
         path = '/' + CB.appId;
@@ -199,7 +200,7 @@ CB.CloudFile.prototype.save = function(callback) {
         throw "You cannot save a file which is null";
 
     if (!this.data) {
-        var params;
+        let params;
         try {
             if (!window) {
                 params = {};
@@ -221,9 +222,9 @@ CB.CloudFile.prototype.save = function(callback) {
             params['key'] = CB.appKey;
             params['fileObj'] = JSON.stringify(CB.toJSON(thisObj));
         }
-        var url = CB.apiUrl + '/file/' + CB.appId;
+        let url = CB.apiUrl + '/file/' + CB.appId;
 
-        var uploadProgressCallback = null;
+        let uploadProgressCallback = null;
 
         if (callback && callback.uploadProgress) {
             uploadProgressCallback = callback.uploadProgress;
@@ -244,10 +245,10 @@ CB.CloudFile.prototype.save = function(callback) {
             }
         });
     } else {
-        var data = this.data;
-        var params = JSON.stringify({data: data, fileObj: CB.toJSON(this), key: CB.appKey});
-        var url = CB.apiUrl + '/file/' + CB.appId;
-        var uploadProgressCallback = null;
+        let data = this.data;
+        let params = JSON.stringify({data: data, fileObj: CB.toJSON(this), key: CB.appKey});
+        let url = CB.apiUrl + '/file/' + CB.appId;
+        let uploadProgressCallback = null;
 
         if (callback && callback.uploadProgress) {
             uploadProgressCallback = callback.uploadProgress;
@@ -296,7 +297,7 @@ CB.CloudFile.prototype.delete = function(callback) {
     var params = JSON.stringify({fileObj: CB.toJSON(thisObj), key: CB.appKey, method: "PUT"});
     var url = CB.apiUrl + '/file/' + CB.appId + '/' + this.document._id;
 
-    CB._request('PUT', url, params).then(function(response) {
+    CB._request('PUT', url, params).then(function() {
         thisObj.url = null;
         if (callback) {
             callback.success(thisObj);

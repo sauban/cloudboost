@@ -3,4 +3,6 @@ bower_components/
 .vscode/
 docs/
 sdk/dist/
-test/test.js
+sdk/entry.js
+test/
+page-templates/

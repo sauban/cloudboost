@@ -2,6 +2,8 @@ import CB from './CB';
 /*
  Column.js
  */
+/* eslint-disable no-useless-escape */
+
 class Column {
   constructor(columnName, dataType, required, unique){
      this.document = {};

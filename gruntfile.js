@@ -1,30 +1,30 @@
 ﻿﻿/*
-#     CloudBoost - Core Engine that powers Bakend as a Service
-#     (c) 2014 HackerBay, Inc. 
-#     CloudBoost may be freely distributed under the Apache 2 License
-*/
+ *  CloudBoost - Core Engine that powers Bakend as a Service
+ *     (c) 2014 HackerBay, Inc. 
+ *     CloudBoost may be freely distributed under the Apache 2 License
+ */
 
 
 //Tshis grunt file is used to package SDK tests. 
 module.exports = function (grunt) {
-   
+
     var pkg = require("./package.json");
 
     var pjson = grunt.file.readJSON('package.json');
 
     var config = {
         bumpup: 'package.json',
-        env : {
-          build : {
-                CLOUDBOOST_VERSION : pkg.version 
+        env: {
+            build: {
+                CLOUDBOOST_VERSION: pkg.version
             },
-         },
-         eslint : {
-            target:["*.js","**/*.js","api/**/*.js","!node_modules/**/*.js"]
-         },
+        },
+        eslint: {
+            target: ["*.js", "**/*.js", "api/**/*.js", "!node_modules/**/*.js"]
+        },
 
         concat: {
-            
+
             test: {
                 // the files to concatenate
                 src: [
@@ -108,9 +108,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-bumpup');
     grunt.loadNpmTasks("grunt-env");
     grunt.loadNpmTasks("grunt-eslint");
-    
-    grunt.registerTask('default', ['bumpup', "env:build",'concat:test']);
+
+    grunt.registerTask('default', ['bumpup', "env:build", 'concat:test']);
     grunt.registerTask('release', ['concat:sdkRelease', 'uglify:uglifyRelease']);
 };
-
-

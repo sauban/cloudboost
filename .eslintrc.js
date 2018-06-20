@@ -4,10 +4,9 @@ module.exports = {
         "es6": true,
         "node": true
     },
-    "plugins": ["mocha"],
     "parser": "babel-eslint",
     "parserOptions": {
-        "ecmaVersion": 6,
+        "ecmaVersion": 7,
         "sourceType": "module",
         "ecmaFeatures": {
           "modules": true
@@ -15,6 +14,8 @@ module.exports = {
       },
     "extends": "eslint:recommended",
     "rules": {
+        "no-useless-escape": 0,
+        "no-irregular-whitespace": 0,
         "semi": [
             "error",
             "always"

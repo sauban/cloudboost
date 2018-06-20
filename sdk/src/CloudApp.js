@@ -1,5 +1,4 @@
 
-import localforage from 'localforage';
 import CB from './CB';
 /*
  CloudApp
@@ -104,11 +103,11 @@ Object.defineProperty(CloudApp.prototype, 'isConnected', {
     }
 });
 
-function _confirmConnection(callback) {
+function _confirmConnection() {
     var URL = CB.apiUrl + '/status';
-    CB._request('GET', URL).then(function(res) {
+    CB._request('GET', URL).then(function() {
         CB.CloudApp._isConnected = true;
-    }, function(err) {
+    }, function() {
         CB.CloudApp._isConnected = false;
     });
 }

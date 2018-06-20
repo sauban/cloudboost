@@ -6,6 +6,7 @@ CB.CloudPush={};
 CB.CloudPush.send = function(data,query,callback) {
     
     var tableName="Device"; 
+    var pushQuery;
 
     if (!CB.appId) {
         throw "CB.appId is null.";
@@ -24,26 +25,26 @@ CB.CloudPush.send = function(data,query,callback) {
 
     //Query Set
     if(query && Object.prototype.toString.call(query)=="[object Object]" && typeof query.success !== 'function'){
-        var pushQuery=query;
+        pushQuery=query;
     }
     //Channels List
     if(query && Object.prototype.toString.call(query)=="[object Array]" && typeof query.success !== 'function'){
-        var pushQuery = new CB.CloudQuery(tableName);
+        pushQuery = new CB.CloudQuery(tableName);
         pushQuery.containedIn('channels', query);       
     }
     //Single Channel    
     if(query && Object.prototype.toString.call(query)=="[object String]" && typeof query.success !== 'function'){
-        var pushQuery = new CB.CloudQuery(tableName);
+        pushQuery = new CB.CloudQuery(tableName);
         pushQuery.containedIn('channels', [query]);     
     }
     //when query param is callback
     if(query && Object.prototype.toString.call(query)=="[object Object]" && typeof query.success === 'function'){
         callback=query;
-        var pushQuery = new CB.CloudQuery(tableName);
+        pushQuery = new CB.CloudQuery(tableName);
     } 
     //No query param
     if(!query){
-        var pushQuery = new CB.CloudQuery(tableName);
+        pushQuery = new CB.CloudQuery(tableName);
     }
 
     var params=JSON.stringify({
@@ -98,7 +99,7 @@ CB.CloudPush.enableWebNotifications = function(callback) {
     //Check document
     if(typeof(document) !== 'undefined'){
 
-        CB.CloudPush._requestBrowserNotifications().then(function(response){
+        CB.CloudPush._requestBrowserNotifications().then(function(){
 
             if('serviceWorker' in navigator) {
                 return navigator.serviceWorker.register('serviceWorker.js',{scope: './'});
@@ -130,7 +131,7 @@ CB.CloudPush.enableWebNotifications = function(callback) {
                      
 
             CB.CloudPush._addDevice(CB._getThisBrowserName(), subscription.endpoint, browserKey, authKey, {
-                success : function(obj){
+                success : function(){
                     if (callback) {
                         callback.success();
                     } else {
@@ -196,7 +197,7 @@ CB.CloudPush.disableWebNotifications = function(callback) {
                 //Remove Device Objects
                 promises.push(CB.CloudPush._deleteDevice(CB._getThisBrowserName(), subscription.endpoint));        
 
-                CB.Promise.all(promises).then(function(successful) {
+                CB.Promise.all(promises).then(function() {
                     if (callback) {
                         callback.success();
                     } else {

@@ -37,12 +37,14 @@ CB.CloudUser.getCurrentUser = function(callback) {
     CB._request('POST', url, params).then(function(response) {
         var user = response;
         if (response) {
+            /* eslint-disable no-empty */
             try {
                 user = new CB.CloudUser();
                 CB.fromJSON(JSON.parse(response), user);
                 CB.CloudUser.current = user;
                 CB.CloudUser._setCurrentUser(user);
-            } catch (e) {}
+            } catch (e) {} 
+            /* eslint-enable no-empty */
         }
 
         if (callback) {
@@ -115,7 +117,7 @@ CB.CloudUser.resetPassword = function(email, callback) {
 
     var url = CB.apiUrl + "/user/" + CB.appId + "/resetPassword";
 
-    CB._request('POST', url, params).then(function(response) {
+    CB._request('POST', url, params).then(function() {
         if (callback) {
             callback.success();
         } else {
@@ -344,12 +346,14 @@ CB.CloudUser.authenticateWithProvider = function(dataJson, callback) {
     CB._request('POST', url, params).then(function(response) {
         var user = response;
         if (response) {
+            /* eslint-disable no-empty */
             try {
                 user = new CB.CloudUser();
                 CB.fromJSON(JSON.parse(response), user);
                 CB.CloudUser.current = user;
                 CB.CloudUser._setCurrentUser(user);
             } catch (e) {}
+            /* eslint-enable no-empty */
         }
 
         if (callback) {

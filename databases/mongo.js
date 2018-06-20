@@ -6,7 +6,6 @@
 
 const q = require('q');
 var _ = require('underscore');
-var util = require('../helpers/util.js');
 var Grid = require('gridfs-stream');
 var config = require('../config/config');
 
@@ -101,14 +100,14 @@ obj.document = {
                 var pr = [];
                 var r_include = [];
                 for (var i = 0; i < join.length; i++) {
-                    for (var k = 0; k < include.length; k++) {
+                    for (let k = 0; k < include.length; k++) {
                         if (join[i] === include[k].split('.')[0])
                             r_include.push(include[k]);
                         }
-                    for (var k = 0; k < r_include.length; k++) {
+                    for (let k = 0; k < r_include.length; k++) {
                         r_include[k] = r_include[k].split('.').splice(1, 1).join('.');
                     }
-                    for (var k = 0; k < r_include.length; k++) {
+                    for (let k = 0; k < r_include.length; k++) {
                         if (r_include[k] === join[i] || r_include[k] === '') {
                             r_include.splice(k, 1);
                             k = k - 1;
@@ -133,7 +132,7 @@ obj.document = {
                                 var rel = null;
                                 if (relationalDoc.constructor === Array) {
                                     for (var m = 0; m < relationalDoc.length; m++) {
-                                        for (var k = 0; k < arrayOfDocs[j].length; k++) {
+                                        for (let k = 0; k < arrayOfDocs[j].length; k++) {
                                             if (arrayOfDocs[j][k]._id.toString() === relationalDoc[m]._id.toString()) {
                                                 rel = arrayOfDocs[j][k];
                                                 break;
@@ -144,7 +143,7 @@ obj.document = {
                                         }
                                     }
                                 } else {
-                                    for (var k = 0; k < arrayOfDocs[j].length; k++) {
+                                    for (let k = 0; k < arrayOfDocs[j].length; k++) {
                                         if (arrayOfDocs[j][k]._id.toString() === relationalDoc._id.toString()) {
                                             rel = arrayOfDocs[j][k];
                                             break;
@@ -245,7 +244,7 @@ obj.document = {
 
             } else {
 
-                old_query = query.$or;
+                let old_query = query.$or;
                 if (old_query[0].$include) {
                     if (old_query[0].$include.length > 0) {
                         include = include.concat(old_query[0].$include);
@@ -497,7 +496,7 @@ obj.document = {
                 _id: documentId
             }, document, {
                 upsert: true
-            }, function(err, list, status) {
+            }, function(err, list) {
                 if (err) {
                     global.winston.log('error', err);
                     deferred.reject(err);
@@ -518,7 +517,7 @@ obj.document = {
         return deferred.promise;
     },
 
-    count: function(appId, collectionName, query, limit, skip, accessList, isMasterKey) {
+    count: function(appId, collectionName, query, limit, skip) {
         var deferred = q.defer();
 
         try {
@@ -560,7 +559,7 @@ obj.document = {
         return deferred.promise;
     },
 
-    distinct: function(appId, collectionName, onKey, query, select, sort, limit, skip, accessList, isMasterKey) {
+    distinct: function(appId, collectionName, onKey, query, select, sort, limit, skip) {
 
         var deferred = q.defer();
 
@@ -774,7 +773,7 @@ obj.document = {
         return deferred.promise;
     },
 
-    _insert: function(appId, collectionName, document, accessList, isMasterKey) {
+    _insert: function(appId, collectionName, document) {
 
         var deferred = q.defer();
 
@@ -811,7 +810,7 @@ obj.document = {
         return deferred.promise;
     },
 
-    delete: function(appId, collectionName, document, accessList, isMasterKey) {
+    delete: function(appId, collectionName, document) {
 
         var documentId = document._id;
         var deferred = q.defer();
@@ -867,7 +866,6 @@ obj.document = {
 
     deleteByQuery: function(appId, collectionName, query) {
 
-        var _self = obj;
         var deferred = q.defer();
 
         try {
@@ -1045,7 +1043,7 @@ obj.document = {
         }
 
         return deferred.promise;
-    },
+    }
     /**********************END OF GRIDFS FILES***************************************************************/
 };
 
@@ -1064,13 +1062,13 @@ function _sanitizeQuery(query) {
     }
 
     if (query && query.$or && query.$or.length > 0) {
-        for (var i = 0; i < query.$or.length; ++i) {
+        for (let i = 0; i < query.$or.length; ++i) {
             query.$or[i] = _sanitizeQuery(query.$or[i]);
         }
     }
 
     if (query && query.$and && query.$and.length > 0) {
-        for (var i = 0; i < query.$and.length; ++i) {
+        for (let i = 0; i < query.$and.length; ++i) {
             query.$and[i] = _sanitizeQuery(query.$and[i]);
         }
     }
@@ -1090,7 +1088,6 @@ function _save(appId, collectionName, document) {
         }
         document = _serialize(document);
         //column key array to track sub documents.
-        var columns = [];
         obj.document._update(appId, collectionName, document).then(function(doc) {
             
             doc = _deserialize(doc);
@@ -1105,14 +1102,14 @@ function _save(appId, collectionName, document) {
             "error": String(err),
             "stack": new Error().stack
         });
-        deferred.reject(err);
+        deferredMain.reject(err);
     }
     return deferredMain.promise;
 }
 
 function _serialize(document) {
     try {
-        for (key in document) {
+        for (let key in document) {
             if (document[key]) {
                 if (document[key].constructor === Object && document[key]._type) {
                     if (document[key]._type === 'point') {
@@ -1157,8 +1154,8 @@ function _deserialize(docs) {
                             }
                         } else if (document[key].constructor === Array && document[key][0] && document[key][0].type && document[key][0].type === 'Point') {
                             var arr = [];
-                            for (var j = 0; j < document[key].length; j++) {
-                                var obj = {};
+                            for (let j = 0; j < document[key].length; j++) {
+                                let obj = {};
                                 obj._type = 'point';
                                 obj.coordinates = document[key][j].coordinates;
                                 obj.latitude = obj.coordinates[1];
@@ -1173,12 +1170,12 @@ function _deserialize(docs) {
                 docs[i] = document;
             }
         } else {
-            var document = docs;
+            let document = docs;
             for (var key in document) {
                 if (document[key]) {
                     if (document[key].constructor === Object && document[key].type) {
                         if (document[key].type === 'Point') {
-                            var obj = {};
+                            let obj = {};
                             obj._type = 'point';
                             obj.coordinates = document[key].coordinates;
                             obj.latitude = obj.coordinates[1];
@@ -1186,9 +1183,9 @@ function _deserialize(docs) {
                             document[key] = obj;
                         }
                     } else if (document[key].constructor === Array && document[key][0] && document[key][0].type && document[key][0].type === 'Point') {
-                        var arr = [];
-                        for (var j = 0; j < document[key].length; j++) {
-                            var obj = {};
+                        let arr = [];
+                        for (let j = 0; j < document[key].length; j++) {
+                            let obj = {};
                             obj._type = 'point';
                             obj.coordinates = document[key][j].coordinates;
                             obj.latitude = obj.coordinates[1];
@@ -1203,157 +1200,6 @@ function _deserialize(docs) {
             docs = document;
         }
         return docs;
-    } catch (err) {
-        global.winston.log('error', {
-            "error": String(err),
-            "stack": new Error().stack
-        });
-    }
-}
-
-function _checkBasicDataTypes(data, datatype, columnName, tableName) {
-
-    try {
-        if (Object.prototype.toString.call(data) === '[object Array]') {
-            for (var i = 0; i < data.length; i++) {
-
-                var res = _checkDataTypeUtil(data[i], datatype, columnName, tableName);
-
-                if (res !== '')
-                    return res;
-                }
-            } else {
-            return _checkDataTypeUtil(data, datatype, columnName, tableName);
-        }
-
-        return ''; //success!
-
-    } catch (err) {
-        global.winston.log('error', {
-            "error": String(err),
-            "stack": new Error().stack
-        });
-    }
-}
-
-function _checkDataTypeUtil(data, datatype, columnName, tableName) {
-
-    try {
-        var isValid = true;
-        if (data && datatype === 'Text' && typeof data !== 'string') {
-            isValid = false;
-        }
-
-        if (data && datatype === 'Email' && typeof data !== 'string' && util.isEmailValid(data)) {
-            isValid = false;
-        }
-
-        if (data && datatype === 'URL' && typeof data !== 'string' && util.isEmailValid(data)) {
-            isValid = false;
-        }
-
-        if (data && datatype === 'Password' && typeof data !== 'string') {
-            isValid = false;
-        }
-
-        if (data && datatype === 'Boolean' && typeof data !== 'boolean') {
-            isValid = false;
-        }
-
-        if (data && datatype === 'DateTime' && new Date(data).toString() === 'Invalid Date') {
-            isValid = false;
-        }
-
-        if (data && datatype === 'ACL' && typeof data !== 'object' && doc[key].read && doc[key].write) {
-            isValid = false;
-        }
-
-        if (data && datatype === 'Object' && typeof data !== 'object') {
-            isValid = false;
-        }
-
-        if (data && datatype === 'File' && (data._type && data._type !== 'file')) {
-            isValid = false;
-        }
-
-        if (!isValid) {
-            return 'Invalid data in column ' + columnName + ' of table ' + tableName + '. It should be of type ' + datatype;
-        }
-
-        return ''; //success!
-
-    } catch (err) {
-        global.winston.log('error', {
-            "error": String(err),
-            "stack": new Error().stack
-        });
-    }
-}
-
-function _isBasicDataType(dataType) {
-    try {
-        var types = [
-            'Object',
-            'ACL',
-            'DateTime',
-            'Boolean',
-            'Password',
-            'URL',
-            'Email',
-            'Text',
-            'File'
-        ];
-
-        if (types.indexOf(dataType) > -1) {
-            return true;
-        }
-
-        return false;
-
-    } catch (err) {
-        global.winston.log('error', {
-            "error": String(err),
-            "stack": new Error().stack
-        });
-    }
-}
-
-function clone(obj) {
-    try {
-        var copy;
-
-        // Handle the 3 simple types, and null or undefined
-        if (null == obj || "object" != typeof obj)
-            return obj;
-
-        // Handle Date
-        if (obj instanceof Date) {
-            copy = new Date();
-            copy.setTime(obj.getTime());
-            return copy;
-        }
-
-        // Handle Array
-        if (obj instanceof Array) {
-            copy = [];
-            for (var i = 0, len = obj.length; i < len; i++) {
-                copy[i] = clone(obj[i]);
-            }
-            return copy;
-        }
-
-        // Handle Object
-        if (obj instanceof Object) {
-            copy = {};
-            for (var attr in obj) {
-                if (obj.hasOwnProperty(attr))
-                    copy[attr] = clone(obj[attr]);
-                }
-            return copy;
-        }
-
-        throw new Error("Unable to copy obj! Its type isn't supported.");
-
     } catch (err) {
         global.winston.log('error', {
             "error": String(err),

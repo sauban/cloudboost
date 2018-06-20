@@ -1,6 +1,5 @@
 import CB from './CB';
 import axios from 'axios';
-var os = require('os');
 /*
  CloudEvent
  */
@@ -75,7 +74,7 @@ CloudEvent._os = function() {};
 function _getBrowser() {
     // Opera 8.0+
     try {
-        var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+        var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0; //eslint-disable-line no-undef
 
         // Firefox 1.0+
         var isFirefox = typeof InstallTrigger !== 'undefined';
@@ -83,7 +82,7 @@ function _getBrowser() {
         // Safari 3.0+ "[object HTMLElementConstructor]"
         var isSafari = /constructor/i.test(window.HTMLElement) || (function(p) {
             return p.toString() === "[object SafariRemoteNotification]";
-        })(!window['safari'] || safari.pushNotification);
+        })(!window['safari'] || safari.pushNotification); //eslint-disable-line no-undef
 
         // Internet Explorer 6-11
         var isIE =/*@cc_on!@*/
@@ -125,7 +124,7 @@ function _getLocation(obj, callback) {
         obj['loc'] = data.data.loc;
         callback.success(obj);
 
-    }).catch(function(err) {
+    }).catch(function() {
         obj['message'] = 'App is Offline';
         callback.success(obj);
     });

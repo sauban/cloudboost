@@ -39,7 +39,7 @@ CB.ACL.prototype.setUserWriteAccess = function(userId, value) { //for setting th
 
     if (value) { //If asked to allow user write access
         //remove public write access.
-        var index = this.document['write']['allow']['user'].indexOf('all');
+        let index = this.document['write']['allow']['user'].indexOf('all');
         if (index > -1) {
             this.document['write']['allow']['user'].splice(index, 1);
         }
@@ -47,7 +47,7 @@ CB.ACL.prototype.setUserWriteAccess = function(userId, value) { //for setting th
             this.document['write']['allow']['user'].push(userId);
         }
     } else {
-        var index = this.document['write']['allow']['user'].indexOf(userId);
+        let index = this.document['write']['allow']['user'].indexOf(userId);
         if (index > -1) {
             this.document['write']['allow']['user'].splice(index, 1); //remove the "userId" value from the "write" array of "this" object
         }
@@ -62,7 +62,7 @@ CB.ACL.prototype.setUserReadAccess = function(userId, value) { //for setting the
 
     if (value) { //If asked to allow user read access
         //remove public write access.
-        var index = this.document['read']['allow']['user'].indexOf('all');
+        let index = this.document['read']['allow']['user'].indexOf('all');
         if (index > -1) {
             this.document['read']['allow']['user'].splice(index, 1);
         }
@@ -70,7 +70,7 @@ CB.ACL.prototype.setUserReadAccess = function(userId, value) { //for setting the
             this.document['read']['allow']['user'].push(userId);
         }
     } else {
-        var index = this.document['read']['allow']['user'].indexOf(userId);
+        let index = this.document['read']['allow']['user'].indexOf(userId);
         if (index > -1) {
             this.document['read']['allow']['user'].splice(index, 1); //remove the "userId" value from the "read" array of "this" object
         }
@@ -85,7 +85,7 @@ CB.ACL.prototype.setRoleWriteAccess = function(roleId, value) {
 
     if (value) {
         //remove public write access.
-        var index = this.document['write']['allow']['user'].indexOf('all');
+        let index = this.document['write']['allow']['user'].indexOf('all');
         if (index > -1) {
             this.document['write']['allow']['user'].splice(index, 1);
         }
@@ -93,13 +93,13 @@ CB.ACL.prototype.setRoleWriteAccess = function(roleId, value) {
             this.document['write']['allow']['role'].push(roleId);
         }
     } else {
-        var index = this.document['write']['allow']['role'].indexOf(roleId);
+        let index = this.document['write']['allow']['role'].indexOf(roleId);
         if (index > -1) {
             this.document['write']['allow']['role'].splice(index, 1);
         }
-        var index = this.document['write']['allow']['user'].indexOf('all');
-        if (index > -1) {
-            this.document['write']['allow']['user'].splice(index, 1);
+        let all_index = this.document['write']['allow']['user'].indexOf('all');
+        if (all_index > -1) {
+            this.document['write']['allow']['user'].splice(all_index, 1);
         }
 
         this.document['write']['deny']['role'].push(roleId);
@@ -113,7 +113,7 @@ CB.ACL.prototype.setRoleReadAccess = function(roleId, value) {
 
     if (value) {
         //remove public write access.
-        var index = this.document['read']['allow']['user'].indexOf('all');
+        let index = this.document['read']['allow']['user'].indexOf('all');
         if (index > -1) {
             this.document['read']['allow']['user'].splice(index, 1);
         }
@@ -121,13 +121,13 @@ CB.ACL.prototype.setRoleReadAccess = function(roleId, value) {
             this.document['read']['allow']['role'].push(roleId);
         }
     } else {
-        var index = this.document['read']['allow']['role'].indexOf(roleId);
+        let index = this.document['read']['allow']['role'].indexOf(roleId);
         if (index > -1) {
             this.document['read']['allow']['role'].splice(index, 1);
         }
-        var index = this.document['read']['allow']['user'].indexOf('all');
-        if (index > -1) {
-            this.document['read']['allow']['user'].splice(index, 1);
+        let all_index = this.document['read']['allow']['user'].indexOf('all');
+        if (all_index > -1) {
+            this.document['read']['allow']['user'].splice(all_index, 1);
         }
         this.document['read']['deny']['role'].push(roleId);
     }

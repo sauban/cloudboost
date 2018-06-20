@@ -147,7 +147,7 @@ class CloudObject {
             });
             localforage.setItem('cb-saveEventually-' + CB.appId, arr).then(function () {
                 CloudObject.pin(thisObj, {
-                    success: function (obj) {
+                    success: function () {
                         if (!callback) {
                             def.resolve(value);
                         } else {
@@ -682,14 +682,14 @@ function _groupObjects(objects) {
         if (!(objects[i] instanceof CB.CloudObject)) {
             throw "Should Be an instance of CloudObjects";
         }
-        var groupName = objects[i].document._tableName;
+        let groupName = objects[i].document._tableName;
         if (!groups[groupName]) {
             groups[groupName] = [];
         }
         groups[groupName].push(objects[i].document);
     }
     objects = [];
-    for (var groupName in groups) {
+    for (let groupName in groups) {
         objects.push({
             tableName: groupName,
             object: groups[groupName]
@@ -706,21 +706,17 @@ CloudObject.sync = function (callback) {
     CB._validate();
     if (CB.CloudApp._isConnected) {
         localforage.getItem('cb-saveEventually-' + CB.appId).then(function (documents) {
-            var cloudObjects = [];
             var count = 0;
             var cloudObject = null;
             if (documents) {
-                var length = documents.length;
-
                 documents.forEach((document) => {
-                    length--;
                     if (!document.saved) {
                         cloudObject = CB.fromJSON(document.document);
                         cloudObject.save({
-                            success: function (obj) {
+                            success: function () {
                                 count++;
                                 CB.CloudObject.disableSync(document.document, {
-                                    success: function (obj) {
+                                    success: function () {
                                         if (!callback) {
                                             def.resolve(count);
                                         } else {
@@ -745,7 +741,6 @@ CloudObject.sync = function (callback) {
                             }
                         });
                     }
-
                 });
             } else {
                 if (!callback) {
@@ -821,7 +816,6 @@ CloudObject._validateNotificationQuery = function (cloudObject, cloudQuery) { //
         throw "There is no query in CloudQuery";
 
     //validate query.
-    var query = cloudQuery.query;
 
     if (cloudQuery.limit === 0)
         return false;

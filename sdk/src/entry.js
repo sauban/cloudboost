@@ -1,3 +1,4 @@
+/* eslint-disable */
 ///<reference path="./cloudboost.d.ts" />
 
 import CB from './CB';

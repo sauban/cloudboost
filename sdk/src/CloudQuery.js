@@ -243,10 +243,6 @@ class CloudQuery {
             throw "TableName is null.";
         }
         var def;
-        var callback;
-        if (typeof callback === 'object' && typeof callback.success === 'function') {
-            callback = callback;
-        }
         if (!callback) {
             def = new CB.Promise();
         }
@@ -398,7 +394,7 @@ class CloudQuery {
             this.query[columnName]["$in"] = CbData;
             var thisObj = this;
             if (typeof this.query[columnName]["$nin"] !== 'undefined') { //for removing dublicates
-                CbData.forEach(function(val) {
+                CbData.forEach(function(val, index) {
                     if ((index = thisObj.query[columnName]["$nin"].indexOf(val)) >= 0) {
                         thisObj.query[columnName]["$nin"].splice(index, 1);
                     }
@@ -427,10 +423,12 @@ class CloudQuery {
             if (this.query[columnName]["$in"].indexOf(CbData) === -1) {
                 this.query[columnName]["$in"].push(CbData);
             }
-            if (typeof this.query[columnName]["$nin"] !== 'undefined') {
+            if (typeof this.query[columnName]["$nin"] !== 'undefined') { 
+                /* eslint-disable no-undef */
                 if ((index = this.query[columnName]["$nin"].indexOf(CbData)) >= 0) {
                     this.query[columnName]["$nin"].splice(index, 1);
                 }
+                /* eslint-enable no-undef */
             }
         }
 
@@ -475,8 +473,8 @@ class CloudQuery {
 
             this.query[columnName]["$nin"] = CbData;
             if (typeof this.query[columnName]["$in"] !== 'undefined') { //for removing duplicates
-                thisObj = this;
-                CbData.forEach(function(val) {
+                var thisObj = this;
+                CbData.forEach(function(val, index) {
                     if ((index = thisObj.query[columnName]["$in"].indexOf(val)) >= 0) {
                         thisObj.query[columnName]["$in"].splice(index, 1);
                     }
@@ -506,9 +504,11 @@ class CloudQuery {
                 this.query[columnName]["$nin"].push(CbData);
             }
             if (typeof this.query[columnName]["$in"] !== 'undefined') {
+                /* eslint-disable no-undef */
                 if ((index = this.query[columnName]["$in"].indexOf(CbData)) >= 0) {
                     this.query[columnName]["$in"].splice(index, 1);
                 }
+                /* eslint-enable no-undef */
             }
         }
 
@@ -653,7 +653,7 @@ class CloudQuery {
                 if (!this.query["$or"])
                     this.query["$or"] = [];
                 for (var i = 0; i < value.length; i++) {
-                    var obj = {};
+                    let obj = {};
                     obj[columnName[j]] = {};
                     obj[columnName[j]]["$regex"] = ".*" + value[i] + ".*";
 
@@ -669,7 +669,7 @@ class CloudQuery {
                 } else {
                     if (!this.query["$or"])
                         this.query["$or"] = [];
-                    var obj = {};
+                    let obj = {};
                     obj[columnName[j]] = {};
                     obj[columnName[j]]["$regex"] = ".*" + value + ".*";
 
@@ -1023,11 +1023,9 @@ CloudQuery.or = function(obj1, obj2) {
         for (var i = 0; i < obj1.length; ++i) {
             if (obj1[i].tableName != tableName) {
                 throw "Table names are not same";
-                break;
             }
             if (!(obj1[i]instanceof CB.CloudQuery)) {
                 throw "Array items are not instanceof of CloudQuery";
-                break;
             }
             queryArray.push(obj1[i].query);
         }
@@ -1146,7 +1144,7 @@ CloudQuery._validateQuery = function(cloudObject, query) {
                             else {
                                 if (query[key]['$options'] === 'im') { //test starts with.
                                     //starts with.
-                                    var value = trimStart('^', query[key][objectKeys]);
+                                    let value = trimStart('^', query[key][objectKeys]);
                                     if (cloudObject.get(key).indexOf(value) !== 0)
                                         return false;
                                     }
@@ -1158,8 +1156,8 @@ CloudQuery._validateQuery = function(cloudObject, query) {
                         if (objectKeys === '$in') {
 
                             if (query[key][objectKeys]) {
-                                var arr = query[key][objectKeys];
-                                var value = null;
+                                let arr = query[key][objectKeys];
+                                let value = null;
                                 if (key.indexOf('.') > -1) { //for CloudObjects
                                     value = cloudObject.get(key.substr(0, key.indexOf('.')));
                                 } else {
@@ -1168,7 +1166,7 @@ CloudQuery._validateQuery = function(cloudObject, query) {
 
                                 if (Object.prototype.toString.call(value) === '[object Array]') {
                                     var exists = false;
-                                    for (var i = 0; i < value.length; i++) {
+                                    for (let i = 0; i < value.length; i++) {
                                         if (value[i]instanceof CB.CloudObject) {
                                             if (arr.indexOf(value[i].id) > -1) {
                                                 exists = true;
@@ -1199,8 +1197,8 @@ CloudQuery._validateQuery = function(cloudObject, query) {
                         //doesNot containedIn.
                         if (objectKeys === '$nin') {
                             if (query[key][objectKeys]) {
-                                var arr = query[key][objectKeys];
-                                var value = null;
+                                let arr = query[key][objectKeys];
+                                let value = null;
                                 if (key.indexOf('.') > -1) { //for CloudObjects
                                     value = cloudObject.get(key.substr(0, key.indexOf('.')));
                                 } else {
@@ -1208,8 +1206,8 @@ CloudQuery._validateQuery = function(cloudObject, query) {
                                 }
 
                                 if (Object.prototype.toString.call(value) === '[object Array]') {
-                                    var exists = false;
-                                    for (var i = 0; i < value.length; i++) {
+                                    let exists = false;
+                                    for (let i = 0; i < value.length; i++) {
                                         if (value[i]instanceof CB.CloudObject) {
                                             if (arr.indexOf(value[i].id) !== -1) {
                                                 exists = true;
@@ -1240,8 +1238,8 @@ CloudQuery._validateQuery = function(cloudObject, query) {
                         //containsAll.
                         if (objectKeys === '$all') {
                             if (query[key][objectKeys]) {
-                                var arr = query[key][objectKeys];
-                                var value = null;
+                                let arr = query[key][objectKeys];
+                                let value = null;
                                 if (key.indexOf('.') > -1) { //for CloudObjects
                                     value = cloudObject.get(key.substr(0, key.indexOf('.')));
                                 } else {
@@ -1249,7 +1247,7 @@ CloudQuery._validateQuery = function(cloudObject, query) {
                                 }
 
                                 if (Object.prototype.toString.call(value) === '[object Array]') {
-                                    for (var i = 0; i < value.length; i++) {
+                                    for (let i = 0; i < value.length; i++) {
                                         if (value[i]instanceof CB.CloudObject) {
                                             if (arr.indexOf(value[i].id) === -1) {
                                                 return false;
@@ -1295,6 +1293,16 @@ CloudQuery._validateQuery = function(cloudObject, query) {
 
     return true;
 };
+
+function trimStart(character, string) {
+    var startIndex = 0;
+
+    while (string[startIndex] === character) {
+        startIndex++;
+    }
+
+    return string.substr(startIndex);
+}
 
 CB.CloudQuery = CloudQuery;
 

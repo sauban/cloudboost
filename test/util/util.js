@@ -1,20 +1,17 @@
-   var util = {
-     makeString : function(){
-	    var text = "x";
-	    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+/* eslint-disable */
+var util = {
+	makeString: function () {
+		var text = "x";
+		var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-	    for( var i=0; i < 5; i++ )
-	        text += possible.charAt(Math.floor(Math.random() * possible.length));
+		for (var i = 0; i < 5; i++)
+			text += possible.charAt(Math.floor(Math.random() * possible.length));
 
-	    return 'x'+text;
-	},	
+		return 'x' + text;
+	},
 
-	makeEmail : function(){
-	    return this.makeString()+'@sample.com';
+	makeEmail: function () {
+		return this.makeString() + '@sample.com';
 	}
 
-   };
-
-   
-
-	
+};
